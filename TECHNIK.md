@@ -1,6 +1,6 @@
 # Technische Dokumentation
 
-Diese Datei beschreibt Datenimport, Berechnung, lokale Entwicklung und Betrieb von Politik. Eine Einführung zur Nutzung findest du in der [README](README.md).
+Diese Datei beschreibt Datenimport, Berechnung, lokale Entwicklung und Betrieb von Politik. Eine Einführung zur Nutzung findest Du in der [README](README.md).
 
 Demo: [politik.cruset.com](https://politik.cruset.com), Server `207.180.217.99`.
 

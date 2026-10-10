@@ -1,6 +1,6 @@
 # Politik
 
-Wie verändert sich die politische Stimmung in Deutschland? **Politik** zeigt die Umfragewerte der Parteien im Zeitverlauf – für die Bundestagswahl und für alle 16 Bundesländer. In der Bundesansicht kannst du außerdem verfolgen, wie zufrieden die Befragten mit der Bundesregierung und dem Bundeskanzler sind.
+Wie verändert sich die politische Stimmung in Deutschland? **Politik** zeigt die Umfragewerte der Parteien im Zeitverlauf – für die Bundestagswahl und für alle 16 Bundesländer. In der Bundesansicht kannst Du außerdem verfolgen, wie zufrieden die Befragten mit der Bundesregierung und dem Bundeskanzler sind.
 
 **[Demo öffnen: politik.cruset.com](https://politik.cruset.com)**
 
@@ -26,7 +26,7 @@ Die Linien verbinden vorhandene Durchschnittswerte auch über Umfragepausen hinw
 
 ## Datenquelle und Aktualisierung
 
-Die Daten stammen aus der öffentlichen Google-Tabelle [Deutschland Wählt – Umfragen-Verlauf](https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview). Unter dem Diagramm findest du die beteiligten Umfrageinstitute und einen Link zur Originaltabelle.
+Die Daten stammen aus der öffentlichen Google-Tabelle [Deutschland Wählt – Umfragen-Verlauf](https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview). Unter dem Diagramm findest Du die beteiligten Umfrageinstitute und einen Link zur Originaltabelle.
 
 Die Anwendung ruft die Daten **alle 15 Minuten** ab; der letzte Abruf steht unten auf der Seite. Das Datum der neuesten Umfrage hängt davon ab, wann die Quelle neue Ergebnisse veröffentlicht. Schlägt eine Aktualisierung fehl, bleiben bereits verfügbare Daten sichtbar und werden entsprechend gekennzeichnet.
 
@@ -34,6 +34,6 @@ Die Darstellung fasst verschiedene Institute und Frageformulierungen zusammen. S
 
 ## Autor und Technik
 
-Entwickelt von **[José Cruset](https://x.com/josecruset)**. Den Quellcode findest du im [GitHub-Repo](https://github.com/josecruset/politik).
+Entwickelt von **[José Cruset](https://x.com/josecruset)**. Den Quellcode findest Du im [GitHub-Repo](https://github.com/josecruset/politik).
 
 Informationen zu Installation, Datenimport, genauen Berechnungsregeln, automatischem Deployment und Betrieb stehen in der **[technischen Dokumentation](TECHNIK.md)**.
