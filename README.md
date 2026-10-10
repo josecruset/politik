@@ -6,6 +6,8 @@ Wie verändert sich die politische Stimmung in Deutschland und Spanien? **Politi
 
 ## Die Anwendung nutzen
 
+Über den **Dark-Mode-Schalter oben** kannst Du zwischen heller und dunkler Darstellung wechseln. Deine Auswahl bleibt im Browser gespeichert. Ohne eigene Auswahl richtet sich die Darstellung nach Deinem System.
+
 Wähle rechts oben zwischen **Deutschland** und **Spanien**. Beim Wechsel bleiben Deine ausgewählten Parteien, das Wahlgebiet und der betrachtete Zeitraum je Ansicht erhalten. Für Deutschland wählst Du über dem Diagramm **Bundestagswahl** oder ein Bundesland aus. Die Bundesansicht zeigt AfD, Union, SPD, Grüne, Linke, BSW und FDP. In den Länderansichten werden CDU bzw. CSU korrekt benannt und zusätzliche Landesparteien angezeigt, soweit die Quelle eigene Werte für sie enthält.
 
 Für Spanien zeigt die Anwendung die in der Quelle enthaltenen nationalen Parteien, darunter PP, PSOE, Vox, Sumar, Podemos / UP und Ciudadanos sowie historische Parteien wie UCD und AP / CD. Spanische Regionalumfragen und Zufriedenheitskurven werden zunächst nicht angeboten. Historische Bündnisse bleiben unter den Bezeichnungen der Quelle erkennbar.

@@ -69,12 +69,12 @@ function render(firstDate = null, latest = false, animate = false) {
   let month = new Date(start); month = new Date(Date.UTC(month.getUTCFullYear(), month.getUTCMonth() + 1, 1));
   while (month.getTime() <= end) {
     const pos = x(month);
-    chart.append(element('line', { x1: pos, x2: pos, y1: 14, y2: height - 41, stroke: '#f1f4f2' }));
+    chart.append(element('line', { x1: pos, x2: pos, y1: 14, y2: height - 41, stroke: 'var(--month-grid)' }));
     if (scale >= 1.1 || month.getUTCMonth() % 3 === 0) chart.append(element('text', { x: pos + 3, y: height - 17 }, month.toLocaleDateString('de-DE', { month: 'short', timeZone: 'UTC' })));
-    if (month.getUTCMonth() === 0) chart.append(element('text', { x: pos + 3, y: height - 3, style: 'fill:#4c6b57;font-size:10px;font-weight:600' }, month.getUTCFullYear()));
+    if (month.getUTCMonth() === 0) chart.append(element('text', { x: pos + 3, y: height - 3, style: 'fill:var(--year);font-size:10px;font-weight:600' }, month.getUTCFullYear()));
     month.setUTCMonth(month.getUTCMonth() + 1);
   }
-  referenceLine = element('line', { id: 'five-percent-line', x1: 0, x2: width, stroke: '#000', 'stroke-width': 1, 'pointer-events': 'none' });
+  referenceLine = element('line', { id: 'five-percent-line', x1: 0, x2: width, stroke: 'var(--reference)', 'stroke-width': 1, 'pointer-events': 'none' });
   chart.append(referenceLine);
   curveLayer = element('g', { id: 'curves' }); chart.append(curveLayer);
   const baseY = value => height - 41 - value / 100 * (height - 55);
@@ -90,6 +90,7 @@ function render(firstDate = null, latest = false, animate = false) {
     }
     // A subtle outline makes the source's bright yellow FDP line readable.
     if (party.id === 'fdp') curveLayer.append(element('path', { d: path, fill: 'none', stroke: '#b0a545', 'stroke-width': 3.3, opacity: .6, 'vector-effect': 'non-scaling-stroke' }));
+    if (['union', 'bsw', 'es-pce'].includes(party.id)) curveLayer.append(element('path', { d: path, class: 'dark-line-outline', fill: 'none', stroke: '#dce6e1', 'stroke-width': 3.6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .4, 'vector-effect': 'non-scaling-stroke' }));
     const line = element('path', { d: path, fill: 'none', stroke: party.color, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'data-line': party.id, 'vector-effect': 'non-scaling-stroke' });
     line.append(element('title', {}, party.label)); curveLayer.append(line);
   }
@@ -103,7 +104,7 @@ function render(firstDate = null, latest = false, animate = false) {
     for (const party of data.parties.filter(p => active.has(p.id))) {
       const value = election.values[party.id];
       if (value === null || value === undefined) continue;
-      const dot = element('circle', { cx: x(election.date), cy: y(value), r: 5.5, fill: party.color, stroke: 'white', 'stroke-width': 2, tabindex: 0, 'data-election': election.date, 'data-party': party.id, 'aria-label': `${election.label || 'Bundestagswahl'} ${dateLabel(election.date)}, ${party.label}: ${number(value, 2)} Prozent` });
+      const dot = element('circle', { cx: x(election.date), cy: y(value), r: 5.5, fill: party.color, stroke: 'var(--surface)', 'stroke-width': 2, tabindex: 0, 'data-election': election.date, 'data-party': party.id, 'aria-label': `${election.label || 'Bundestagswahl'} ${dateLabel(election.date)}, ${party.label}: ${number(value, 2)} Prozent` });
       dot.append(element('title', {}, election.label || 'Bundestagswahl'));
       dot.addEventListener('focus', () => showElection(election, x(election.date) - scroll.scrollLeft));
       dot.addEventListener('blur', hideTooltip);
@@ -111,7 +112,7 @@ function render(firstDate = null, latest = false, animate = false) {
       markers.push({ time: new Date(election.date).getTime(), value }); dots.push({ element: dot, value });
     }
   }
-  chart.append(element('line', { id: 'crosshair', y1: 14, y2: height - 41, stroke: '#7f9688', 'stroke-dasharray': '3 4', visibility: 'hidden', 'pointer-events': 'none' }));
+  chart.append(element('line', { id: 'crosshair', y1: 14, y2: height - 41, stroke: 'var(--crosshair)', 'stroke-dasharray': '3 4', visibility: 'hidden', 'pointer-events': 'none' }));
   scroll.scrollLeft = latest ? scroll.scrollWidth : firstDate === null ? 0 : (firstDate - start) / DAY * scale;
   updateScale(animate); updatePeriod(); hideTooltip();
 }
@@ -146,7 +147,7 @@ function updateScale(animate = true) {
   if (maximum - values.at(-1) < step) values.pop();
   values.push(maximum);
   for (const value of values) {
-    const line = element('line', { x1: 0, x2: width, stroke: '#e8eee9', 'stroke-dasharray': value ? '3 5' : '0' });
+    const line = element('line', { x1: 0, x2: width, stroke: 'var(--grid)', 'stroke-dasharray': value ? '3 5' : '0' });
     const label = element('text', { x: 32, 'text-anchor': 'end' }, value);
     grid.append(line); axis.append(label); ticks.push({ value, line, label });
   }

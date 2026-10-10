@@ -6,6 +6,8 @@ Demo: [politik.cruset.com](https://politik.cruset.com), Server `207.180.217.99`.
 
 ## Darstellungsregeln
 
+`public/theme.js` setzt das Farbschema vor dem Laden des Stylesheets. Der Schalter speichert `light` oder `dark` unter `politik-theme` im lokalen Browserspeicher. Ohne gespeicherte Auswahl folgt die Darstellung `prefers-color-scheme`, einschließlich späterer Systemänderungen. Ist der Browserspeicher gesperrt, funktioniert der Schalter für die aktuelle Sitzung. CSS-Variablen steuern Oberfläche, Achsen, Gitternetz, Wahlpunkt-Ränder und Tooltips; die Parteifarben bleiben erhalten. Die 5-%-Referenzlinie ist im dunklen Modus hell, damit sie sichtbar bleibt.
+
 Die Auswahl rechts oben wechselt zwischen Deutschland (`de`) und Spanien (`es`). Deutschland bietet Bundestagswahl und alle Bundesländer; Spanien zunächst nur Congreso-Umfragen. Linienauswahl, Wahlgebiet und Zeitfenster werden je Ansicht während der Sitzung erhalten.
 
 - AfD, Union, SPD, Grüne, Linke, BSW, FDP in dieser Reihenfolge, standardmäßig alle sichtbar. Die Karten zeigen die unveränderten Werte der neuesten Einzelumfrage; Datum und Institut stehen bei „Letzte Umfrage“. Bei mehreren Umfragen am gleichen Tag gilt die zuerst aufgeführte Umfrage der Quelle. Fehlende Werte bleiben leer (–), echte null Prozent werden angezeigt. Klick auf eine Karte schaltet die betreffende Linie um. Die Linien zeigen weiterhin den 7-Tage-Durchschnitt.
