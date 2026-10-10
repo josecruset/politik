@@ -1,3 +1,5 @@
+import { axisMaximum } from './chart-scale.js';
+
 const $ = id => document.getElementById(id);
 const DAY = 86400000;
 const svgNS = 'http://www.w3.org/2000/svg';
@@ -8,6 +10,8 @@ const active = new Set();
 const selections = new Map();
 let selectedRegion = 'bundestag', loadController;
 const scroll = $('chart-scroll'), chart = $('chart');
+let curves = [], markers = [], dots = [], ticks = [], curveLayer, referenceLine;
+let scaleTimer, scaleAnimation, targetYmax;
 
 function element(tag, attributes = {}, text) {
   const el = document.createElementNS(svgNS, tag);
@@ -37,14 +41,14 @@ function toggle(series, approval = false) {
     const previousDate = start + scroll.scrollLeft / scale * DAY;
     active.has(series.id) ? active.delete(series.id) : active.add(series.id);
     button.setAttribute('aria-pressed', String(active.has(series.id)));
-    render(); scroll.scrollLeft = (previousDate - start) / DAY * scale; updatePeriod();
+    render(previousDate, false, true);
   });
   return button;
 }
 const x = date => (new Date(date).getTime() - start) / DAY * scale;
 const y = value => 14 + (ymax - value) / ymax * (height - 55);
 
-function render() {
+function render(firstDate = null, latest = false, animate = false) {
   if (!data) return;
   height = window.innerWidth <= 600 ? 302 : 340;
   // One viewport always spans approximately one year, independently of screen size.
@@ -52,13 +56,12 @@ function render() {
   start = Math.min(new Date(data.points[0].date).getTime(), ...data.approval.filter(s => active.has(s.id)).map(s => new Date(s.points[0].date).getTime()), ...(data.elections || []).map(e => new Date(e.date).getTime()));
   end = Math.max(new Date(data.points.at(-1).date).getTime(), ...data.approval.filter(s => active.has(s.id)).map(s => new Date(s.points.at(-1).date).getTime()), ...(data.elections || []).map(e => new Date(e.date).getTime()));
   width = Math.max(scroll.clientWidth, (end - start) / DAY * scale + 12);
-  ymax = active.has('government') ? 100 : active.has('chancellor') ? 60 : 50;
+  clearTimeout(scaleTimer); cancelAnimationFrame(scaleAnimation);
+  targetYmax = null; ymax ??= 100;
+  curves = []; markers = []; dots = []; ticks = [];
   chart.replaceChildren(); chart.setAttribute('width', width); chart.setAttribute('height', height); chart.style.height = `${height}px`;
   const axis = $('y-axis'); axis.replaceChildren(); axis.setAttribute('height', height); axis.style.height = `${height}px`;
-  for (let value = 0; value <= ymax; value += ymax === 100 ? 20 : 10) {
-    chart.append(element('line', { x1: 0, x2: width, y1: y(value), y2: y(value), stroke: '#e8eee9', 'stroke-dasharray': value ? '3 5' : '0' }));
-    axis.append(element('text', { x: 32, y: y(value) + 4, 'text-anchor': 'end' }, `${value}`));
-  }
+  const grid = element('g', { id: 'horizontal-grid' }); chart.append(grid);
   let month = new Date(start); month = new Date(Date.UTC(month.getUTCFullYear(), month.getUTCMonth() + 1, 1));
   while (month.getTime() <= end) {
     const pos = x(month);
@@ -67,24 +70,30 @@ function render() {
     if (month.getUTCMonth() === 0) chart.append(element('text', { x: pos + 3, y: height - 3, style: 'fill:#4c6b57;font-size:10px;font-weight:600' }, month.getUTCFullYear()));
     month.setUTCMonth(month.getUTCMonth() + 1);
   }
-  chart.append(element('line', { id: 'five-percent-line', x1: 0, x2: width, y1: y(5), y2: y(5), stroke: '#000', 'stroke-width': 1, 'pointer-events': 'none' }));
+  referenceLine = element('line', { id: 'five-percent-line', x1: 0, x2: width, stroke: '#000', 'stroke-width': 1, 'pointer-events': 'none' });
+  chart.append(referenceLine);
+  curveLayer = element('g', { id: 'curves' }); chart.append(curveLayer);
+  const baseY = value => height - 41 - value / 100 * (height - 55);
   for (const party of data.parties.filter(p => active.has(p.id))) {
     let path = '', connected = false;
+    const points = []; curves.push(points);
     for (const point of data.points) {
       const v = point.values[party.id];
       // Connect existing averages across polling pauses, including year changes.
       if (!v) continue;
-      path += `${connected ? 'L' : 'M'}${x(point.date).toFixed(2)},${y(v.value).toFixed(2)}`; connected = true;
+      points.push({ time: new Date(point.date).getTime(), value: v.value });
+      path += `${connected ? 'L' : 'M'}${x(point.date).toFixed(2)},${baseY(v.value).toFixed(2)}`; connected = true;
     }
     // A subtle outline makes the source's bright yellow FDP line readable.
-    if (party.id === 'fdp') chart.append(element('path', { d: path, fill: 'none', stroke: '#b0a545', 'stroke-width': 3.3, opacity: .6 }));
-    const line = element('path', { d: path, fill: 'none', stroke: party.color, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'data-line': party.id });
-    line.append(element('title', {}, party.label)); chart.append(line);
+    if (party.id === 'fdp') curveLayer.append(element('path', { d: path, fill: 'none', stroke: '#b0a545', 'stroke-width': 3.3, opacity: .6, 'vector-effect': 'non-scaling-stroke' }));
+    const line = element('path', { d: path, fill: 'none', stroke: party.color, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'data-line': party.id, 'vector-effect': 'non-scaling-stroke' });
+    line.append(element('title', {}, party.label)); curveLayer.append(line);
   }
   for (const series of data.approval.filter(s => active.has(s.id))) {
     const points = series.points.filter(p => p.value !== null);
-    const path = points.map((p, i) => `${i ? 'L' : 'M'}${x(p.date).toFixed(2)},${y(p.value).toFixed(2)}`).join('');
-    chart.append(element('path', { d: path, fill: 'none', stroke: series.color, 'stroke-width': 1.8, 'stroke-dasharray': '5 4', 'data-line': series.id }));
+    curves.push(points.map(p => ({ time: new Date(p.date).getTime(), value: p.value })));
+    const path = points.map((p, i) => `${i ? 'L' : 'M'}${x(p.date).toFixed(2)},${baseY(p.value).toFixed(2)}`).join('');
+    curveLayer.append(element('path', { d: path, fill: 'none', stroke: series.color, 'stroke-width': 1.8, 'stroke-dasharray': '5 4', 'data-line': series.id, 'vector-effect': 'non-scaling-stroke' }));
   }
   for (const election of data.elections || []) {
     for (const party of data.parties.filter(p => active.has(p.id))) {
@@ -95,10 +104,58 @@ function render() {
       dot.addEventListener('focus', () => showElection(election, x(election.date) - scroll.scrollLeft));
       dot.addEventListener('blur', hideTooltip);
       chart.append(dot);
+      markers.push({ time: new Date(election.date).getTime(), value }); dots.push({ element: dot, value });
     }
   }
   chart.append(element('line', { id: 'crosshair', y1: 14, y2: height - 41, stroke: '#7f9688', 'stroke-dasharray': '3 4', visibility: 'hidden', 'pointer-events': 'none' }));
-  updatePeriod(); hideTooltip();
+  scroll.scrollLeft = latest ? scroll.scrollWidth : firstDate === null ? 0 : (firstDate - start) / DAY * scale;
+  updateScale(animate); updatePeriod(); hideTooltip();
+}
+
+function paintScale(maximum) {
+  ymax = maximum;
+  const ratio = 100 / maximum, baseline = height - 41;
+  // Transform the curves without rebuilding thousands of daily SVG coordinates.
+  curveLayer.setAttribute('transform', `matrix(1 0 0 ${ratio} 0 ${baseline * (1 - ratio)})`);
+  for (const tick of ticks) {
+    tick.line.setAttribute('y1', y(tick.value)); tick.line.setAttribute('y2', y(tick.value));
+    tick.label.setAttribute('y', y(tick.value) + 4);
+  }
+  referenceLine.setAttribute('y1', y(5)); referenceLine.setAttribute('y2', y(5));
+  for (const dot of dots) dot.element.setAttribute('cy', y(dot.value));
+}
+
+function updateScale(animate = true) {
+  if (!data || !curveLayer) return;
+  const first = start + scroll.scrollLeft / scale * DAY;
+  const last = Math.min(end, start + (scroll.scrollLeft + scroll.clientWidth) / scale * DAY);
+  // Election dots can still be partly visible with their centre just outside.
+  const maximum = axisMaximum(curves, markers, first, last, 6.5 / scale * DAY);
+  if (maximum === targetYmax) return;
+  cancelAnimationFrame(scaleAnimation); targetYmax = maximum;
+  const axis = $('y-axis'), grid = $('horizontal-grid');
+  axis.replaceChildren(); grid.replaceChildren(); ticks = [];
+  const step = maximum <= 50 ? 5 : 10;
+  const values = [];
+  for (let value = 0; value < maximum; value += step) values.push(value);
+  // Avoid two labels only five points apart on the larger scales.
+  if (maximum - values.at(-1) < step) values.pop();
+  values.push(maximum);
+  for (const value of values) {
+    const line = element('line', { x1: 0, x2: width, stroke: '#e8eee9', 'stroke-dasharray': value ? '3 5' : '0' });
+    const label = element('text', { x: 32, 'text-anchor': 'end' }, value);
+    grid.append(line); axis.append(label); ticks.push({ value, line, label });
+  }
+  chart.setAttribute('data-y-max', maximum);
+  if (!animate || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { paintScale(maximum); return; }
+  const from = ymax, started = performance.now();
+  paintScale(from);
+  const frame = now => {
+    const progress = Math.min(1, (now - started) / 240);
+    paintScale(from + (maximum - from) * (1 - (1 - progress) ** 3));
+    if (progress < 1) scaleAnimation = requestAnimationFrame(frame);
+  };
+  scaleAnimation = requestAnimationFrame(frame);
 }
 
 function updatePeriod() {
@@ -150,7 +207,13 @@ function inspect(event) {
   if (!rows) { const note = document.createElement('small'); note.textContent = 'Keine Messwerte für diesen Tag.'; tooltip.append(note); }
   const crosshair = $('crosshair'); crosshair.setAttribute('x1', x(day)); crosshair.setAttribute('x2', x(day)); crosshair.setAttribute('visibility', 'visible');
 }
-scroll.addEventListener('scroll', () => { updatePeriod(); hideTooltip(); }, { passive: true });
+scroll.addEventListener('scroll', () => {
+  if (!data) return;
+  updatePeriod(); hideTooltip();
+  clearTimeout(scaleTimer);
+  // Wait for scrolling to settle so the scale does not jump on every pixel.
+  scaleTimer = setTimeout(() => updateScale(), 160);
+}, { passive: true });
 chart.addEventListener('pointermove', inspect);
 chart.addEventListener('pointerleave', hideTooltip);
 chart.addEventListener('click', inspect);
@@ -158,7 +221,7 @@ new ResizeObserver(() => {
   if (!data) return;
   const wasLatest = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 40;
   const firstDate = start + scroll.scrollLeft / scale * DAY;
-  render(); scroll.scrollLeft = wasLatest ? scroll.scrollWidth : (firstDate - start) / DAY * scale;
+  render(firstDate, wasLatest);
 }).observe(scroll);
 
 async function load(initial = true) {
@@ -191,7 +254,7 @@ async function load(initial = true) {
     $('pollsters').textContent = data.pollsters?.length ? data.pollsters.join(' · ') : 'Die Liste der Umfrageinstitute wird aktualisiert …';
     $('updated').textContent = `${data.stale ? 'Aktualisierung fehlgeschlagen · letzter erfolgreicher Abruf' : 'Daten abgerufen'}: ${new Date(data.fetchedAt).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', dateStyle: 'short', timeStyle: 'short' })} · alle 15 Minuten`;
     $('loading').hidden = true;
-    render(); scroll.scrollLeft = wasLatest ? scroll.scrollWidth : (previousDate - start) / DAY * scale; updatePeriod();
+    render(previousDate, wasLatest);
   } catch (error) {
     if (controller.signal.aborted || region !== selectedRegion) return;
     if (!initial) { $('updated').textContent = 'Aktualisierung fehlgeschlagen · die zuletzt geladenen Daten bleiben sichtbar'; return; }
@@ -203,6 +266,7 @@ async function load(initial = true) {
 $('region').addEventListener('change', () => {
   if (data) selections.set(selectedRegion, [...active]);
   selectedRegion = $('region').value; data = null; active.clear();
+  clearTimeout(scaleTimer); cancelAnimationFrame(scaleAnimation); curveLayer = null;
   chart.replaceChildren(); $('y-axis').replaceChildren(); $('legend').replaceChildren(); $('approval-legend').replaceChildren();
   $('additional').hidden = selectedRegion !== 'bundestag';
   $('status').textContent = 'Umfragedaten werden geladen …'; $('period').textContent = 'Letzte 12 Monate';

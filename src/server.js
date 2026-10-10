@@ -49,7 +49,7 @@ async function refresh(region = REGIONS[0]) {
   return entry.pending;
 }
 
-const files = { '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
+const files = { '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/chart-scale.js': ['chart-scale.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
 const server = createServer(async (request, response) => {
   const url = new URL(request.url, 'http://localhost');
   const path = url.pathname;

@@ -13,6 +13,7 @@ Staging: **https://politik.cruset.com** auf `207.180.217.99`.
 - Bundestagswahlergebnisse erscheinen als größere Punkte mit Tooltip „Bundestagswahl“. Wiederholte Wahlergebniszeilen an Abschnittsgrenzen ergeben einen Punkt je Partei und Wahl. Bei mehreren Fassungen gilt die zuerst aufgeführte Fassung.
 - Das Dropdown an der Diagrammüberschrift bietet Bundestagswahl und alle 16 Bundesländer. Bei einer Länderauswahl erscheinen dessen Landesumfragen, CDU bzw. CSU und zusätzliche Parteien aus eigenen Parteispalten. Die bisherigen sieben Parteien behalten ihre Reihenfolge; Landesparteien werden angehängt.
 - Regierungs- und Kanzlerzufriedenheit sind nur bei Bundestagswahl separat zuschaltbar, standardmäßig ausgeschaltet. In Länderansichten sind die Schalter ausgeblendet. Beim Zurückwechseln bleibt die Auswahl der Linien erhalten.
+- Die Y-Achse beginnt bei 0 % und passt sich den eingeschalteten Kurven und Wahlpunkten im sichtbaren Zeitraum an. Die Obergrenze liegt zwei Prozentpunkte über dem höchsten sichtbaren Wert und wird auf die nächsten 5 Prozentpunkte aufgerundet (mindestens 10 %, höchstens 100 %). Verbundene Linien an den sichtbaren Zeitgrenzen werden berücksichtigt. Nach einer kurzen Scrollpause erfolgt die Anpassung mit einer 240-ms-Animation; bei reduzierter Bewegung ohne Animation.
 - Die schwarze Referenzlinie liegt bei 5 %, auch beim Wechsel der Achsenskalierung.
 
 ## Daten und Berechnung
