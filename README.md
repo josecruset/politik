@@ -8,7 +8,7 @@ Staging: **https://politik.cruset.com** auf `207.180.217.99`.
 
 - AfD, Union, SPD, Grüne, Linke, BSW, FDP in dieser Reihenfolge, standardmäßig alle sichtbar. Klick auf eine Karte schaltet die betreffende Linie um.
 - Die Linienfarben entsprechen den effektiven Hintergrundfarben der bedingten Formatierung in Zeile 9 des Blatts `BUNDESTAGSWAHL`: `#009EE0`, `#005974`, `#E3000F`, `#008939`, `#B61C3E`, `#792351`, `#FFE209`.
-- Horizontal scrollbar, ungefähr zwölf Monate pro Ansicht. Start beim neuesten Zeitraum; „Zum aktuellen Zeitraum“ springt zurück. Auch per Touch oder Tastatur bedienbar.
+- Horizontal scrollbar, ungefähr zwölf Monate pro Ansicht. Start beim neuesten Zeitraum. Auch per Touch oder Tastatur bedienbar.
 - Mauszeiger oder Tippen auf das Diagramm zeigt Werte für einen Tag.
 - Bundestagswahlergebnisse erscheinen als größere Punkte mit Tooltip „Bundestagswahl“. Wiederholte Wahlergebniszeilen an Abschnittsgrenzen ergeben einen Punkt je Partei und Wahl. Bei mehreren Fassungen gilt die zuerst aufgeführte Fassung.
 - Regierungs- und Kanzlerzufriedenheit sind separat zuschaltbar, standardmäßig ausgeschaltet.
@@ -27,7 +27,7 @@ Vollständige öffentliche CSV-Exporte mit folgenden Blatt-IDs:
 
 Der ursprünglich angegebene Link mit `gid=667187835` zeigt tatsächlich auf die Kanzlerzufriedenheit. Die Anwendung lädt alle drei Blätter einzeln.
 
-Pro Partei und Tag: arithmetisches Mittel aller veröffentlichten Umfragewerte vom jeweiligen Tag und den sechs vorhergehenden Kalendertagen. Jede Umfrage hat dasselbe Gewicht, auch mehrere am selben Tag. Keine Gewichtung nach Institut oder Stichprobengröße. Fehlende Werte werden ausgelassen; echte `0%` bleiben gültig. Wahlresultate und Zusammenfassungszeilen gehen nicht in den Durchschnitt ein. Lücken ohne Umfragen bleiben sichtbar. Der berechnete Verlauf endet am letzten veröffentlichten Umfragedatum; die Datierung wird angezeigt.
+Pro Partei und Tag: arithmetisches Mittel aller veröffentlichten Umfragewerte vom jeweiligen Tag und den sechs vorhergehenden Kalendertagen. Jede Umfrage hat dasselbe Gewicht, auch mehrere am selben Tag. Keine Gewichtung nach Institut oder Stichprobengröße. Fehlende Werte werden ausgelassen; echte `0%` bleiben gültig. Wahlresultate und Zusammenfassungszeilen gehen nicht in den Durchschnitt ein. Die Linie verbindet vorhandene Durchschnittswerte auch über Umfragepausen hinweg, etwa an Jahreswechseln. Für solche Tage werden keine Tageswerte erfunden; im Tooltip gibt es ohne gültiges 7-Tage-Fenster keinen Messwert. Der berechnete Verlauf endet am letzten veröffentlichten Umfragedatum; die Datierung wird angezeigt.
 
 Historische Abschnitte haben andere Parteispalten: Der Import ordnet die Spalten bei jeder wiederholten Überschrift neu zu. BSW wird vor seiner Erfassung nicht als null Prozent behandelt.
 
@@ -101,4 +101,6 @@ APP_VERSION=<vorhandene-Commit-SHA> docker compose up -d --no-build --wait
 printf 'APP_VERSION=%s\n' '<vorhandene-Commit-SHA>' > .env
 ```
 
-Die App vergleicht verschiedene Institute und Frageformulierungen entsprechend den gelieferten Blättern. Zufriedenheitsdaten werden nicht methodisch vereinheitlicht. Parteifarben sind anhand der Quelltabelle übernommen; spätere Änderungen an deren Formatierung erfordern eine Anpassung der Farbkonstanten.
+Die App vergleicht verschiedene Institute und Frageformulierungen entsprechend den gelieferten Blättern. Zufriedenheitsdaten werden nicht methodisch vereinheitlicht. Unter dem Diagramm werden alle Institute aufgeführt, deren Daten aus mindestens einem der drei Blätter verwendet werden. Groß-/Kleinschreibungsvarianten werden zusammengefasst, historische Namenszusätze bleiben erhalten.
+
+Parteifarben sind anhand der Quelltabelle übernommen; spätere Änderungen an deren Formatierung erfordern eine Anpassung der Farbkonstanten.

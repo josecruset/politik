@@ -113,6 +113,16 @@ export function parseApproval(rows, today = Date.now()) {
   return points.sort((a, b) => a.date.localeCompare(b.date));
 }
 
+export function listPollsters(...collections) {
+  const names = new Map();
+  for (const point of collections.flat()) {
+    const name = point.pollster.trim().replace(/\s+/g, ' ');
+    const key = name.toLocaleLowerCase('de-DE');
+    if (!names.has(key)) names.set(key, name);
+  }
+  return [...names.values()].sort((a, b) => a.localeCompare(b, 'de'));
+}
+
 export function buildData(csv, today = Date.now()) {
   const pollRows = parseCSV(csv.polls);
   const polls = parsePolls(pollRows, today);
@@ -125,6 +135,7 @@ export function buildData(csv, today = Date.now()) {
     fetchedAt: new Date().toISOString(), sourceUrl: `https://docs.google.com/spreadsheets/d/${SOURCE_ID}/htmlview`,
     parties: PARTIES.map(({ header, ...p }) => p), points, elections,
     pollCount: polls.length, latestPollDate: iso(polls.at(-1).date),
+    pollsters: listPollsters(polls, government, chancellor),
     approval: [
       { id: 'government', label: 'Zufriedenheit Regierung', color: '#626B80', points: government },
       { id: 'chancellor', label: 'Zufriedenheit Bundeskanzler', color: '#D47730', points: chancellor },

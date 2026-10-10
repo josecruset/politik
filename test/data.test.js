@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DAY, parseCSV, parsePolls, rollingAverage, parseApproval, parseElections, parseDate, percentage } from '../src/data.js';
+import { DAY, parseCSV, parsePolls, rollingAverage, parseApproval, parseElections, parseDate, percentage, buildData } from '../src/data.js';
 
 const header = ['Datum\nPublication date', 'Institut\nPollster', '', '', 'Union\nEVP', 'AfD\nESN', 'SPD\nS&D', 'GRÜNE\nG/EFA', 'LINKE\nLINKE', 'BSW\nNI', 'FDP\nRE'];
 const poll = (date, institute, union, afd = '20%') => [date, institute, '', '', union, afd, '15%', '12%', '8%', '', '4%'];
@@ -61,4 +61,14 @@ test('future dates are not included', () => {
   const today = Date.UTC(2026, 0, 1);
   assert.equal(parsePolls([header, poll('02.01.2026', 'Forsa', '40%')], today).length, 0);
   assert.equal(parseElections([header, poll('02.01.2026', 'Bundestagswahl', '40%')], today).length, 0);
+});
+
+test('sources include all contributing sheets, deduplicate case variants and exclude election rows', () => {
+  const csv = rows => rows.map(row => row.map(value => `"${value.replaceAll('"', '""')}"`).join(',')).join('\n');
+  const data = buildData({
+    polls: csv([header, poll('01.01.2026', 'Pollytix', '30%'), poll('02.01.2026', 'pollytix', '31%'), poll('03.01.2026', 'Bundestagswahl', '40%')]),
+    government: csv([['01.01.2026', 'FG Wahlen', 'ZDF', '', 'Zufriedenheit', '20%', '10%']]),
+    chancellor: csv([['01.01.2026', 'Forsa', 'RTL', '', 'Zufriedenheit', '30%', '']]),
+  });
+  assert.deepEqual(data.pollsters, ['FG Wahlen', 'Forsa', 'Pollytix']);
 });

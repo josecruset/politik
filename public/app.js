@@ -70,7 +70,8 @@ function render() {
     let path = '', connected = false;
     for (const point of data.points) {
       const v = point.values[party.id];
-      if (!v) { connected = false; continue; }
+      // Connect existing averages across polling pauses, including year changes.
+      if (!v) continue;
       path += `${connected ? 'L' : 'M'}${x(point.date).toFixed(2)},${y(v.value).toFixed(2)}`; connected = true;
     }
     // A subtle outline makes the source's bright yellow FDP line readable.
@@ -153,7 +154,6 @@ scroll.addEventListener('scroll', () => { updatePeriod(); hideTooltip(); }, { pa
 chart.addEventListener('pointermove', inspect);
 chart.addEventListener('pointerleave', hideTooltip);
 chart.addEventListener('click', inspect);
-$('latest').addEventListener('click', () => scroll.scrollTo({ left: scroll.scrollWidth, behavior: 'smooth' }));
 new ResizeObserver(() => {
   if (!data) return;
   const wasLatest = scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 40;
@@ -174,8 +174,9 @@ async function load(initial = true) {
     $('legend').replaceChildren(...data.parties.map(p => toggle(p)));
     $('approval-legend').replaceChildren(...data.approval.map(p => toggle(p, true)));
     $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
+    $('pollsters').textContent = data.pollsters?.length ? data.pollsters.join(' · ') : 'Die Liste der Umfrageinstitute wird aktualisiert …';
     $('updated').textContent = `${data.stale ? 'Aktualisierung fehlgeschlagen · letzter erfolgreicher Abruf' : 'Daten abgerufen'}: ${new Date(data.fetchedAt).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', dateStyle: 'short', timeStyle: 'short' })} · alle 15 Minuten`;
-    $('loading').hidden = true; $('latest').disabled = false;
+    $('loading').hidden = true;
     render(); scroll.scrollLeft = wasLatest ? scroll.scrollWidth : (previousDate - start) / DAY * scale; updatePeriod();
   } catch (error) {
     if (!initial) { $('updated').textContent = 'Aktualisierung fehlgeschlagen · die zuletzt geladenen Daten bleiben sichtbar'; return; }
