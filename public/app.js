@@ -23,9 +23,9 @@ function element(tag, attributes = {}, text) {
   return el;
 }
 function swatch(color) { const el = document.createElement('i'); el.className = 'swatch'; el.style.background = color; return el; }
-function toggle(series, approval = false) {
+function toggle(series, approval = false, compact = false) {
   const button = document.createElement('button');
-  button.type = 'button'; button.className = approval ? 'approval-toggle' : 'party-toggle';
+  button.type = 'button'; button.className = approval ? 'approval-toggle' : compact ? 'timeline-toggle' : 'party-toggle';
   button.dataset.series = series.id;
   button.setAttribute('aria-pressed', String(active.has(series.id)));
   button.setAttribute('aria-label', `${series.label} ein- oder ausblenden`);
@@ -35,14 +35,17 @@ function toggle(series, approval = false) {
   } else {
     const label = document.createElement('span'); label.className = 'party-label'; label.textContent = series.label;
     const name = document.createElement('span'); name.className = 'party-name'; name.append(swatch(series.color), label);
-    const value = document.createElement('span'); value.className = 'party-value';
-    const last = data.latestPoll?.values[series.id];
-    const range = data.latestPoll?.ranges?.[series.id];
-    if (range) value.classList.add('interval-value');
-    const rawValue = range ? `${range.low.toLocaleString('de-DE')}–${range.high.toLocaleString('de-DE')}` : last === null || last === undefined ? '–' : last.toLocaleString('de-DE', { maximumFractionDigits: 2 });
-    value.append(document.createTextNode(rawValue));
-    const unit = document.createElement('small'); unit.textContent = '%'; value.append(unit);
-    button.append(name, value);
+    button.append(name);
+    if (!compact) {
+      const value = document.createElement('span'); value.className = 'party-value';
+      const last = data.latestPoll?.values[series.id];
+      const range = data.latestPoll?.ranges?.[series.id];
+      if (range) value.classList.add('interval-value');
+      const rawValue = range ? `${range.low.toLocaleString('de-DE')}–${range.high.toLocaleString('de-DE')}` : last.toLocaleString('de-DE', { maximumFractionDigits: 2 });
+      value.append(document.createTextNode(rawValue));
+      const unit = document.createElement('small'); unit.textContent = '%'; value.append(unit);
+      button.append(value);
+    }
   }
   button.addEventListener('click', () => {
     const previousDate = start + scroll.scrollLeft / scale * DAY;
@@ -271,9 +274,13 @@ async function load(initial = true) {
     $('source-credits').hidden = !data.sources?.length;
     $('data-note').textContent = data.dataNote || ''; $('data-note').hidden = !data.dataNote;
     $('average-note').textContent = `Die Grafik zeigt für ${country === 'de' && region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + (region === 'congreso' ? data.country.label : data.region.label)} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
-    $('legend').style.setProperty('--party-columns', Math.min(7, data.parties.length));
+    const latestParties = data.parties.filter(p => data.latestPoll?.values[p.id] > 0);
+    const otherParties = data.parties.filter(p => !(data.latestPoll?.values[p.id] > 0));
+    $('legend').style.setProperty('--party-columns', Math.max(1, Math.min(7, latestParties.length)));
     $('legend').classList.toggle('regional-legend', country === 'es' && region !== 'congreso');
-    $('legend').replaceChildren(...data.parties.map(p => toggle(p)));
+    $('legend').replaceChildren(...latestParties.map(p => toggle(p)));
+    $('other-parties').hidden = !otherParties.length;
+    $('other-parties-legend').replaceChildren(...otherParties.map(p => toggle(p, false, true)));
     $('approval-legend').replaceChildren(...data.approval.map(p => toggle(p, true)));
     $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)}${data.latestPoll ? ` · ${data.latestPoll.pollster}` : ''} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
     $('pollsters').textContent = data.pollsters?.length ? data.pollsters.join(' · ') : 'Die Liste der Umfrageinstitute wird aktualisiert …';
@@ -304,6 +311,7 @@ function switchView() {
   loadController?.abort(); data = null; active.clear();
   clearTimeout(scaleTimer); cancelAnimationFrame(scaleAnimation); curveLayer = null;
   chart.replaceChildren(); $('y-axis').replaceChildren(); $('legend').replaceChildren(); $('approval-legend').replaceChildren();
+  $('other-parties').hidden = true; $('other-parties-legend').replaceChildren(); $('other-parties').open = false;
   $('additional').hidden = true;
   $('source').hidden = true; $('source-credits').replaceChildren(); $('source-credits').hidden = true;
   $('data-note').hidden = true; $('average-note').textContent = 'Die Kurven zeigen den Durchschnitt aller Umfragen der letzten sieben Tage.';

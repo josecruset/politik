@@ -12,7 +12,7 @@ Wähle rechts oben zwischen **Deutschland** und **Spanien**. Beim Wechsel bleibe
 
 Für Spanien wählst Du **Parlamentswahl (Congreso)** oder **Katalonien** über dem Diagramm aus. Die nationale Ansicht zeigt unter anderem PP, PSOE, Vox, Sumar, Podemos / UP und Ciudadanos sowie historische Parteien wie UCD und AP / CD. Katalonien hat eigene Reihen für PSC, Junts, ERC, PP, Vox, Comuns / ECP, CUP, Aliança Catalana und weitere in der Quelle erfasste Parteien. Comuns / ECP fasst die jeweiligen Bündnisse zusammen; separat erhobene Podem-Werte bleiben eigenständig. Weitere spanische Regionen und Zufriedenheitskurven werden nicht angeboten.
 
-Die Karten über dem Diagramm zeigen die **gemeldeten Werte der neuesten Einzelumfrage**, ohne Durchschnitt. Bei „Letzte Umfrage“ stehen das Datum und das Umfrageinstitut. Ein Strich (–) bedeutet, dass für eine Partei kein Wert in dieser Umfrage vorliegt.
+Die Karten über dem Diagramm zeigen die **gemeldeten Werte der neuesten Einzelumfrage**, ohne Durchschnitt. Bei „Letzte Umfrage“ stehen das Datum und das Umfrageinstitut. Parteien mit 0 % oder ohne Wert in dieser Umfrage erhalten keine Karte. Unter **Weitere Parteien im Verlauf** kannst Du ihre historischen Kurven weiterhin ein- und ausschalten.
 
 Klicke auf eine Parteienkarte, um ihre Linie aus- oder wieder einzublenden. Zu Beginn sind alle Parteien eingeschaltet. In der deutschen Bundesansicht gibt es zusätzlich zwei Schalter für **Zufriedenheit Regierung** und **Zufriedenheit Bundeskanzler**. Diese sind zunächst ausgeschaltet und werden in Bundesländeransichten nicht angeboten.
 
