@@ -4,14 +4,14 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Umfragewerte Parteien und Regierung</title>
-  <meta name="description" content="Bundestagsumfragen im Zeitverlauf: 7-Tage-Durchschnitt und Zufriedenheit mit Regierung und Bundeskanzler.">
+  <meta name="description" content="Umfragen aus Deutschland und Spanien im Zeitverlauf: Parteien im 7-Tage-Durchschnitt und verfügbare Zufriedenheitswerte.">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
   <script src="/app.js" type="module"></script>
 </head>
 <body>
 <main>
-  <header class="page-header"><a class="brand" href="/" aria-label="Politik Startseite"><span class="brand-icon" aria-hidden="true">▥</span> POLITIK<span class="brand-dot">.</span></a><span class="header-note">Deutschland · Umfragetrends</span></header>
-  <section class="intro"><p class="eyebrow">DIE POLITISCHE STIMMUNG IM ZEITVERLAUF</p><h1>Umfragewerte Parteien und Regierung</h1><p class="subtitle">Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.</p></section>
+  <header class="page-header"><a class="brand" href="/" aria-label="Politik Startseite"><span class="brand-icon" aria-hidden="true">▥</span> POLITIK<span class="brand-dot">.</span></a><div class="country-control"><span class="header-note">Umfragetrends</span><select id="country" aria-label="Land auswählen"><option value="de">Deutschland</option><option value="es">Spanien</option></select></div></header>
+  <section class="intro"><p class="eyebrow">DIE POLITISCHE STIMMUNG IM ZEITVERLAUF</p><h1 id="page-title">Umfragewerte Parteien und Regierung</h1><p id="subtitle" class="subtitle">Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.</p></section>
   <section class="dashboard" aria-label="Umfrageverlauf">
     <div class="chart-header"><div><select id="region" aria-label="Wahlgebiet auswählen" disabled><option value="bundestag">Bundestagswahl</option></select><p id="status" role="status">Umfragedaten werden geladen …</p></div></div>
     <div id="legend" class="legend" aria-label="Parteien ein- und ausblenden"></div>
@@ -22,12 +22,12 @@
         <svg id="chart" role="img" aria-label="Zeitverlauf der ausgewählten Umfragewerte"></svg>
       </div>
       <div id="tooltip" class="tooltip" role="status" hidden></div>
-      <div id="loading" class="loading">Die Umfragen werden aus Google Sheets geladen …</div>
+      <div id="loading" class="loading">Die Umfragen werden geladen …</div>
     </div>
     <div class="scroll-note"><span aria-hidden="true">← →</span> Horizontal scrollen, um frühere Monate zu sehen. <span>Je Ansicht ca. 12 Monate.</span></div>
     <div id="additional" class="additional"><div id="approval-legend" class="approval-legend"></div></div>
   </section>
-  <section class="notes"><div><h3>Durchschnitt der letzten 7 Tage</h3><p id="average-note">Die Grafik zeigt für Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.</p></div><div><h3>Umfrageinstitute</h3><p id="pollsters">Die Umfrageinstitute werden geladen …</p><a id="source" href="https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview" target="_blank" rel="noopener noreferrer">Originaltabelle ansehen ↗</a></div></section>
+  <section class="notes"><div><h3>Durchschnitt der letzten 7 Tage</h3><p id="average-note">Die Grafik zeigt für Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.</p><p id="data-note" class="data-note" hidden></p></div><div><h3>Umfrageinstitute</h3><p id="pollsters">Die Umfrageinstitute werden geladen …</p><a id="source" href="https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview" target="_blank" rel="noopener noreferrer">Originaltabelle ansehen ↗</a><div id="source-credits" class="source-credits" hidden></div></div></section>
   <footer><div><span>POLITIK. <span class="footer-muted">Stimmung sichtbar machen.</span></span><div class="footer-credits"><span>Autor: <a href="https://x.com/josecruset" target="_blank" rel="noopener noreferrer">José Cruset</a></span><a href="https://github.com/josecruset/politik" target="_blank" rel="noopener noreferrer">GitHub-Repo</a></div></div><span id="updated">Automatische Datenaktualisierung alle 15 Minuten</span></footer>
 </main>
 </body></html>

@@ -3,16 +3,18 @@ import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { buildData, buildStateData, rollingApprovalAverage, SHEETS, SOURCE_ID } from './data.js';
 
-import { REGIONS } from './regions.js';
+import { COUNTRIES, findArea, cacheName } from './countries.js';
+import { fetchSpainData, SPAIN_POLICY } from './spain.js';
 
 const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
 const cacheDir = process.env.DATA_DIR || fileURLToPath(new URL('../data/', import.meta.url));
 const ttl = 15 * 60 * 1000;
+const areas = COUNTRIES.flatMap(country => country.regions.map(region => ({ ...region, country: country.id })));
 const caches = new Map();
-for (const region of REGIONS) {
+for (const region of areas) {
   let data = null;
-  try { data = JSON.parse(await readFile(`${cacheDir}/${region.id === 'bundestag' ? 'polls' : 'polls-' + region.id}.json`, 'utf8')); } catch {}
-  if (region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
+  try { data = JSON.parse(await readFile(`${cacheDir}/${cacheName(region.country, region.id)}.json`, 'utf8')); } catch {}
+  if (region.country === 'es' ? data?.spainPolicy !== SPAIN_POLICY : region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
   // Upgrade persisted raw observations even when the source is temporarily offline.
   for (const series of data?.approval || []) {
     if (series.aggregation !== 'rolling-7-days') {
@@ -30,18 +32,24 @@ async function fetchSheet(gid) {
   if (/^\s*</.test(csv)) throw new Error('Google Sheets liefert keine CSV-Daten');
   return csv;
 }
-async function refresh(region = REGIONS[0]) {
+async function fetchJson(url) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(45000) });
+  if (!response.ok) throw new Error(`Spanien-Datenquelle: HTTP ${response.status}`);
+  return response.json();
+}
+async function refresh(region = areas[0]) {
   const entry = caches.get(region.id);
   if (entry.pending) return entry.pending;
   entry.lastAttempt = Date.now();
   entry.pending = (async () => {
     let data;
-    if (region.id === 'bundestag') {
+    if (region.country === 'es') data = await fetchSpainData(entry.data, fetchJson);
+    else if (region.id === 'bundestag') {
       const entries = await Promise.all(Object.entries(SHEETS).map(async ([name, gid]) => [name, await fetchSheet(gid)]));
       data = buildData(Object.fromEntries(entries));
     } else data = buildStateData(await fetchSheet(region.gid), region);
     await mkdir(cacheDir, { recursive: true });
-    const file = `${cacheDir}/${region.id === 'bundestag' ? 'polls' : 'polls-' + region.id}`;
+    const file = `${cacheDir}/${cacheName(region.country, region.id)}`;
     await writeFile(`${file}.tmp`, JSON.stringify(data));
     await rename(`${file}.tmp`, `${file}.json`);
     entry.data = data; entry.lastError = null;
@@ -66,14 +74,16 @@ const server = createServer(async (request, response) => {
     if (path === '/api/data') {
       response.setHeader('Content-Type', 'application/json; charset=utf-8');
       response.setHeader('Cache-Control', 'no-store');
-      const region = REGIONS.find(r => r.id === (url.searchParams.get('region') || 'bundestag'));
-      if (!region) { response.writeHead(400); return response.end(JSON.stringify({ error: 'Unbekanntes Wahlgebiet' })); }
+      const area = findArea(url.searchParams.get('country') || 'de', url.searchParams.get('region'));
+      if (!area) { response.writeHead(400); return response.end(JSON.stringify({ error: 'Unbekanntes Land oder Wahlgebiet' })); }
+      const { country } = area;
+      const region = areas.find(r => r.country === country.id && r.id === area.region.id);
       const entry = caches.get(region.id);
       if (!entry.data || !entry.data.latestPoll || !Array.isArray(entry.data.pollsters) || Date.now() - new Date(entry.data.fetchedAt).getTime() > ttl) {
         if (Date.now() - entry.lastAttempt > 60000 || entry.pending) await refresh(region);
       }
       if (!entry.data) { response.writeHead(503); return response.end(JSON.stringify({ error: `Die Umfragedaten für ${region.label} konnten noch nicht geladen werden. Bitte erneut versuchen.` })); }
-      return response.end(JSON.stringify({ ...entry.data, region: { id: region.id, label: region.label }, regions: REGIONS.map(({ id, label }) => ({ id, label })), stale: Boolean(entry.lastError) || Date.now() - new Date(entry.data.fetchedAt).getTime() > ttl }));
+      return response.end(JSON.stringify({ ...entry.data, country: { id: country.id, label: country.label }, countries: COUNTRIES.map(({ id, label }) => ({ id, label })), region: { id: region.id, label: region.label }, regions: country.regions.map(({ id, label }) => ({ id, label })), stale: Boolean(entry.lastError) || Date.now() - new Date(entry.data.fetchedAt).getTime() > ttl }));
     }
     if (!files[path]) { response.writeHead(404); return response.end('Nicht gefunden'); }
     const [file, type] = files[path];
@@ -87,6 +97,6 @@ server.requestTimeout = 60000;
 server.listen(Number(process.env.PORT || 3000), '0.0.0.0', () => console.log('Politik läuft auf Port', process.env.PORT || 3000));
 void refresh();
 setInterval(() => {
-  for (const region of REGIONS) if (region.id === 'bundestag' || caches.get(region.id).data) void refresh(region);
+  for (const region of areas) if (region.id === 'bundestag' || caches.get(region.id).data) void refresh(region);
 }, ttl).unref();
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => process.exit(0)));

@@ -6,6 +6,8 @@ Demo: [politik.cruset.com](https://politik.cruset.com), Server `207.180.217.99`.
 
 ## Darstellungsregeln
 
+Die Auswahl rechts oben wechselt zwischen Deutschland (`de`) und Spanien (`es`). Deutschland bietet Bundestagswahl und alle Bundesländer; Spanien zunächst nur Congreso-Umfragen. Linienauswahl, Wahlgebiet und Zeitfenster werden je Ansicht während der Sitzung erhalten.
+
 - AfD, Union, SPD, Grüne, Linke, BSW, FDP in dieser Reihenfolge, standardmäßig alle sichtbar. Die Karten zeigen die unveränderten Werte der neuesten Einzelumfrage; Datum und Institut stehen bei „Letzte Umfrage“. Bei mehreren Umfragen am gleichen Tag gilt die zuerst aufgeführte Umfrage der Quelle. Fehlende Werte bleiben leer (–), echte null Prozent werden angezeigt. Klick auf eine Karte schaltet die betreffende Linie um. Die Linien zeigen weiterhin den 7-Tage-Durchschnitt.
 - Die Linienfarben entsprechen den effektiven Hintergrundfarben der bedingten Formatierung in Zeile 9 des Blatts `BUNDESTAGSWAHL`: `#009EE0`, `#005974`, `#E3000F`, `#008939`, `#B61C3E`, `#792351`, `#FFE209`.
 - Horizontal scrollbar, ungefähr zwölf Monate pro Ansicht. Start beim neuesten Zeitraum. Auch per Touch oder Tastatur bedienbar.
@@ -18,7 +20,7 @@ Demo: [politik.cruset.com](https://politik.cruset.com), Server `207.180.217.99`.
 
 ## Daten und Berechnung
 
-Quelle: [Deutschland Wählt Umfragen-Verlauf](https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview).
+Deutsche Quelle: [Deutschland Wählt Umfragen-Verlauf](https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview).
 
 Vollständige öffentliche CSV-Exporte mit folgenden Blatt-IDs:
 
@@ -40,9 +42,23 @@ Zufriedenheit: F+G je Umfrage am Veröffentlichungstag. Ist nur eine der beiden 
 
 Server und geöffnete Browseransicht aktualisieren alle 15 Minuten. Die Quelldatei muss öffentlich lesbar bleiben. Bei einem Quellenfehler verwendet der Server seinen letzten erfolgreichen Cache und kennzeichnet ihn als veraltet. Ein Neustart behält den Cache im Docker-Volume. Ohne verfügbaren Cache liefert `/api/data` HTTP 503 und die Oberfläche einen Wiederholen-Knopf.
 
+### Spanische nationale Daten
+
+`src/spain.js` lädt [Bismuths öffentlichen JSON-Endpunkt](https://bismuthmedia.net/api/v1/countries/spain). Akzeptiert werden Schema-Version 1, Land `spain`, freigegebene Veröffentlichung und bestandene Quellenprüfung. Das [Datenformat](https://bismuthmedia.net/data) liefert einzelne Umfragen, Parteifarben und historische Parteispalten. Die Anwendung verwendet ausschließlich diese Einzelwerte, nicht Bismuths eigenen Trend.
+
+Die Datierung ist das Ende des Befragungszeitraums (`end`), nicht der Veröffentlichungstag. Ungültige oder zukünftige Befragungsdaten, fehlende Institute und Umfragen ohne verwertbare Werte werden ausgelassen; doppelte Umfrage-IDs zählen einmal. Prozentwerte müssen Zahlen zwischen 0 und 100 sein; fehlende Werte bleiben `null`. Der identische ungewichtete 7-Kalendertage-Durchschnitt aus `src/data.js` wird verwendet. Die neuesten Karten zeigen die Rohwerte der ersten Quellenumfrage am letzten Befragungstag. Institutsangaben werden einschließlich gegebenenfalls enthaltener Auftraggeber übernommen.
+
+Parteien werden in der Reihenfolge und den Farben des Archivs geführt, mit stabilen IDs `es-…`. Historische Spalten bleiben verfügbar, auch wenn die neueste Umfrage dort keine Werte enthält. Die Beschriftungen `Podemos / UP`, `AP / CD` und `Ciudadanos` verdeutlichen historische Bündnisse bzw. Abkürzungen. Parteien ohne eigene Spalte im nationalen Archiv sind nicht enthalten. Regionale spanische Umfragen und Zufriedenheitsdaten sind nicht angebunden.
+
+Die Wahltermine im Archiv werden mit nationalen Ergebnissen aus [Elecciones 29N](https://generales29n.com/datos/) ergänzt: `https://datos.generales29n.com/v1/hist/congreso-YYYY-MM/es.json`. Die Quelle nennt das Ministerio del Interior und verlinkt dessen Originaldateien. Parteianteile werden aus den Stimmen durch die gültigen Stimmen einschließlich leerer Stimmzettel berechnet. Für Podemos / UP werden vor 2023 die zugehörigen nationalen und territorialen Bündniskandidaturen summiert. Sumar erhält erst ab 2023 eigene Wahlpunkte. AP/CD bleibt historisch von PP getrennt; das Kürzel PP vor 1989 bezeichnet in manchen Wahlunterlagen eine andere Partei und wird nicht dem heutigen Partido Popular zugeordnet. Die konkret summierten Kandidaturen stehen im Wahl-Tooltip. Ergebnisse fließen nicht in die Durchschnittswerte ein.
+
+Der erste Spanien-Aufruf lädt Umfragen und vergangene Wahlergebnisse. Weitere Aktualisierungen laden die Umfragen erneut und behalten vorhandene historische Wahlpunkte; neu hinzugekommene Wahltermine werden nachgeladen. Bei Quellenfehlern bleibt der letzte vollständige Cache verfügbar. Für eine nachträgliche Korrektur historischer Wahldaten muss dieser Spanien-Cache neu aufgebaut werden. Die deutsche Standardansicht bleibt unabhängig davon verfügbar.
+
+Der persistente Cache heißt `polls-es-congreso.json` und besitzt eine Importversion `spainPolicy`. Deutsche Cache-Dateinamen bleiben unverändert. Die spanischen Umfragetabellen stehen gemäß Quellenregister unter [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Bismuth, die Wikipedia-Autorinnen und -Autoren, die Lizenz und die eigene Durchschnittsberechnung werden unter dem Diagramm genannt; die Wahlquelle wird separat verlinkt.
+
 ## Lokal starten
 
-Node.js 22 oder neuer, im Container Node.js 24. Keine npm-Abhängigkeiten und kein Google-API-Schlüssel nötig.
+Node.js 22 oder neuer, im Container Node.js 24. Keine npm-Abhängigkeiten und keine API-Schlüssel nötig.
 
 ```sh
 npm test
@@ -51,7 +67,7 @@ npm start
 
 Danach `http://localhost:3000`. Optional `PORT=3105 npm start`. `DATA_DIR` setzt das Cache-Verzeichnis, standardmäßig `./data`.
 
-Dateien: `src/data.js` für Import und Berechnung, `src/regions.js` für Wahlgebiete und Blatt-IDs, `src/server.js` für HTTP und Cache, `public/` für HTML, CSS und SVG-Diagramm. Die Frontend-Dateien werden direkt ausgeliefert; kein Build nötig.
+Dateien: `src/data.js` für deutschen Import und gemeinsame Berechnung, `src/regions.js` für deutsche Wahlgebiete und Blatt-IDs, `src/countries.js` für die Länderauswahl, `src/spain.js` für spanische Quellen und Wahlzuordnung, `src/server.js` für HTTP und Cache, `public/` für HTML, CSS und SVG-Diagramm. Die Frontend-Dateien werden direkt ausgeliefert; kein Build nötig.
 
 ## Demo und automatisches Deployment
 
@@ -91,9 +107,10 @@ cd /root/politik
 docker compose ps
 ```
 
-- `/healthz`: Prozessstatus, `version` (Commit-SHA), `dataReady`, `fetchedAt`.
-- `/api/data` oder `/api/data?region=bundestag`: Bundesansicht. Mit `region=bayern`, `region=berlin` usw. wird die Länderansicht geladen; gültige IDs stehen in `src/regions.js`. Unbekannte IDs liefern HTTP 400. Die Antwort enthält das gewählte Wahlgebiet und alle Dropdown-Optionen sowie Parteien, neueste Einzelumfrage mit Institut und Rohwerten, tägliche Durchschnittswerte inklusive Umfragezahl, Wahlresultate, tägliche 7-Tage-Durchschnitte der Zufriedenheit inklusive Umfragezahl, Quellenlink und `stale`.
+- `/healthz`: Prozessstatus und Datenbereitschaft der deutschen Bundesansicht, `version` (Commit-SHA), `dataReady`, `fetchedAt`.
+- `/api/data` oder `/api/data?country=de&region=bundestag`: deutsche Bundesansicht. `/api/data?country=es` bzw. `/api/data?country=es&region=congreso` liefert Spanien. Mit `region=bayern`, `region=berlin` usw. wird die Länderansicht geladen; gültige IDs stehen in `src/regions.js`. Unbekannte Länder, Wahlgebiete oder Kombinationen liefern HTTP 400. Ohne `country` bleibt Deutschland der Standard, sodass bestehende URLs funktionieren. Die Antwort enthält das gewählte Land und Wahlgebiet alle Dropdown-Optionen sowie Parteien, neueste Einzelumfrage mit Institut und Rohwerten, tägliche Durchschnittswerte inklusive Umfragezahl, Wahlresultate, tägliche 7-Tage-Durchschnitte der Zufriedenheit inklusive Umfragezahl, Quellenlink und `stale`.
 - Wenn CSV-Import scheitert: öffentliche Freigabe, Blatt-IDs, Überschriften, Datumsformat und Prozentformate der Quelle prüfen. Vorhandene Daten bleiben erhalten.
+- Wenn der Spanien-Import scheitert: Erreichbarkeit, Schema und Qualitätsfreigabe des Bismuth-Endpunkts sowie die nationalen Wahlresultate von Elecciones 29N prüfen. Vorhandene Daten bleiben als `stale` erhalten; Deutschland nutzt seinen eigenen Cache.
 - Wenn HTTPS scheitert: DNS-Ziel, Traefik-Router und Let's-Encrypt-Logs prüfen. TLS wird von Traefik bereitgestellt.
 - Wenn GitHub „Permission denied“ meldet: die beiden Secrets und den eingeschränkten Eintrag in `authorized_keys` prüfen.
 - Releases und Images werden für Rollback aufbewahrt; bei längerem Betrieb alte, nicht aktive Versionen nach Bedarf entfernen. Das Datenvolume nicht löschen.
@@ -108,4 +125,4 @@ printf 'APP_VERSION=%s\n' '<vorhandene-Commit-SHA>' > .env
 
 Die App vergleicht verschiedene Institute und Frageformulierungen entsprechend den gelieferten Blättern. Zufriedenheitsdaten werden nicht methodisch vereinheitlicht. Unter dem Diagramm werden die Institute des gewählten Wahlgebiets aufgeführt. Die Bundesansicht berücksichtigt auch Institute der beiden Zufriedenheitsblätter. Groß-/Kleinschreibungsvarianten werden zusammengefasst, historische Namenszusätze bleiben erhalten.
 
-Parteifarben sind anhand der Quelltabelle übernommen; spätere Änderungen an deren Formatierung erfordern eine Anpassung der Farbkonstanten.
+Deutsche Parteifarben sind anhand der Quelltabelle übernommen; spätere Änderungen an deren Formatierung erfordern eine Anpassung der Farbkonstanten.

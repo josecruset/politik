@@ -8,7 +8,10 @@ const number = (value, precision = 1) => value.toLocaleString('de-DE', { maximum
 let data, width, height, scale, start, end, ymax;
 const active = new Set();
 const selections = new Map();
-let selectedRegion = 'bundestag', loadController;
+let selectedCountry = 'de', selectedRegion = 'bundestag', loadController;
+const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswahl' }]], ['es', [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }]]]);
+const lastRegions = new Map(), views = new Map();
+const selectionKey = () => `${selectedCountry}:${selectedRegion}`;
 const scroll = $('chart-scroll'), chart = $('chart');
 let curves = [], markers = [], dots = [], ticks = [], curveLayer, referenceLine;
 let scaleTimer, scaleAnimation, targetYmax;
@@ -30,7 +33,8 @@ function toggle(series, approval = false) {
     const handle = document.createElement('span'); handle.className = 'switch'; handle.setAttribute('aria-hidden', 'true');
     button.append(handle, swatch(series.color), document.createTextNode(series.label));
   } else {
-    const name = document.createElement('span'); name.className = 'party-name'; name.append(swatch(series.color), document.createTextNode(series.label));
+    const label = document.createElement('span'); label.className = 'party-label'; label.textContent = series.label;
+    const name = document.createElement('span'); name.className = 'party-name'; name.append(swatch(series.color), label);
     const value = document.createElement('span'); value.className = 'party-value';
     const last = data.latestPoll?.values[series.id];
     value.append(document.createTextNode(last === null || last === undefined ? '–' : last.toLocaleString('de-DE', { maximumFractionDigits: 2 })));
@@ -181,7 +185,10 @@ function tooltipRow(container, series, value, detail, precision = 1) {
 }
 function showElection(election, position) {
   const tooltip = tooltipTitle(`${election.label || 'Bundestagswahl'} · ${dateLabel(election.date)}`, position);
-  for (const p of data.parties.filter(p => active.has(p.id))) if (election.values[p.id] !== null) tooltipRow(tooltip, p, election.values[p.id], null, 2);
+  for (const p of data.parties.filter(p => active.has(p.id))) {
+    const value = election.values[p.id];
+    if (value !== null && value !== undefined) tooltipRow(tooltip, p, value, election.candidacies?.[p.id] ? `Kandidaturen: ${election.candidacies[p.id]}` : null, 2);
+  }
 }
 function inspect(event) {
   if (!data) return;
@@ -225,29 +232,39 @@ new ResizeObserver(() => {
 }).observe(scroll);
 
 async function load(initial = true) {
-  if (initial) { $('loading').hidden = false; $('loading').textContent = 'Die Umfragen werden aus Google Sheets geladen …'; }
+  if (initial) { $('loading').hidden = false; $('loading').textContent = 'Die Umfragen werden geladen …'; }
   loadController?.abort();
   const controller = new AbortController(); loadController = controller;
-  const region = selectedRegion;
+  const region = selectedRegion, country = selectedCountry, key = selectionKey();
   try {
-    const response = await fetch(`/api/data?region=${encodeURIComponent(region)}`, { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(60000)]) });
+    const response = await fetch(`/api/data?country=${encodeURIComponent(country)}&region=${encodeURIComponent(region)}`, { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(60000)]) });
     const result = await response.json();
     if (!response.ok) throw new Error(result.error || 'Die Daten sind derzeit nicht verfügbar.');
-    if (region !== selectedRegion) return;
-    const wasLatest = !data || scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 40;
-    const previousDate = data ? start + scroll.scrollLeft / scale * DAY : null;
+    if (country !== selectedCountry || region !== selectedRegion) return;
+    const saved = views.get(key);
+    const wasLatest = data ? scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 40 : saved?.latest ?? true;
+    const previousDate = data ? start + scroll.scrollLeft / scale * DAY : saved?.firstDate ?? null;
     data = result;
     if (initial) {
       active.clear();
-      for (const id of selections.get(region) || data.parties.map(p => p.id)) active.add(id);
+      for (const id of selections.get(key) || data.parties.map(p => p.id)) active.add(id);
     }
     if (data.regions) {
+      countryRegions.set(country, data.regions);
       $('region').replaceChildren(...data.regions.map(r => { const option = document.createElement('option'); option.value = r.id; option.textContent = r.label; return option; }));
       $('region').value = region; $('region').disabled = false;
     }
-    $('additional').hidden = region !== 'bundestag';
-    $('source').href = data.sourceUrl;
-    $('average-note').textContent = `Die Grafik zeigt für ${region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + data.region.label} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
+    $('additional').hidden = !data.approval.length;
+    $('source').href = data.sourceUrl; $('source').hidden = false;
+    $('source').textContent = country === 'es' ? 'Umfragearchiv ansehen ↗' : 'Originaltabelle ansehen ↗';
+    $('source-credits').replaceChildren(...(data.sources || []).map(source => {
+      const link = document.createElement('a'); link.href = source.url; link.textContent = source.label;
+      link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
+    }));
+    $('source-credits').hidden = !data.sources?.length;
+    $('data-note').textContent = data.dataNote || ''; $('data-note').hidden = !data.dataNote;
+    $('average-note').textContent = `Die Grafik zeigt für ${country === 'de' && region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + (country === 'es' ? data.country.label : data.region.label)} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
+    $('legend').style.setProperty('--party-columns', Math.min(7, data.parties.length));
     $('legend').replaceChildren(...data.parties.map(p => toggle(p)));
     $('approval-legend').replaceChildren(...data.approval.map(p => toggle(p, true)));
     $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)}${data.latestPoll ? ` · ${data.latestPoll.pollster}` : ''} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
@@ -256,22 +273,48 @@ async function load(initial = true) {
     $('loading').hidden = true;
     render(previousDate, wasLatest);
   } catch (error) {
-    if (controller.signal.aborted || region !== selectedRegion) return;
+    if (controller.signal.aborted || country !== selectedCountry || region !== selectedRegion) return;
     if (!initial) { $('updated').textContent = 'Aktualisierung fehlgeschlagen · die zuletzt geladenen Daten bleiben sichtbar'; return; }
     $('status').textContent = 'Daten aktuell nicht erreichbar';
     $('loading').textContent = error.message;
     const retry = document.createElement('button'); retry.className = 'error-retry'; retry.textContent = 'Erneut laden'; retry.addEventListener('click', () => void load()); $('loading').append(retry);
   }
 }
-$('region').addEventListener('change', () => {
-  if (data) selections.set(selectedRegion, [...active]);
-  selectedRegion = $('region').value; data = null; active.clear();
+function saveView() {
+  if (!data) return;
+  selections.set(selectionKey(), [...active]);
+  views.set(selectionKey(), { firstDate: start + scroll.scrollLeft / scale * DAY, latest: scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 40 });
+  lastRegions.set(selectedCountry, selectedRegion);
+}
+function updateCountryText() {
+  const germany = selectedCountry === 'de';
+  $('page-title').textContent = germany ? 'Umfragewerte Parteien und Regierung' : 'Umfragewerte Parteien';
+  $('subtitle').textContent = germany ? 'Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.' : 'Spanien. Alle Institute. Parteien im gleitenden 7-Tage-Durchschnitt.';
+  document.title = `${$('page-title').textContent} · ${germany ? 'Deutschland' : 'Spanien'}`;
+}
+function switchView() {
+  loadController?.abort(); data = null; active.clear();
   clearTimeout(scaleTimer); cancelAnimationFrame(scaleAnimation); curveLayer = null;
   chart.replaceChildren(); $('y-axis').replaceChildren(); $('legend').replaceChildren(); $('approval-legend').replaceChildren();
-  $('additional').hidden = selectedRegion !== 'bundestag';
+  $('additional').hidden = true;
+  $('source').hidden = true; $('source-credits').replaceChildren(); $('source-credits').hidden = true;
+  $('data-note').hidden = true; $('average-note').textContent = 'Die Kurven zeigen den Durchschnitt aller Umfragen der letzten sieben Tage.';
   $('status').textContent = 'Umfragedaten werden geladen …'; $('period').textContent = 'Letzte 12 Monate';
-  $('pollsters').textContent = 'Die Umfrageinstitute werden geladen …'; hideTooltip();
+  $('pollsters').textContent = 'Die Umfrageinstitute werden geladen …'; $('updated').textContent = 'Daten werden geladen …'; hideTooltip();
+  updateCountryText();
   void load();
+}
+$('region').addEventListener('change', () => {
+  saveView(); selectedRegion = $('region').value; switchView();
 });
+$('country').addEventListener('change', () => {
+  saveView(); selectedCountry = $('country').value;
+  const regions = countryRegions.get(selectedCountry);
+  selectedRegion = lastRegions.get(selectedCountry) || regions[0].id;
+  $('region').replaceChildren(...regions.map(r => { const option = document.createElement('option'); option.value = r.id; option.textContent = r.label; return option; }));
+  $('region').value = selectedRegion; $('region').disabled = false;
+  switchView();
+});
+updateCountryText();
 void load();
 setInterval(() => { if (!document.hidden && data) void load(false); }, 15 * 60 * 1000);
