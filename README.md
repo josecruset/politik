@@ -2,7 +2,7 @@
 
 HTML5-Anwendung für **Umfragewerte Parteien und Regierung**.
 
-Staging: **https://politik.cruset.com** auf `207.180.217.99`.
+Demo: **https://politik.cruset.com** auf `207.180.217.99`.
 
 ## Darstellung
 
@@ -53,7 +53,7 @@ Danach `http://localhost:3000`. Optional `PORT=3105 npm start`. `DATA_DIR` setzt
 
 Dateien: `src/data.js` für Import und Berechnung, `src/regions.js` für Wahlgebiete und Blatt-IDs, `src/server.js` für HTTP und Cache, `public/` für HTML, CSS und SVG-Diagramm. Die Frontend-Dateien werden direkt ausgeliefert; kein Build nötig.
 
-## Staging und automatisches Deployment
+## Demo und automatisches Deployment
 
 GitHub Actions: `.github/workflows/deploy.yml`. **Jeder Push**, ohne Branch- oder Pfadfilter, sowie ein manueller `workflow_dispatch` startet die Tests und deployt den exakten Commit. Parallel eintreffende Runs werden serialisiert. Bei mehreren schnellen Pushes kann GitHub ältere wartende Runs ersetzen; der neueste Stand wird ausgerollt. Ein fehlgeschlagener Test verhindert das Deployment.
 
@@ -62,7 +62,7 @@ Repository-Secrets:
 - `STAGING_SSH_KEY`: dedizierter privater Ed25519-Schlüssel für dieses Deployment.
 - `STAGING_KNOWN_HOSTS`: bereits verifizierte SSH-Hostschlüssel für `207.180.217.99`.
 
-Der öffentliche Schlüssel ist auf Staging in `/root/.ssh/authorized_keys` mit `restrict` und dem festen Kommando `/usr/local/bin/politik-deploy` eingetragen. Er ermöglicht ausschließlich `deploy <Commit-SHA>`, keine interaktive Shell, Portweiterleitung oder freie Remote-Kommandos. Der private Schlüssel liegt ausschließlich als GitHub-Secret vor.
+Der öffentliche Schlüssel ist auf dem Demo-Server in `/root/.ssh/authorized_keys` mit `restrict` und dem festen Kommando `/usr/local/bin/politik-deploy` eingetragen. Er ermöglicht ausschließlich `deploy <Commit-SHA>`, keine interaktive Shell, Portweiterleitung oder freie Remote-Kommandos. Der private Schlüssel liegt ausschließlich als GitHub-Secret vor.
 
 Serverlayout:
 
@@ -77,9 +77,9 @@ Serverlayout:
 
 Das Deployment-Skript prüft den Archivinhalt, baut das Docker-Image, startet ausschließlich den Politik-Service und prüft Container-Gesundheit sowie den echten Datenimport. Bei einem Fehler nach dem Containerwechsel wird eine vorhandene Vorgängerversion wieder gestartet. GitHub prüft anschließend HTTPS, Datenbereitschaft und Commit-SHA unter `/healthz`. Der erste Rollout hat noch keine Vorgängerversion.
 
-Traefik verwendet den vorhandenen HTTPS-Einstieg `websecure`, den Let's-Encrypt-Resolver `myresolver` und `security-headers@file`. Es werden keine Hostports geöffnet. Der App-Prozess läuft als Benutzer `node` mit schreibgeschütztem Root-Dateisystem, ohne Linux-Capabilities und mit 256 MB Speicherlimit. Nur das Datenvolume und `/tmp` sind beschreibbar. Staging sendet `noindex`.
+Traefik verwendet den vorhandenen HTTPS-Einstieg `websecure`, den Let's-Encrypt-Resolver `myresolver` und `security-headers@file`. Es werden keine Hostports geöffnet. Der App-Prozess läuft als Benutzer `node` mit schreibgeschütztem Root-Dateisystem, ohne Linux-Capabilities und mit 256 MB Speicherlimit. Nur das Datenvolume und `/tmp` sind beschreibbar. Die Demo sendet `noindex`.
 
-Änderungen an `compose.yaml` oder am hostseitigen Deployment-Skript sind Infrastrukturänderungen und müssen separat auf Staging installiert werden. Reguläre Pushes übertragen nur die Anwendung und den Dockerfile.
+Änderungen an `compose.yaml` oder am hostseitigen Deployment-Skript sind Infrastrukturänderungen und müssen separat auf dem Demo-Server installiert werden. Reguläre Pushes übertragen nur die Anwendung und den Dockerfile.
 
 ## Betrieb und Fehlerdiagnose
 
