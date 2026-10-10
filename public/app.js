@@ -65,6 +65,7 @@ function render() {
     if (month.getUTCMonth() === 0) chart.append(element('text', { x: pos + 3, y: height - 3, style: 'fill:#4c6b57;font-size:10px;font-weight:600' }, month.getUTCFullYear()));
     month.setUTCMonth(month.getUTCMonth() + 1);
   }
+  chart.append(element('line', { id: 'five-percent-line', x1: 0, x2: width, y1: y(5), y2: y(5), stroke: '#000', 'stroke-width': 1, 'pointer-events': 'none' }));
   for (const party of data.parties.filter(p => active.has(p.id))) {
     let path = '', connected = false;
     for (const point of data.points) {
