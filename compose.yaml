@@ -1,0 +1,36 @@
+name: politik
+services:
+  app:
+    image: politik:${APP_VERSION:-local}
+    build: .
+    container_name: politik-app
+    restart: unless-stopped
+    environment:
+      APP_VERSION: ${APP_VERSION:-local}
+    volumes:
+      - politik-data:/data
+    networks:
+      - traefik
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    read_only: true
+    tmpfs:
+      - /tmp
+    mem_limit: 256m
+    cpus: 1.0
+    labels:
+      traefik.enable: "true"
+      traefik.docker.network: traefik_network
+      traefik.http.routers.politik.rule: Host(`politik.cruset.com`)
+      traefik.http.routers.politik.entrypoints: websecure
+      traefik.http.routers.politik.tls.certresolver: myresolver
+      traefik.http.routers.politik.middlewares: security-headers@file
+      traefik.http.services.politik.loadbalancer.server.port: "3000"
+volumes:
+  politik-data:
+networks:
+  traefik:
+    external: true
+    name: traefik_network

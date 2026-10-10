@@ -1,0 +1,56 @@
+#!/usr/bin/env bash
+set -euo pipefail
+umask 077
+if [[ ! ${SSH_ORIGINAL_COMMAND:-} =~ ^deploy\ ([0-9a-f]{40})$ ]]; then
+  echo 'Expected: deploy <40-character commit SHA>' >&2
+  exit 1
+fi
+revision=${BASH_REMATCH[1]}
+base=/root/politik
+mkdir -p "$base/releases"
+exec 9>"$base/deploy.lock"
+flock -w 600 9
+archive=$(mktemp "$base/release.XXXXXX.tar.gz")
+candidate=$(mktemp "$base/env.XXXXXX")
+trap 'rm -f "$archive" "$candidate"' EXIT
+cat > "$archive"
+target="$base/releases/$revision"
+# Only application files may be extracted, with no links or path traversal.
+python3 - "$archive" "$target" <<'PY'
+import pathlib, sys, tarfile
+archive, target = sys.argv[1:]
+with tarfile.open(archive, 'r:gz') as tar:
+    members = tar.getmembers()
+    total = 0
+    for member in members:
+        path = pathlib.PurePosixPath(member.name)
+        if path.is_absolute() or '..' in path.parts or not (member.isfile() or member.isdir()):
+            raise SystemExit('Invalid archive entry')
+        if member.name not in ['Dockerfile', '.dockerignore', 'package.json', 'src', 'public'] and path.parts[0] not in ['src', 'public']:
+            raise SystemExit('File outside application directories')
+        total += member.size
+    if total > 20_000_000: raise SystemExit('Archive too large')
+    pathlib.Path(target).mkdir(parents=True, exist_ok=True)
+    tar.extractall(target, filter='data')
+PY
+docker build --pull -t "politik:$revision" "$target"
+printf 'APP_VERSION=%s\n' "$revision" > "$candidate"
+previous=''
+if [[ -f "$base/.env" ]]; then previous=$(cat "$base/.env"); fi
+rollback() {
+  if [[ -n "$previous" ]]; then
+    printf '%s\n' "$previous" > "$base/.env"
+    docker compose --project-directory "$base" -f "$base/compose.yaml" --env-file "$base/.env" up -d --no-build --wait --wait-timeout 120
+  fi
+}
+if ! docker compose --project-directory "$base" -f "$base/compose.yaml" --env-file "$candidate" up -d --no-build --wait --wait-timeout 120; then
+  rollback; exit 1
+fi
+if ! docker exec politik-app node --input-type=module -e '
+const r=await fetch("http://127.0.0.1:3000/api/data",{signal:AbortSignal.timeout(60000)});
+const d=await r.json();if(!r.ok || !d.points?.length || !d.elections?.length || d.stale)process.exit(1);
+console.log("Daten geprüft:",d.pollCount,"Umfragen,",d.elections.length,"Bundestagswahlen");'; then
+  rollback; exit 1
+fi
+cp "$candidate" "$base/.env"
+echo "Deployed $revision"

@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Umfragewerte Parteien und Regierung</title>
+  <meta name="description" content="Bundestagsumfragen im Zeitverlauf: 7-Tage-Durchschnitt und Zufriedenheit mit Regierung und Bundeskanzler.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
+  <script src="/app.js" type="module"></script>
+</head>
+<body>
+<main>
+  <header class="page-header"><a class="brand" href="/" aria-label="Politik Startseite"><span class="brand-icon" aria-hidden="true">▥</span> POLITIK<span class="brand-dot">.</span></a><span class="header-note">Deutschland · Umfragetrends</span></header>
+  <section class="intro"><p class="eyebrow">DIE POLITISCHE STIMMUNG IM ZEITVERLAUF</p><h1>Umfragewerte Parteien und Regierung</h1><p class="subtitle">Alle Institute. Ein Verlauf. Parteien im gleitenden 7-Tage-Durchschnitt.</p></section>
+  <section class="dashboard" aria-label="Umfrageverlauf">
+    <div class="chart-header"><div><h2>Bundestagswahl</h2><p id="status" role="status">Umfragedaten werden geladen …</p></div><button id="latest" class="text-button" disabled>Zum aktuellen Zeitraum <span aria-hidden="true">↗</span></button></div>
+    <div id="legend" class="legend" aria-label="Parteien ein- und ausblenden"></div>
+    <div class="chart-toolbar"><span>Umfragewert in %</span><strong id="period">Letzte 12 Monate</strong></div>
+    <div class="chart-frame" id="chart-frame">
+      <svg id="y-axis" aria-hidden="true"></svg>
+      <div id="chart-scroll" class="chart-scroll" tabindex="0" aria-label="Zeitachse: horizontal scrollen oder Pfeiltasten nutzen">
+        <svg id="chart" role="img" aria-label="Zeitverlauf der ausgewählten Umfragewerte"></svg>
+      </div>
+      <div id="tooltip" class="tooltip" role="status" hidden></div>
+      <div id="loading" class="loading">Die Umfragen werden aus Google Sheets geladen …</div>
+    </div>
+    <div class="scroll-note"><span aria-hidden="true">← →</span> Horizontal scrollen, um frühere Monate zu sehen. <span>Je Ansicht ca. 12 Monate.</span></div>
+    <div class="additional"><div><h3>Zufriedenheit einblenden</h3><p>Einzelne Umfragewerte · Summe aus F + G · ohne Durchschnitt</p></div><div id="approval-legend" class="approval-legend"></div></div>
+  </section>
+  <section class="notes"><div><h3>So entsteht der Verlauf</h3><p>Für jeden Tag werden alle veröffentlichten Umfragen dieses Tages und der sechs Tage davor gleich gewichtet. Fehlende Parteiewerte werden ausgelassen. Zeiträume ohne Umfragen bleiben als Lücke sichtbar.</p></div><div><h3>Die Daten dahinter</h3><p>Zufriedenheitslinien verbinden einzelne Prozentwerte am Veröffentlichungstag. Mehrere Umfragen am selben Tag bleiben erhalten. Skalenbewertungen werden ausgeschlossen.</p><a id="source" href="https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview" target="_blank" rel="noopener noreferrer">Originaltabelle ansehen ↗</a></div></section>
+  <footer><span>POLITIK. <span class="footer-muted">Stimmung sichtbar machen.</span></span><span id="updated">Automatische Datenaktualisierung alle 15 Minuten</span></footer>
+</main>
+</body></html>
