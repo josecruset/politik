@@ -16,7 +16,8 @@
   <section class="dashboard" aria-label="Umfrageverlauf">
     <div class="chart-header"><div><select id="region" aria-label="Wahlgebiet auswählen" disabled><option value="bundestag">Bundestagswahl</option></select><p id="status" role="status">Umfragedaten werden geladen …</p></div></div>
     <div id="legend" class="legend" aria-label="Parteien ein- und ausblenden"></div>
-    <div class="chart-toolbar"><span>Umfragewert in %</span><strong id="period">Letzte 12 Monate</strong></div>
+    <p id="measurement-note" class="measurement-note" hidden></p>
+    <div class="chart-toolbar"><span id="axis-label">Umfragewert in %</span><strong id="period">Letzte 12 Monate</strong></div>
     <div class="chart-frame" id="chart-frame">
       <svg id="y-axis" aria-hidden="true"></svg>
       <div id="chart-scroll" class="chart-scroll" tabindex="0" aria-label="Zeitachse: horizontal scrollen oder Pfeiltasten nutzen">

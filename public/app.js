@@ -9,7 +9,7 @@ let data, width, height, scale, start, end, ymax;
 const active = new Set();
 const selections = new Map();
 let selectedCountry = 'de', selectedRegion = 'bundestag', loadController;
-const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswahl' }]], ['es', [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }, { id: 'katalonien', label: 'Katalonien' }]]]);
+const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswahl' }]], ['es', [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }, { id: 'katalonien', label: 'Katalonien' }, { id: 'barcelona', label: 'Barcelona' }]]]);
 const lastRegions = new Map(), views = new Map();
 const selectionKey = () => `${selectedCountry}:${selectedRegion}`;
 const scroll = $('chart-scroll'), chart = $('chart');
@@ -100,7 +100,7 @@ function render(firstDate = null, latest = false, animate = false) {
     }
     // A subtle outline makes the source's bright yellow FDP line readable.
     if (party.id === 'fdp') curveLayer.append(element('path', { d: path, fill: 'none', stroke: '#b0a545', 'stroke-width': 3.3, opacity: .6, 'vector-effect': 'non-scaling-stroke' }));
-    if (['union', 'bsw', 'es-pce', 'cat-alianca', 'cat-comuns', 'cat-valents', 'cat-pdecat'].includes(party.id)) curveLayer.append(element('path', { d: path, class: 'dark-line-outline', fill: 'none', stroke: '#dce6e1', 'stroke-width': 3.6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .4, 'vector-effect': 'non-scaling-stroke' }));
+    if (['union', 'bsw', 'es-pce', 'cat-alianca', 'cat-comuns', 'cat-valents', 'cat-pdecat', 'bcn-alianca', 'bcn-comu', 'bcn-canvi', 'bcn-pdecat'].includes(party.id)) curveLayer.append(element('path', { d: path, class: 'dark-line-outline', fill: 'none', stroke: '#dce6e1', 'stroke-width': 3.6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .4, 'vector-effect': 'non-scaling-stroke' }));
     const line = element('path', { d: path, fill: 'none', stroke: party.color, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'data-line': party.id, 'vector-effect': 'non-scaling-stroke' });
     line.append(element('title', {}, party.label)); curveLayer.append(line);
   }
@@ -273,6 +273,8 @@ async function load(initial = true) {
     }));
     $('source-credits').hidden = !data.sources?.length;
     $('data-note').textContent = data.dataNote || ''; $('data-note').hidden = !data.dataNote;
+    $('measurement-note').textContent = data.measurementNote || ''; $('measurement-note').hidden = !data.measurementNote;
+    $('axis-label').textContent = data.axisLabel || 'Umfragewert in %';
     $('average-note').textContent = `Die Grafik zeigt für ${country === 'de' && region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + (region === 'congreso' ? data.country.label : data.region.label)} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
     const latestParties = data.parties.filter(p => data.latestPoll?.values[p.id] > 0);
     const otherParties = data.parties.filter(p => !(data.latestPoll?.values[p.id] > 0));
@@ -304,7 +306,7 @@ function saveView() {
 function updateCountryText() {
   const germany = selectedCountry === 'de';
   $('page-title').textContent = germany ? 'Umfragewerte Parteien und Regierung' : 'Umfragewerte Parteien';
-  $('subtitle').textContent = germany ? 'Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.' : 'Spanien. Alle Institute. Parteien im gleitenden 7-Tage-Durchschnitt.';
+  $('subtitle').textContent = germany ? 'Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.' : selectedRegion === 'barcelona' ? 'Barcelona. Kommunale Wahlabsichten aus dem städtischen Barometer im Zeitverlauf.' : 'Spanien. Alle Institute. Parteien im gleitenden 7-Tage-Durchschnitt.';
   document.title = `${$('page-title').textContent} · ${germany ? 'Deutschland' : 'Spanien'}`;
 }
 function switchView() {
@@ -315,6 +317,7 @@ function switchView() {
   $('additional').hidden = true;
   $('source').hidden = true; $('source-credits').replaceChildren(); $('source-credits').hidden = true;
   $('data-note').hidden = true; $('average-note').textContent = 'Die Kurven zeigen den Durchschnitt aller Umfragen der letzten sieben Tage.';
+  $('measurement-note').hidden = true; $('axis-label').textContent = 'Umfragewert in %';
   $('status').textContent = 'Umfragedaten werden geladen …'; $('period').textContent = 'Letzte 12 Monate';
   $('pollsters').textContent = 'Die Umfrageinstitute werden geladen …'; $('updated').textContent = 'Daten werden geladen …'; hideTooltip();
   updateCountryText();

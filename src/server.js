@@ -6,6 +6,7 @@ import { buildData, buildStateData, rollingApprovalAverage, SHEETS, SOURCE_ID } 
 import { COUNTRIES, findArea, cacheName } from './countries.js';
 import { fetchSpainData, SPAIN_POLICY } from './spain.js';
 import { fetchCataloniaData, CATALONIA_POLICY } from './catalonia.js';
+import { fetchBarcelonaData, BARCELONA_POLICY } from './barcelona.js';
 
 const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
 const cacheDir = process.env.DATA_DIR || fileURLToPath(new URL('../data/', import.meta.url));
@@ -15,7 +16,7 @@ const caches = new Map();
 for (const region of areas) {
   let data = null;
   try { data = JSON.parse(await readFile(`${cacheDir}/${cacheName(region.country, region.id)}.json`, 'utf8')); } catch {}
-  if (region.id === 'katalonien' ? data?.cataloniaPolicy !== CATALONIA_POLICY : region.country === 'es' ? data?.spainPolicy !== SPAIN_POLICY : region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
+  if (region.id === 'barcelona' ? data?.barcelonaPolicy !== BARCELONA_POLICY : region.id === 'katalonien' ? data?.cataloniaPolicy !== CATALONIA_POLICY : region.country === 'es' ? data?.spainPolicy !== SPAIN_POLICY : region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
   // Upgrade persisted raw observations even when the source is temporarily offline.
   for (const series of data?.approval || []) {
     if (series.aggregation !== 'rolling-7-days') {
@@ -33,10 +34,16 @@ async function fetchSheet(gid) {
   if (/^\s*</.test(csv)) throw new Error('Google Sheets liefert keine CSV-Daten');
   return csv;
 }
-async function fetchJson(url) {
-  const response = await fetch(url, { signal: AbortSignal.timeout(45000) });
+async function fetchJson(url, options = {}) {
+  const response = await fetch(url, { ...options, signal: AbortSignal.timeout(45000) });
   if (!response.ok) throw new Error(`Spanien-Datenquelle: HTTP ${response.status}`);
   return response.json();
+}
+async function fetchBytes(url) {
+  const response = await fetch(url, { signal: AbortSignal.timeout(45000) });
+  if (!response.ok) throw new Error(`Barcelona-Datenquelle: HTTP ${response.status}`);
+  if (Number(response.headers.get('content-length')) > 8 * 1024 * 1024) throw new Error('Barcelona: CSV-Download ist zu groß');
+  return response.bytes();
 }
 async function fetchHtml(url) {
   const response = await fetch(url, { headers: { 'User-Agent': 'Politik/1.0 (public polling visualisation; github.com/josecruset/politik)' }, signal: AbortSignal.timeout(45000) });
@@ -49,7 +56,8 @@ async function refresh(region = areas[0]) {
   entry.lastAttempt = Date.now();
   entry.pending = (async () => {
     let data;
-    if (region.id === 'katalonien') data = await fetchCataloniaData(fetchHtml);
+    if (region.id === 'barcelona') data = await fetchBarcelonaData(entry.data, fetchJson, fetchBytes);
+    else if (region.id === 'katalonien') data = await fetchCataloniaData(fetchHtml);
     else if (region.country === 'es') data = await fetchSpainData(entry.data, fetchJson);
     else if (region.id === 'bundestag') {
       const entries = await Promise.all(Object.entries(SHEETS).map(async ([name, gid]) => [name, await fetchSheet(gid)]));

@@ -13,6 +13,8 @@ test('country and region validation preserves German API defaults and distinct c
   assert.equal(findArea().region.id, 'bundestag');
   assert.equal(findArea('es').region.id, 'congreso');
   assert.equal(findArea('es', 'katalonien').region.label, 'Katalonien');
+  assert.equal(findArea('es', 'barcelona').region.label, 'Barcelona');
+  assert.equal(findArea('de', 'barcelona'), null);
   assert.equal(findArea('de', 'katalonien'), null);
   assert.equal(findArea('de', 'bayern').region.label, 'Bayern');
   assert.equal(findArea('es', 'bayern'), null);
@@ -22,6 +24,7 @@ test('country and region validation preserves German API defaults and distinct c
   assert.equal(cacheName('de', 'bayern'), 'polls-bayern');
   assert.equal(cacheName('es', 'congreso'), 'polls-es-congreso');
   assert.equal(cacheName('es', 'katalonien'), 'polls-es-katalonien');
+  assert.equal(cacheName('es', 'barcelona'), 'polls-es-barcelona');
 });
 
 test('Spanish fieldwork dates, invalid values, future polls and duplicate identities are handled', () => {

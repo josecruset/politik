@@ -2,7 +2,7 @@ import { REGIONS } from './regions.js';
 
 export const COUNTRIES = [
   { id: 'de', label: 'Deutschland', regions: REGIONS },
-  { id: 'es', label: 'Spanien', regions: [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }, { id: 'katalonien', label: 'Katalonien' }] },
+  { id: 'es', label: 'Spanien', regions: [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }, { id: 'katalonien', label: 'Katalonien' }, { id: 'barcelona', label: 'Barcelona' }] },
 ];
 
 export function findArea(countryId = 'de', regionId) {
