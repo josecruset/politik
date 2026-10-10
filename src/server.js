@@ -1,13 +1,20 @@
 import { createServer } from 'node:http';
 import { readFile, writeFile, mkdir, rename } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
-import { buildData, SHEETS, SOURCE_ID } from './data.js';
+import { buildData, rollingApprovalAverage, SHEETS, SOURCE_ID } from './data.js';
 
 const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
 const cacheDir = process.env.DATA_DIR || fileURLToPath(new URL('../data/', import.meta.url));
 const ttl = 15 * 60 * 1000;
 let cache = null, pending = null, lastAttempt = 0, lastError = null;
 try { cache = JSON.parse(await readFile(`${cacheDir}/polls.json`, 'utf8')); } catch {}
+// Upgrade persisted raw observations even when the source is temporarily offline.
+for (const series of cache?.approval || []) {
+  if (series.aggregation !== 'rolling-7-days') {
+    series.points = rollingApprovalAverage(series.points);
+    series.aggregation = 'rolling-7-days';
+  }
+}
 
 async function refresh() {
   if (pending) return pending;

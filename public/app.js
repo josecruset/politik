@@ -79,13 +79,9 @@ function render() {
     line.append(element('title', {}, party.label)); chart.append(line);
   }
   for (const series of data.approval.filter(s => active.has(s.id))) {
-    const path = series.points.map((p, i) => `${i ? 'L' : 'M'}${x(p.date).toFixed(2)},${y(p.value).toFixed(2)}`).join('');
+    const points = series.points.filter(p => p.value !== null);
+    const path = points.map((p, i) => `${i ? 'L' : 'M'}${x(p.date).toFixed(2)},${y(p.value).toFixed(2)}`).join('');
     chart.append(element('path', { d: path, fill: 'none', stroke: series.color, 'stroke-width': 1.8, 'stroke-dasharray': '5 4', 'data-line': series.id }));
-    for (const point of series.points) {
-      const dot = element('circle', { cx: x(point.date), cy: y(point.value), r: 2.6, fill: series.color });
-      dot.append(element('title', {}, `${series.label}: ${number(point.value)} % · ${dateLabel(point.date)} · ${point.pollster}`));
-      chart.append(dot);
-    }
   }
   for (const election of data.elections || []) {
     for (const party of data.parties.filter(p => active.has(p.id))) {
@@ -143,8 +139,10 @@ function inspect(event) {
     if (value) { tooltipRow(tooltip, p, value.value); rows++; }
   }
   for (const s of data.approval.filter(s => active.has(s.id))) {
-    // Display only actual observations on that day, never an invented daily value.
-    for (const p of s.points.filter(p => p.date === day)) { tooltipRow(tooltip, s, p.value, p.pollster); rows++; }
+    const p = s.points.find(p => p.date === day);
+    if (p?.value !== null && p?.value !== undefined) {
+      tooltipRow(tooltip, s, p.value, `7-Tage-Durchschnitt · ${p.count} ${p.count === 1 ? 'Umfrage' : 'Umfragen'}`); rows++;
+    }
   }
   if (!rows) { const note = document.createElement('small'); note.textContent = 'Keine Messwerte für diesen Tag.'; tooltip.append(note); }
   const crosshair = $('crosshair'); crosshair.setAttribute('x1', x(day)); crosshair.setAttribute('x2', x(day)); crosshair.setAttribute('visibility', 'visible');

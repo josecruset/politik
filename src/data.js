@@ -77,22 +77,22 @@ export function parseElections(rows, today = Date.now()) {
   return points.sort((a, b) => a.date.localeCompare(b.date));
 }
 
-export function rollingAverage(polls) {
+export function rollingAverage(polls, ids = PARTIES.map(p => p.id)) {
   if (!polls.length) throw new Error('Keine verwertbaren Bundestagsumfragen');
   const points = []; let left = 0, right = 0;
-  const sums = Object.fromEntries(PARTIES.map(p => [p.id, 0]));
+  const sums = Object.fromEntries(ids.map(id => [id, 0]));
   const counts = { ...sums };
   function update(poll, direction) {
-    for (const p of PARTIES) {
-      const value = poll.values[p.id];
-      if (value !== null && value !== undefined) { sums[p.id] += direction * value; counts[p.id] += direction; }
+    for (const id of ids) {
+      const value = poll.values[id];
+      if (value !== null && value !== undefined) { sums[id] += direction * value; counts[id] += direction; }
     }
   }
   for (let date = polls[0].date; date <= polls.at(-1).date; date += DAY) {
     while (right < polls.length && polls[right].date <= date) update(polls[right++], 1);
     while (left < right && polls[left].date < date - 6 * DAY) update(polls[left++], -1);
-    points.push({ date: iso(date), values: Object.fromEntries(PARTIES.map(p => [p.id,
-      counts[p.id] ? { value: Number((sums[p.id] / counts[p.id]).toFixed(4)), count: counts[p.id] } : null])) });
+    points.push({ date: iso(date), values: Object.fromEntries(ids.map(id => [id,
+      counts[id] ? { value: Number((sums[id] / counts[id]).toFixed(4)), count: counts[id] } : null])) });
   }
   return points;
 }
@@ -109,8 +109,16 @@ export function parseApproval(rows, today = Date.now()) {
     const value = (f ?? 0) + (g ?? 0);
     if (value <= 100) points.push({ date: iso(date), value, pollster, client, question: row[4] });
   }
-  // Preserve every poll, including several polls on the same date; never average.
+  // Preserve every poll so same-day observations each contribute to the average.
   return points.sort((a, b) => a.date.localeCompare(b.date));
+}
+
+export function rollingApprovalAverage(observations) {
+  if (!observations.length) return [];
+  const polls = observations.map(p => ({ date: Date.parse(p.date), values: { approval: p.value } }));
+  return rollingAverage(polls, ['approval']).map(p => ({
+    date: p.date, value: p.values.approval?.value ?? null, count: p.values.approval?.count ?? 0,
+  }));
 }
 
 export function listPollsters(...collections) {
@@ -140,8 +148,8 @@ export function buildData(csv, today = Date.now()) {
     latestPoll: { date: iso(latestPoll.date), pollster: latestPoll.pollster, values: latestPoll.values },
     pollsters: listPollsters(polls, government, chancellor),
     approval: [
-      { id: 'government', label: 'Zufriedenheit Regierung', color: '#626B80', points: government },
-      { id: 'chancellor', label: 'Zufriedenheit Bundeskanzler', color: '#D47730', points: chancellor },
+      { id: 'government', label: 'Zufriedenheit Regierung', color: '#626B80', aggregation: 'rolling-7-days', points: rollingApprovalAverage(government) },
+      { id: 'chancellor', label: 'Zufriedenheit Bundeskanzler', color: '#D47730', aggregation: 'rolling-7-days', points: rollingApprovalAverage(chancellor) },
     ],
   };
 }

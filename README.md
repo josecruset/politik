@@ -31,7 +31,7 @@ Pro Partei und Tag: arithmetisches Mittel aller veröffentlichten Umfragewerte v
 
 Historische Abschnitte haben andere Parteispalten: Der Import ordnet die Spalten bei jeder wiederholten Überschrift neu zu. BSW wird vor seiner Erfassung nicht als null Prozent behandelt.
 
-Zufriedenheit: F+G je Umfrage am Veröffentlichungstag. Ist nur eine der beiden Prozentzellen vorhanden, wird diese verwendet. Es wird nicht gemittelt oder geglättet. Fortsetzungszeilen ohne eigenes Datum übernehmen Datum und Institut der unmittelbar zugehörigen Umfrage; Leer- und Abschnittszeilen unterbrechen diese Zuordnung. Nicht prozentuale Bewertungen, etwa auf einer Skala von −5 bis +5, bleiben ausgeschlossen. Mehrere Beobachtungen am selben Datum bleiben erhalten. Linien verbinden einzelne Messwerte; der Tooltip zeigt nur echte Messwerte des betreffenden Tages.
+Zufriedenheit: F+G je Umfrage am Veröffentlichungstag. Ist nur eine der beiden Prozentzellen vorhanden, wird diese verwendet. Aus diesen Summen wird pro Tag der gleitende 7-Tage-Durchschnitt berechnet: aktueller Tag und sechs vorherige Kalendertage, jede Umfrage gleich gewichtet. Fortsetzungszeilen ohne eigenes Datum übernehmen Datum und Institut der unmittelbar zugehörigen Umfrage; Leer- und Abschnittszeilen unterbrechen diese Zuordnung. Nicht prozentuale Bewertungen, etwa auf einer Skala von −5 bis +5, bleiben ausgeschlossen. Mehrere Beobachtungen am selben Datum bleiben erhalten. Linien verbinden vorhandene Durchschnittswerte auch über Umfragepausen hinweg. Der Tooltip zeigt den Durchschnitt und die Zahl der Umfragen im jeweiligen 7-Tage-Fenster; bei einem leeren Fenster erscheint kein Wert.
 
 Server und geöffnete Browseransicht aktualisieren alle 15 Minuten. Die Quelldatei muss öffentlich lesbar bleiben. Bei einem Quellenfehler verwendet der Server seinen letzten erfolgreichen Cache und kennzeichnet ihn als veraltet. Ein Neustart behält den Cache im Docker-Volume. Ohne verfügbaren Cache liefert `/api/data` HTTP 503 und die Oberfläche einen Wiederholen-Knopf.
 
@@ -87,7 +87,7 @@ docker compose ps
 ```
 
 - `/healthz`: Prozessstatus, `version` (Commit-SHA), `dataReady`, `fetchedAt`.
-- `/api/data`: Parteien, neueste Einzelumfrage mit Institut und Rohwerten, tägliche Durchschnittswerte inklusive Umfragezahl, Wahlresultate, einzelne Zufriedenheitswerte, Quellenlink und `stale`.
+- `/api/data`: Parteien, neueste Einzelumfrage mit Institut und Rohwerten, tägliche Durchschnittswerte inklusive Umfragezahl, Wahlresultate, tägliche 7-Tage-Durchschnitte der Zufriedenheit inklusive Umfragezahl, Quellenlink und `stale`.
 - Wenn CSV-Import scheitert: öffentliche Freigabe, Blatt-IDs, Überschriften, Datumsformat und Prozentformate der Quelle prüfen. Vorhandene Daten bleiben erhalten.
 - Wenn HTTPS scheitert: DNS-Ziel, Traefik-Router und Let's-Encrypt-Logs prüfen. TLS wird von Traefik bereitgestellt.
 - Wenn GitHub „Permission denied“ meldet: die beiden Secrets und den eingeschränkten Eintrag in `authorized_keys` prüfen.

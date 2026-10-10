@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DAY, parseCSV, parsePolls, rollingAverage, parseApproval, parseElections, parseDate, percentage, buildData } from '../src/data.js';
+import { DAY, parseCSV, parsePolls, rollingAverage, rollingApprovalAverage, parseApproval, parseElections, parseDate, percentage, buildData } from '../src/data.js';
 
 const header = ['Datum\nPublication date', 'Institut\nPollster', '', '', 'Union\nEVP', 'AfD\nESN', 'SPD\nS&D', 'GRÜNE\nG/EFA', 'LINKE\nLINKE', 'BSW\nNI', 'FDP\nRE'];
 const poll = (date, institute, union, afd = '20%') => [date, institute, '', '', union, afd, '15%', '12%', '8%', '', '4%'];
@@ -63,14 +63,37 @@ test('future dates are not included', () => {
   assert.equal(parseElections([header, poll('02.01.2026', 'Bundestagswahl', '40%')], today).length, 0);
 });
 
+test('approval averages sum F+G first, weight each poll equally and expire after seven calendar days', () => {
+  const observations = parseApproval([
+    ['20.01.2026', 'INSA', '', '', 'Zufriedenheit', '0%', ''],
+    ['08.01.2026', 'Ipsos', '', '', 'Zufriedenheit', '30%', '10%'],
+    ['07.01.2026', 'Forsa', '', '', 'Zufriedenheit', '20%', '10%'],
+    ['01.01.2026', 'INSA', '', '', 'Zufriedenheit', '5%', '15%'],
+    ['01.01.2026', 'Forsa', '', '', 'Zufriedenheit', '0%', '10%'],
+  ]);
+  const points = rollingApprovalAverage(observations);
+  assert.deepEqual(points[0], { date: '2026-01-01', value: 15, count: 2 });
+  assert.deepEqual(points[6], { date: '2026-01-07', value: 20, count: 3 });
+  assert.deepEqual(points[7], { date: '2026-01-08', value: 35, count: 2 });
+  assert.deepEqual(points[13], { date: '2026-01-14', value: 40, count: 1 });
+  assert.deepEqual(points[14], { date: '2026-01-15', value: null, count: 0 });
+  assert.deepEqual(points.at(-1), { date: '2026-01-20', value: 0, count: 1 });
+  assert.deepEqual(rollingApprovalAverage([]), []);
+});
+
 test('sources include all contributing sheets, deduplicate case variants and exclude election rows', () => {
   const csv = rows => rows.map(row => row.map(value => `"${value.replaceAll('"', '""')}"`).join(',')).join('\n');
   const data = buildData({
     polls: csv([header, poll('01.01.2026', 'Pollytix', '30%'), poll('02.01.2026', 'pollytix', '31%'), poll('03.01.2026', 'Bundestagswahl', '40%')]),
-    government: csv([['01.01.2026', 'FG Wahlen', 'ZDF', '', 'Zufriedenheit', '20%', '10%']]),
-    chancellor: csv([['01.01.2026', 'Forsa', 'RTL', '', 'Zufriedenheit', '30%', '']]),
+    government: csv([['01.01.2026', 'FG Wahlen', 'ZDF', '', 'Zufriedenheit', '20%', '10%'], ['02.01.2026', 'INSA', '', '', 'Zufriedenheit', '10%', '']]),
+    chancellor: csv([['01.01.2026', 'Forsa', 'RTL', '', 'Zufriedenheit', '30%', ''], ['02.01.2026', 'Forsa', 'RTL', '', 'Zufriedenheit', '20%', '20%']]),
   });
-  assert.deepEqual(data.pollsters, ['FG Wahlen', 'Forsa', 'Pollytix']);
+  assert.deepEqual(data.pollsters, ['FG Wahlen', 'Forsa', 'INSA', 'Pollytix']);
+  assert.deepEqual(data.approval.map(s => s.points.at(-1)), [
+    { date: '2026-01-02', value: 20, count: 2 },
+    { date: '2026-01-02', value: 35, count: 2 },
+  ]);
+  assert.ok(data.approval.every(s => s.aggregation === 'rolling-7-days'));
 });
 
 test('latest cards use one raw poll, source order breaks same-day ties, missing and zero stay distinct', () => {
