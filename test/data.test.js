@@ -1,9 +1,11 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { DAY, parseCSV, parsePolls, rollingAverage, rollingApprovalAverage, parseApproval, parseElections, parseDate, percentage, buildData } from '../src/data.js';
+import { DAY, parseCSV, parsePolls, rollingAverage, rollingApprovalAverage, parseApproval, parseElections, parseDate, percentage, buildData, buildStateData } from '../src/data.js';
+import { REGIONS } from '../src/regions.js';
 
 const header = ['Datum\nPublication date', 'Institut\nPollster', '', '', 'Union\nEVP', 'AfD\nESN', 'SPD\nS&D', 'GRÜNE\nG/EFA', 'LINKE\nLINKE', 'BSW\nNI', 'FDP\nRE'];
 const poll = (date, institute, union, afd = '20%') => [date, institute, '', '', union, afd, '15%', '12%', '8%', '', '4%'];
+const csv = rows => rows.map(row => row.map(value => `"${value.replaceAll('"', '""')}"`).join(',')).join('\n');
 
 test('CSV preserves multiline headers, commas, quotes and CRLF', () => {
   assert.deepEqual(parseCSV('\uFEFF"a\nb","x,""y"""\r\n"c","d"\r\n'), [['a\nb', 'x,"y"'], ['c', 'd']]);
@@ -115,4 +117,66 @@ test('latest cards use one raw poll, source order breaks same-day ties, missing 
   assert.equal(data.latestPoll.values.bsw, null);
   assert.equal(data.points.at(-1).values.union.value, 13.3333);
   assert.equal(data.points.at(-1).values.afd.value, 27);
+});
+
+test('Bavaria maps CSU and state parties, remaps historical headers and excludes all election rows from averages', () => {
+  const current = ['Datum', 'Institut\nPollster', '', '', 'CSU\nEVP', 'AfD\nESN', 'FW\nRE', 'BP\nG/EFA', 'Andere\nOthers', 'BSW'];
+  const old = ['Datum', 'Institut\nPollster', '', '', 'AfD\nESN', 'FW\nRE', 'CSU\nEVP', 'Andere\nOthers'];
+  const data = buildStateData(csv([
+    current,
+    ['08.01.2026', 'GMS', '', '', '39%', '18%', '10%', '1%', '', '80%'],
+    ['09.01.2026', 'Bundestagswahl\nFederal Election', '', '', '90%', '90%', '90%', '90%'],
+    ['09.01.2026', 'Europawahl\nEuropean Election', '', '', '80%', '80%', '80%', '80%'],
+    ['10.01.2026', 'Landtagswahl\nRegional Election', '', '', '40%', '20%', '11%', '2%'],
+    old,
+    ['10.01.2026', 'Landtagswahl\nRegional Election', '', '', '20%', '11%', '40%'],
+    ['07.01.2026', 'Forsa', '', '', '20%', '12%', '41%'],
+  ]), REGIONS.find(r => r.id === 'bayern'));
+  assert.equal(data.pollCount, 2);
+  assert.equal(data.parties.find(p => p.id === 'union').label, 'CSU');
+  assert.equal(data.parties.find(p => p.id === 'fw').label, 'Freie Wähler');
+  assert.equal(data.latestPoll.values.union, 39);
+  assert.equal(data.latestPoll.values.bsw, null); // Coalition columns after "Andere" are not party measurements.
+  assert.equal(data.points.at(-1).values.union.value, 40);
+  assert.equal(data.points.at(-1).values.fw.value, 11);
+  assert.deepEqual(data.approval, []);
+  assert.deepEqual(data.elections.map(e => [e.date, e.label, e.values.union]), [['2026-01-10', 'Landtagswahl', 40]]);
+  assert.deepEqual(data.pollsters, ['Forsa', 'GMS']);
+});
+
+test('Berlin uses whole-city polls and regional elections; West Berlin and missing institutes are omitted', () => {
+  const berlinHeader = ['Datum', 'Institut\nPollster', '', '', 'Bereich\nArea', 'CDU\nEVP', 'AfD\nESN', 'Andere\nOthers'];
+  const data = buildStateData(csv([
+    berlinHeader,
+    ['01.01.2026', 'Forsa', '', '', 'Berlin Gesamt', '20%', '15%'],
+    ['02.01.2026', 'INSA', '', '', 'Berlin West', '99%', '99%'],
+    ['02.01.2026', '', '', '', 'Berlin Gesamt', '5%', ''],
+    ['03.01.2026', 'Abgeordnetenhauswahl\nRegional Election', '', '', 'Berlin Gesamt\nAll of Berlin', '21%', '16%'],
+    ['03.01.2026', 'Abgeordnetenhauswahl\nRegional Election', '', '', 'Berlin West', '99%', '99%'],
+  ]), REGIONS.find(r => r.id === 'berlin'));
+  assert.equal(data.pollCount, 1);
+  assert.equal(data.latestPoll.pollster, 'Forsa');
+  assert.equal(data.elections.length, 1);
+  assert.equal(data.elections[0].label, 'Abgeordnetenhauswahl');
+  assert.equal(data.elections[0].values.union, 21);
+});
+
+test('election-night projections are omitted and empty election rows do not suppress a valid result', () => {
+  const stateHeader = ['Datum', 'Institut\nPollster', 'Auftraggeber', '', 'CDU\nEVP', 'AfD\nESN', 'Andere\nOthers'];
+  const data = buildStateData(csv([
+    stateHeader,
+    ['01.01.2026', 'INSA', 'BILD', '', '20%', '25%'],
+    ['02.01.2026', 'Infratest dimap', '18 Uhr Prognose ARD', '', '99%', '99%'],
+    ['02.01.2026', 'FG Wahlen', '18-Uhr-Prognose ZDF', '', '88%', '88%'],
+    ['02.01.2026', 'Infratest dimap', 'Hochrechnung ARD', '', '77%', '77%'],
+    ['02.01.2026', 'Landtagswahl\nRegional Election', '', '', '', ''],
+    ['02.01.2026', 'Landtagswahl\nRegional Election', '', '', '21%', '26%'],
+    ['03.01.2026', 'Landtagswahl\nRegional Election', '', '', '', ''],
+  ]), REGIONS.find(r => r.id === 'sachsen-anhalt'));
+  assert.equal(data.pollCount, 1);
+  assert.equal(data.latestPoll.date, '2026-01-01');
+  assert.equal(data.points.at(-1).values.union.value, 20);
+  assert.deepEqual(data.pollsters, ['INSA']);
+  assert.equal(data.elections.length, 1);
+  assert.equal(data.elections[0].values.union, 21);
 });

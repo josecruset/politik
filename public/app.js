@@ -5,6 +5,8 @@ const dateLabel = date => new Date(date).toLocaleDateString('de-DE', { timeZone:
 const number = (value, precision = 1) => value.toLocaleString('de-DE', { maximumFractionDigits: precision, minimumFractionDigits: 1 });
 let data, width, height, scale, start, end, ymax;
 const active = new Set();
+const selections = new Map();
+let selectedRegion = 'bundestag', loadController;
 const scroll = $('chart-scroll'), chart = $('chart');
 
 function element(tag, attributes = {}, text) {
@@ -48,7 +50,7 @@ function render() {
   // One viewport always spans approximately one year, independently of screen size.
   scale = Math.max(1, scroll.clientWidth - 12) / 365.25;
   start = Math.min(new Date(data.points[0].date).getTime(), ...data.approval.filter(s => active.has(s.id)).map(s => new Date(s.points[0].date).getTime()), ...(data.elections || []).map(e => new Date(e.date).getTime()));
-  end = Math.max(new Date(data.points.at(-1).date).getTime(), ...data.approval.filter(s => active.has(s.id)).map(s => new Date(s.points.at(-1).date).getTime()));
+  end = Math.max(new Date(data.points.at(-1).date).getTime(), ...data.approval.filter(s => active.has(s.id)).map(s => new Date(s.points.at(-1).date).getTime()), ...(data.elections || []).map(e => new Date(e.date).getTime()));
   width = Math.max(scroll.clientWidth, (end - start) / DAY * scale + 12);
   ymax = active.has('government') ? 100 : active.has('chancellor') ? 60 : 50;
   chart.replaceChildren(); chart.setAttribute('width', width); chart.setAttribute('height', height); chart.style.height = `${height}px`;
@@ -88,8 +90,8 @@ function render() {
     for (const party of data.parties.filter(p => active.has(p.id))) {
       const value = election.values[party.id];
       if (value === null || value === undefined) continue;
-      const dot = element('circle', { cx: x(election.date), cy: y(value), r: 5.5, fill: party.color, stroke: 'white', 'stroke-width': 2, tabindex: 0, 'data-election': election.date, 'data-party': party.id, 'aria-label': `Bundestagswahl ${dateLabel(election.date)}, ${party.label}: ${number(value, 2)} Prozent` });
-      dot.append(element('title', {}, 'Bundestagswahl'));
+      const dot = element('circle', { cx: x(election.date), cy: y(value), r: 5.5, fill: party.color, stroke: 'white', 'stroke-width': 2, tabindex: 0, 'data-election': election.date, 'data-party': party.id, 'aria-label': `${election.label || 'Bundestagswahl'} ${dateLabel(election.date)}, ${party.label}: ${number(value, 2)} Prozent` });
+      dot.append(element('title', {}, election.label || 'Bundestagswahl'));
       dot.addEventListener('focus', () => showElection(election, x(election.date) - scroll.scrollLeft));
       dot.addEventListener('blur', hideTooltip);
       chart.append(dot);
@@ -121,7 +123,7 @@ function tooltipRow(container, series, value, detail, precision = 1) {
   if (detail) { const note = document.createElement('small'); note.textContent = detail; container.append(note); }
 }
 function showElection(election, position) {
-  const tooltip = tooltipTitle(`Bundestagswahl · ${dateLabel(election.date)}`, position);
+  const tooltip = tooltipTitle(`${election.label || 'Bundestagswahl'} · ${dateLabel(election.date)}`, position);
   for (const p of data.parties.filter(p => active.has(p.id))) if (election.values[p.id] !== null) tooltipRow(tooltip, p, election.values[p.id], null, 2);
 }
 function inspect(event) {
@@ -161,14 +163,28 @@ new ResizeObserver(() => {
 
 async function load(initial = true) {
   if (initial) { $('loading').hidden = false; $('loading').textContent = 'Die Umfragen werden aus Google Sheets geladen …'; }
+  loadController?.abort();
+  const controller = new AbortController(); loadController = controller;
+  const region = selectedRegion;
   try {
-    const response = await fetch('/api/data', { signal: AbortSignal.timeout(60000) });
+    const response = await fetch(`/api/data?region=${encodeURIComponent(region)}`, { signal: AbortSignal.any([controller.signal, AbortSignal.timeout(60000)]) });
     const result = await response.json();
     if (!response.ok) throw new Error(result.error || 'Die Daten sind derzeit nicht verfügbar.');
+    if (region !== selectedRegion) return;
     const wasLatest = !data || scroll.scrollLeft + scroll.clientWidth >= scroll.scrollWidth - 40;
     const previousDate = data ? start + scroll.scrollLeft / scale * DAY : null;
     data = result;
-    if (initial) for (const party of data.parties) active.add(party.id);
+    if (initial) {
+      active.clear();
+      for (const id of selections.get(region) || data.parties.map(p => p.id)) active.add(id);
+    }
+    if (data.regions) {
+      $('region').replaceChildren(...data.regions.map(r => { const option = document.createElement('option'); option.value = r.id; option.textContent = r.label; return option; }));
+      $('region').value = region; $('region').disabled = false;
+    }
+    $('additional').hidden = region !== 'bundestag';
+    $('source').href = data.sourceUrl;
+    $('average-note').textContent = `Die Grafik zeigt für ${region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + data.region.label} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
     $('legend').replaceChildren(...data.parties.map(p => toggle(p)));
     $('approval-legend').replaceChildren(...data.approval.map(p => toggle(p, true)));
     $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)}${data.latestPoll ? ` · ${data.latestPoll.pollster}` : ''} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
@@ -177,11 +193,21 @@ async function load(initial = true) {
     $('loading').hidden = true;
     render(); scroll.scrollLeft = wasLatest ? scroll.scrollWidth : (previousDate - start) / DAY * scale; updatePeriod();
   } catch (error) {
+    if (controller.signal.aborted || region !== selectedRegion) return;
     if (!initial) { $('updated').textContent = 'Aktualisierung fehlgeschlagen · die zuletzt geladenen Daten bleiben sichtbar'; return; }
     $('status').textContent = 'Daten aktuell nicht erreichbar';
     $('loading').textContent = error.message;
     const retry = document.createElement('button'); retry.className = 'error-retry'; retry.textContent = 'Erneut laden'; retry.addEventListener('click', () => void load()); $('loading').append(retry);
   }
 }
+$('region').addEventListener('change', () => {
+  if (data) selections.set(selectedRegion, [...active]);
+  selectedRegion = $('region').value; data = null; active.clear();
+  chart.replaceChildren(); $('y-axis').replaceChildren(); $('legend').replaceChildren(); $('approval-legend').replaceChildren();
+  $('additional').hidden = selectedRegion !== 'bundestag';
+  $('status').textContent = 'Umfragedaten werden geladen …'; $('period').textContent = 'Letzte 12 Monate';
+  $('pollsters').textContent = 'Die Umfrageinstitute werden geladen …'; hideTooltip();
+  void load();
+});
 void load();
-setInterval(() => { if (!document.hidden) void load(false); }, 15 * 60 * 1000);
+setInterval(() => { if (!document.hidden && data) void load(false); }, 15 * 60 * 1000);

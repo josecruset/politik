@@ -45,40 +45,57 @@ export function percentage(value = '') {
   return number >= 0 && number <= 100 ? number : null;
 }
 const iso = time => new Date(time).toISOString().slice(0, 10);
-const validPollster = name => Boolean(name?.trim()) && !/^(Bundestagswahl|Europawahl|Landtagswahl)$|durchschnitt|institut|ergebnis|^[—―–-]+$/i.test(name.trim());
+const firstLine = value => value?.split('\n')[0].trim() || '';
+const electionName = name => /^(Bundestagswahl|Europawahl|Landtagswahl|Bürgerschaftswahl|Abgeordnetenhauswahl)$/i.test(firstLine(name));
+const validPollster = name => Boolean(name?.trim()) && !electionName(name) && !/durchschnitt|institut|ergebnis|^[—―–-]+$/i.test(name.trim());
+const isHeader = row => /Institut\s*\n?\s*Pollster/i.test(row[1] || '');
+function partyColumns(row) {
+  const end = row.findIndex(cell => /^"?(Andere|Sonstige)/i.test(firstLine(cell)));
+  return row.slice(0, end < 0 ? row.length : end);
+}
+function mapParties(row, parties) {
+  const columns = partyColumns(row).map(cell => firstLine(cell).toUpperCase());
+  return Object.fromEntries(parties.map(p => [p.id, columns.indexOf(p.header)]));
+}
+const inArea = (row, options) => !options.area || firstLine(row[4]) === options.area;
 
-export function parsePolls(rows, today = Date.now()) {
+export function parsePolls(rows, today = Date.now(), parties = PARTIES, options = {}) {
   let mapping = null; const polls = [];
   for (const row of rows) {
-    if (/Institut\s*\n?\s*Pollster/i.test(row[1] || '')) {
-      mapping = Object.fromEntries(PARTIES.map(p => [p.id, row.findIndex(cell => cell?.split('\n')[0].trim().toUpperCase() === p.header)]));
+    if (isHeader(row)) {
+      mapping = mapParties(row, parties);
       continue;
     }
     const date = parseDate(row[0]);
-    if (!mapping || date === null || date > today || !validPollster(row[1])) continue;
-    const values = Object.fromEntries(PARTIES.map(p => [p.id, percentage(row[mapping[p.id]])]));
+    if (!mapping || date === null || date > today || !validPollster(row[1]) || !inArea(row, options)) continue;
+    if (/Prognose|Hochrechnung/i.test(row[2] || '')) continue;
+    const values = Object.fromEntries(parties.map(p => [p.id, percentage(row[mapping[p.id]])]));
     if (Object.values(values).some(v => v !== null)) polls.push({ date, pollster: row[1], values });
   }
   return polls.sort((a, b) => a.date - b.date);
 }
 
-export function parseElections(rows, today = Date.now()) {
+export function parseElections(rows, today = Date.now(), parties = PARTIES, options = {}) {
   let mapping = null; const points = [], seen = new Set();
   for (const row of rows) {
-    if (/Institut\s*\n?\s*Pollster/i.test(row[1] || '')) {
-      mapping = Object.fromEntries(PARTIES.map(p => [p.id, row.findIndex(cell => cell?.split('\n')[0].trim().toUpperCase() === p.header)]));
+    if (isHeader(row)) {
+      mapping = mapParties(row, parties);
       continue;
     }
     const date = parseDate(row[0]);
-    if (!mapping || date === null || date > today || row[1]?.trim() !== 'Bundestagswahl' || seen.has(date)) continue;
+    const label = firstLine(row[1]);
+    const wanted = options.state ? /^(Landtagswahl|Bürgerschaftswahl|Abgeordnetenhauswahl)$/.test(label) : label === 'Bundestagswahl';
+    if (!mapping || date === null || date > today || !wanted || seen.has(date) || !inArea(row, options)) continue;
+    const values = Object.fromEntries(parties.map(p => [p.id, percentage(row[mapping[p.id]])]));
+    if (!Object.values(values).some(value => value !== null)) continue;
     seen.add(date);
-    points.push({ date: iso(date), values: Object.fromEntries(PARTIES.map(p => [p.id, percentage(row[mapping[p.id]])])) });
+    points.push({ date: iso(date), label, values });
   }
   return points.sort((a, b) => a.date.localeCompare(b.date));
 }
 
 export function rollingAverage(polls, ids = PARTIES.map(p => p.id)) {
-  if (!polls.length) throw new Error('Keine verwertbaren Bundestagsumfragen');
+  if (!polls.length) throw new Error('Keine verwertbaren Umfragen');
   const points = []; let left = 0, right = 0;
   const sums = Object.fromEntries(ids.map(id => [id, 0]));
   const counts = { ...sums };
@@ -129,6 +146,37 @@ export function listPollsters(...collections) {
     if (!names.has(key)) names.set(key, name);
   }
   return [...names.values()].sort((a, b) => a.localeCompare(b, 'de'));
+}
+
+// Colours from the party header cells of the corresponding state sheets.
+const STATE_PARTIES = [
+  { id: 'fw', label: 'Freie Wähler', header: 'FW', color: '#F29204' },
+  { id: 'bp', label: 'Bayernpartei', header: 'BP', color: '#3058B0' },
+  { id: 'bvb-fw', label: 'BVB/FW', header: 'BVB/FW', color: '#F28800' },
+  { id: 'bd', label: 'Bündnis Deutschland', header: 'BD', color: '#E72D71' },
+  { id: 'biw', label: 'Bürger in Wut', header: 'BIW', color: '#1A55B0' },
+  { id: 'volt', label: 'Volt', header: 'VOLT', color: '#4F1E7A' },
+  { id: 'ssw', label: 'SSW', header: 'SSW', color: '#043390' },
+];
+
+export function buildStateData(csv, region, today = Date.now()) {
+  const rows = parseCSV(csv);
+  const headers = new Set(rows.filter(isHeader).flatMap(row => partyColumns(row).map(cell => firstLine(cell).toUpperCase())));
+  const parties = PARTIES.map(p => p.id === 'union'
+    ? { ...p, label: region.id === 'bayern' ? 'CSU' : 'CDU', header: region.id === 'bayern' ? 'CSU' : 'CDU', color: region.id === 'bayern' ? '#0080C9' : '#52B7C1' }
+    : p).concat(STATE_PARTIES.filter(p => headers.has(p.header)));
+  const polls = parsePolls(rows, today, parties, region);
+  const latestPoll = polls.find(poll => poll.date === polls.at(-1)?.date);
+  if (!latestPoll) throw new Error(`Keine verwertbaren Umfragen für ${region.label}`);
+  return {
+    statePolicy: 1,
+    fetchedAt: new Date().toISOString(), sourceUrl: `https://docs.google.com/spreadsheets/d/${SOURCE_ID}/htmlview#gid=${region.gid}`,
+    parties: parties.map(({ header, ...p }) => p), points: rollingAverage(polls, parties.map(p => p.id)),
+    elections: parseElections(rows, today, parties, { ...region, state: true }),
+    pollCount: polls.length, latestPollDate: iso(latestPoll.date),
+    latestPoll: { date: iso(latestPoll.date), pollster: latestPoll.pollster, values: latestPoll.values },
+    pollsters: listPollsters(polls), approval: [],
+  };
 }
 
 export function buildData(csv, today = Date.now()) {
