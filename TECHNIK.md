@@ -6,7 +6,7 @@ Demo: [politik.cruset.com](https://politik.cruset.com), Server `207.180.217.99`.
 
 ## Darstellungsregeln
 
-`public/theme.js` setzt das Farbschema vor dem Laden des Stylesheets. Der Schalter speichert `light` oder `dark` unter `politik-theme` im lokalen Browserspeicher. Ohne gespeicherte Auswahl folgt die Darstellung `prefers-color-scheme`, einschließlich späterer Systemänderungen. Ist der Browserspeicher gesperrt, funktioniert der Schalter für die aktuelle Sitzung. CSS-Variablen steuern Oberfläche, Achsen, Gitternetz, Wahlpunkt-Ränder und Tooltips; die Parteifarben bleiben erhalten. Die 5-%-Referenzlinie ist im dunklen Modus hell, damit sie sichtbar bleibt.
+`public/theme.js` setzt das Farbschema vor dem Laden des Stylesheets. Der Schalter speichert `light` oder `dark` unter `politik-theme` im lokalen Browserspeicher. Ohne gespeicherte Auswahl folgt die Darstellung `prefers-color-scheme`, einschließlich späterer Systemänderungen. Ist der Browserspeicher gesperrt, funktioniert der Schalter für die aktuelle Sitzung. CSS-Variablen steuern Oberfläche, Achsen, Gitternetz, Wahlpunkt-Ränder und Tooltips; die Parteifarben bleiben erhalten.
 
 Die Auswahl rechts oben wechselt zwischen Deutschland (`de`) und Spanien (`es`). Deutschland bietet Bundestagswahl und alle Bundesländer; Spanien zunächst nur Congreso-Umfragen. Linienauswahl, Wahlgebiet und Zeitfenster werden je Ansicht während der Sitzung erhalten.
 
@@ -18,7 +18,6 @@ Die Auswahl rechts oben wechselt zwischen Deutschland (`de`) und Spanien (`es`).
 - Das Dropdown an der Diagrammüberschrift bietet Bundestagswahl und alle 16 Bundesländer. Bei einer Länderauswahl erscheinen dessen Landesumfragen, CDU bzw. CSU und zusätzliche Parteien aus eigenen Parteispalten. Die bisherigen sieben Parteien behalten ihre Reihenfolge; Landesparteien werden angehängt.
 - Regierungs- und Kanzlerzufriedenheit sind nur bei Bundestagswahl separat zuschaltbar, standardmäßig ausgeschaltet. In Länderansichten sind die Schalter ausgeblendet. Beim Zurückwechseln bleibt die Auswahl der Linien erhalten.
 - Die Y-Achse beginnt bei 0 % und passt sich den eingeschalteten Kurven und Wahlpunkten im sichtbaren Zeitraum an. Die Obergrenze liegt zwei Prozentpunkte über dem höchsten sichtbaren Wert und wird auf die nächsten 5 Prozentpunkte aufgerundet (mindestens 10 %, höchstens 100 %). Verbundene Linien an den sichtbaren Zeitgrenzen werden berücksichtigt. Nach einer kurzen Scrollpause erfolgt die Anpassung mit einer 240-ms-Animation; bei reduzierter Bewegung ohne Animation.
-- Die schwarze Referenzlinie liegt bei 5 %, auch beim Wechsel der Achsenskalierung.
 
 ## Daten und Berechnung
 

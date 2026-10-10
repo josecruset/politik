@@ -13,7 +13,7 @@ const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswah
 const lastRegions = new Map(), views = new Map();
 const selectionKey = () => `${selectedCountry}:${selectedRegion}`;
 const scroll = $('chart-scroll'), chart = $('chart');
-let curves = [], markers = [], dots = [], ticks = [], curveLayer, referenceLine;
+let curves = [], markers = [], dots = [], ticks = [], curveLayer;
 let scaleTimer, scaleAnimation, targetYmax;
 
 function element(tag, attributes = {}, text) {
@@ -74,8 +74,6 @@ function render(firstDate = null, latest = false, animate = false) {
     if (month.getUTCMonth() === 0) chart.append(element('text', { x: pos + 3, y: height - 3, style: 'fill:var(--year);font-size:10px;font-weight:600' }, month.getUTCFullYear()));
     month.setUTCMonth(month.getUTCMonth() + 1);
   }
-  referenceLine = element('line', { id: 'five-percent-line', x1: 0, x2: width, stroke: 'var(--reference)', 'stroke-width': 1, 'pointer-events': 'none' });
-  chart.append(referenceLine);
   curveLayer = element('g', { id: 'curves' }); chart.append(curveLayer);
   const baseY = value => height - 41 - value / 100 * (height - 55);
   for (const party of data.parties.filter(p => active.has(p.id))) {
@@ -126,7 +124,6 @@ function paintScale(maximum) {
     tick.line.setAttribute('y1', y(tick.value)); tick.line.setAttribute('y2', y(tick.value));
     tick.label.setAttribute('y', y(tick.value) + 4);
   }
-  referenceLine.setAttribute('y1', y(5)); referenceLine.setAttribute('y2', y(5));
   for (const dot of dots) dot.element.setAttribute('cy', y(dot.value));
 }
 

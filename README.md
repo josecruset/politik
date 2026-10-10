@@ -18,7 +18,7 @@ Klicke auf eine Parteienkarte, um ihre Linie aus- oder wieder einzublenden. Zu B
 
 Das Diagramm startet beim neuesten Zeitraum und zeigt ungefähr **zwölf Monate auf einmal**. Scrolle horizontal, um frühere Entwicklungen zu sehen. Du kannst die Zeitachse auch per Touch oder mit den Pfeiltasten bedienen, wenn das Diagramm den Fokus hat. Bewege den Mauszeiger über das Diagramm oder tippe darauf, um die Werte für einen Tag zu sehen.
 
-Die Prozentachse beginnt bei null und passt sich automatisch an die sichtbaren, eingeschalteten Kurven und Wahlpunkte an. So bleiben Unterschiede auch bei niedrigeren Werten gut erkennbar. Die dünne schwarze Linie markiert **5 %**. Wahlergebnisse erscheinen als größere Punkte; ihr Tooltip nennt die jeweilige Wahl. In Länderansichten werden nur Ergebnisse der jeweiligen Landeswahl markiert.
+Die Prozentachse beginnt bei null und passt sich automatisch an die sichtbaren, eingeschalteten Kurven und Wahlpunkte an. So bleiben Unterschiede auch bei niedrigeren Werten gut erkennbar. Wahlergebnisse erscheinen als größere Punkte; ihr Tooltip nennt die jeweilige Wahl. In Länderansichten werden nur Ergebnisse der jeweiligen Landeswahl markiert.
 
 ## Was die Linien zeigen
 
