@@ -50,10 +50,10 @@ function render() {
   start = Math.min(new Date(data.points[0].date).getTime(), ...data.approval.filter(s => active.has(s.id)).map(s => new Date(s.points[0].date).getTime()), ...(data.elections || []).map(e => new Date(e.date).getTime()));
   end = Math.max(new Date(data.points.at(-1).date).getTime(), ...data.approval.filter(s => active.has(s.id)).map(s => new Date(s.points.at(-1).date).getTime()));
   width = Math.max(scroll.clientWidth, (end - start) / DAY * scale + 12);
-  ymax = data.approval.some(s => active.has(s.id)) ? 100 : 50;
+  ymax = active.has('government') ? 100 : active.has('chancellor') ? 60 : 50;
   chart.replaceChildren(); chart.setAttribute('width', width); chart.setAttribute('height', height); chart.style.height = `${height}px`;
   const axis = $('y-axis'); axis.replaceChildren(); axis.setAttribute('height', height); axis.style.height = `${height}px`;
-  for (let value = 0; value <= ymax; value += ymax / 5) {
+  for (let value = 0; value <= ymax; value += ymax === 100 ? 20 : 10) {
     chart.append(element('line', { x1: 0, x2: width, y1: y(value), y2: y(value), stroke: '#e8eee9', 'stroke-dasharray': value ? '3 5' : '0' }));
     axis.append(element('text', { x: 32, y: y(value) + 4, 'text-anchor': 'end' }, `${value}`));
   }
