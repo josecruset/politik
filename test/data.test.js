@@ -72,3 +72,24 @@ test('sources include all contributing sheets, deduplicate case variants and exc
   });
   assert.deepEqual(data.pollsters, ['FG Wahlen', 'Forsa', 'Pollytix']);
 });
+
+test('latest cards use one raw poll, source order breaks same-day ties, missing and zero stay distinct', () => {
+  const csv = rows => rows.map(row => row.map(value => `"${value.replaceAll('"', '""')}"`).join(',')).join('\n');
+  const data = buildData({
+    polls: csv([header,
+      poll('09.10.2026', 'Bundestagswahl', '90%'),
+      poll('08.10.2026', 'Ipsos', '0%', ''),
+      poll('08.10.2026', 'FG Wahlen', '21%', '28%'),
+      poll('07.10.2026', 'Forsa', '19%', '26%'),
+    ]),
+    government: csv([['08.10.2026', 'FG Wahlen', 'ZDF', '', 'Zufriedenheit', '22%', '']]),
+    chancellor: csv([['08.10.2026', 'Forsa', 'RTL', '', 'Zufriedenheit', '18%', '']]),
+  });
+  assert.equal(data.latestPoll.date, '2026-10-08');
+  assert.equal(data.latestPoll.pollster, 'Ipsos');
+  assert.equal(data.latestPoll.values.union, 0);
+  assert.equal(data.latestPoll.values.afd, null);
+  assert.equal(data.latestPoll.values.bsw, null);
+  assert.equal(data.points.at(-1).values.union.value, 13.3333);
+  assert.equal(data.points.at(-1).values.afd.value, 27);
+});

@@ -6,7 +6,7 @@ Staging: **https://politik.cruset.com** auf `207.180.217.99`.
 
 ## Darstellung
 
-- AfD, Union, SPD, Grüne, Linke, BSW, FDP in dieser Reihenfolge, standardmäßig alle sichtbar. Klick auf eine Karte schaltet die betreffende Linie um.
+- AfD, Union, SPD, Grüne, Linke, BSW, FDP in dieser Reihenfolge, standardmäßig alle sichtbar. Die Karten zeigen die unveränderten Werte der neuesten Einzelumfrage; Datum und Institut stehen bei „Letzte Umfrage“. Bei mehreren Umfragen am gleichen Tag gilt die zuerst aufgeführte Umfrage der Quelle. Fehlende Werte bleiben leer (–), echte null Prozent werden angezeigt. Klick auf eine Karte schaltet die betreffende Linie um. Die Linien zeigen weiterhin den 7-Tage-Durchschnitt.
 - Die Linienfarben entsprechen den effektiven Hintergrundfarben der bedingten Formatierung in Zeile 9 des Blatts `BUNDESTAGSWAHL`: `#009EE0`, `#005974`, `#E3000F`, `#008939`, `#B61C3E`, `#792351`, `#FFE209`.
 - Horizontal scrollbar, ungefähr zwölf Monate pro Ansicht. Start beim neuesten Zeitraum. Auch per Touch oder Tastatur bedienbar.
 - Mauszeiger oder Tippen auf das Diagramm zeigt Werte für einen Tag.
@@ -87,7 +87,7 @@ docker compose ps
 ```
 
 - `/healthz`: Prozessstatus, `version` (Commit-SHA), `dataReady`, `fetchedAt`.
-- `/api/data`: Parteien, tägliche Durchschnittswerte inklusive Umfragezahl, Wahlresultate, einzelne Zufriedenheitswerte, Quellenlink und `stale`.
+- `/api/data`: Parteien, neueste Einzelumfrage mit Institut und Rohwerten, tägliche Durchschnittswerte inklusive Umfragezahl, Wahlresultate, einzelne Zufriedenheitswerte, Quellenlink und `stale`.
 - Wenn CSV-Import scheitert: öffentliche Freigabe, Blatt-IDs, Überschriften, Datumsformat und Prozentformate der Quelle prüfen. Vorhandene Daten bleiben erhalten.
 - Wenn HTTPS scheitert: DNS-Ziel, Traefik-Router und Let's-Encrypt-Logs prüfen. TLS wird von Traefik bereitgestellt.
 - Wenn GitHub „Permission denied“ meldet: die beiden Secrets und den eingeschränkten Eintrag in `authorized_keys` prüfen.

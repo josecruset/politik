@@ -26,11 +26,10 @@ function toggle(series, approval = false) {
   } else {
     const name = document.createElement('span'); name.className = 'party-name'; name.append(swatch(series.color), document.createTextNode(series.label));
     const value = document.createElement('span'); value.className = 'party-value';
-    const last = data.points.at(-1).values[series.id];
-    value.append(document.createTextNode(last ? number(last.value) : '–'));
+    const last = data.latestPoll?.values[series.id];
+    value.append(document.createTextNode(last === null || last === undefined ? '–' : last.toLocaleString('de-DE', { maximumFractionDigits: 2 })));
     const unit = document.createElement('small'); unit.textContent = '%'; value.append(unit);
-    const detail = document.createElement('span'); detail.className = 'party-detail'; detail.textContent = '7-Tage-Durchschnitt';
-    button.append(name, value, detail);
+    button.append(name, value);
   }
   button.addEventListener('click', () => {
     const previousDate = start + scroll.scrollLeft / scale * DAY;
@@ -173,7 +172,7 @@ async function load(initial = true) {
     if (initial) for (const party of data.parties) active.add(party.id);
     $('legend').replaceChildren(...data.parties.map(p => toggle(p)));
     $('approval-legend').replaceChildren(...data.approval.map(p => toggle(p, true)));
-    $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
+    $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)}${data.latestPoll ? ` · ${data.latestPoll.pollster}` : ''} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
     $('pollsters').textContent = data.pollsters?.length ? data.pollsters.join(' · ') : 'Die Liste der Umfrageinstitute wird aktualisiert …';
     $('updated').textContent = `${data.stale ? 'Aktualisierung fehlgeschlagen · letzter erfolgreicher Abruf' : 'Daten abgerufen'}: ${new Date(data.fetchedAt).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', dateStyle: 'short', timeStyle: 'short' })} · alle 15 Minuten`;
     $('loading').hidden = true;

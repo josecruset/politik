@@ -131,10 +131,13 @@ export function buildData(csv, today = Date.now()) {
   const chancellor = parseApproval(parseCSV(csv.chancellor), today);
   if (!government.length || !chancellor.length) throw new Error('Zufriedenheitswerte fehlen im Export');
   const points = rollingAverage(polls);
+  // For same-day polls, use the first entry in the source's newest-first order.
+  const latestPoll = polls.find(poll => poll.date === polls.at(-1).date);
   return {
     fetchedAt: new Date().toISOString(), sourceUrl: `https://docs.google.com/spreadsheets/d/${SOURCE_ID}/htmlview`,
     parties: PARTIES.map(({ header, ...p }) => p), points, elections,
     pollCount: polls.length, latestPollDate: iso(polls.at(-1).date),
+    latestPoll: { date: iso(latestPoll.date), pollster: latestPoll.pollster, values: latestPoll.values },
     pollsters: listPollsters(polls, government, chancellor),
     approval: [
       { id: 'government', label: 'Zufriedenheit Regierung', color: '#626B80', points: government },

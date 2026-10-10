@@ -43,7 +43,7 @@ const server = createServer(async (request, response) => {
       return response.end(JSON.stringify({ status: 'ok', version: process.env.APP_VERSION || 'local', dataReady: Boolean(cache), fetchedAt: cache?.fetchedAt || null }));
     }
     if (path === '/api/data') {
-      if (!cache || !Array.isArray(cache.pollsters) || Date.now() - new Date(cache.fetchedAt).getTime() > ttl) {
+      if (!cache || !cache.latestPoll || !Array.isArray(cache.pollsters) || Date.now() - new Date(cache.fetchedAt).getTime() > ttl) {
         if (Date.now() - lastAttempt > 60000 || pending) await refresh();
       }
       response.setHeader('Content-Type', 'application/json; charset=utf-8');
