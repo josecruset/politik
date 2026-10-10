@@ -2,7 +2,7 @@ const $ = id => document.getElementById(id);
 const DAY = 86400000;
 const svgNS = 'http://www.w3.org/2000/svg';
 const dateLabel = date => new Date(date).toLocaleDateString('de-DE', { timeZone: 'UTC', day: '2-digit', month: '2-digit', year: 'numeric' });
-const number = value => value.toLocaleString('de-DE', { maximumFractionDigits: 1, minimumFractionDigits: 1 });
+const number = (value, precision = 1) => value.toLocaleString('de-DE', { maximumFractionDigits: precision, minimumFractionDigits: 1 });
 let data, width, height, scale, start, end, ymax;
 const active = new Set();
 const scroll = $('chart-scroll'), chart = $('chart');
@@ -33,10 +33,10 @@ function toggle(series, approval = false) {
     button.append(name, value, detail);
   }
   button.addEventListener('click', () => {
-    const offset = scroll.scrollLeft;
+    const previousDate = start + scroll.scrollLeft / scale * DAY;
     active.has(series.id) ? active.delete(series.id) : active.add(series.id);
     button.setAttribute('aria-pressed', String(active.has(series.id)));
-    render(); scroll.scrollLeft = offset; updatePeriod();
+    render(); scroll.scrollLeft = (previousDate - start) / DAY * scale; updatePeriod();
   });
   return button;
 }
@@ -62,7 +62,7 @@ function render() {
   while (month.getTime() <= end) {
     const pos = x(month);
     chart.append(element('line', { x1: pos, x2: pos, y1: 14, y2: height - 41, stroke: '#f1f4f2' }));
-    chart.append(element('text', { x: pos + 3, y: height - 17 }, month.toLocaleDateString('de-DE', { month: 'short', timeZone: 'UTC' })));
+    if (scale >= 1.1 || month.getUTCMonth() % 3 === 0) chart.append(element('text', { x: pos + 3, y: height - 17 }, month.toLocaleDateString('de-DE', { month: 'short', timeZone: 'UTC' })));
     if (month.getUTCMonth() === 0) chart.append(element('text', { x: pos + 3, y: height - 3, style: 'fill:#4c6b57;font-size:10px;font-weight:600' }, month.getUTCFullYear()));
     month.setUTCMonth(month.getUTCMonth() + 1);
   }
@@ -91,7 +91,7 @@ function render() {
     for (const party of data.parties.filter(p => active.has(p.id))) {
       const value = election.values[party.id];
       if (value === null || value === undefined) continue;
-      const dot = element('circle', { cx: x(election.date), cy: y(value), r: 5.5, fill: party.color, stroke: 'white', 'stroke-width': 2, tabindex: 0, 'data-election': election.date, 'data-party': party.id, 'aria-label': `Bundestagswahl ${dateLabel(election.date)}, ${party.label}: ${number(value)} Prozent` });
+      const dot = element('circle', { cx: x(election.date), cy: y(value), r: 5.5, fill: party.color, stroke: 'white', 'stroke-width': 2, tabindex: 0, 'data-election': election.date, 'data-party': party.id, 'aria-label': `Bundestagswahl ${dateLabel(election.date)}, ${party.label}: ${number(value, 2)} Prozent` });
       dot.append(element('title', {}, 'Bundestagswahl'));
       dot.addEventListener('focus', () => showElection(election, x(election.date) - scroll.scrollLeft));
       dot.addEventListener('blur', hideTooltip);
@@ -117,15 +117,15 @@ function tooltipTitle(text, position) {
   tooltip.style.left = `${Math.max(48, Math.min(position + 60, $('chart-frame').clientWidth - Math.min(290, tooltip.offsetWidth) - 8))}px`;
   return tooltip;
 }
-function tooltipRow(container, series, value, detail) {
+function tooltipRow(container, series, value, detail, precision = 1) {
   const row = document.createElement('div'); row.className = 'tooltip-row';
   const label = document.createElement('span'); label.append(swatch(series.color), document.createTextNode(series.label));
-  const result = document.createElement('b'); result.textContent = `${number(value)} %`; row.append(label, result); container.append(row);
+  const result = document.createElement('b'); result.textContent = `${number(value, precision)} %`; row.append(label, result); container.append(row);
   if (detail) { const note = document.createElement('small'); note.textContent = detail; container.append(note); }
 }
 function showElection(election, position) {
   const tooltip = tooltipTitle(`Bundestagswahl · ${dateLabel(election.date)}`, position);
-  for (const p of data.parties.filter(p => active.has(p.id))) if (election.values[p.id] !== null) tooltipRow(tooltip, p, election.values[p.id]);
+  for (const p of data.parties.filter(p => active.has(p.id))) if (election.values[p.id] !== null) tooltipRow(tooltip, p, election.values[p.id], null, 2);
 }
 function inspect(event) {
   if (!data) return;
