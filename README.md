@@ -1,111 +1,39 @@
 # Politik
 
-HTML5-Anwendung für **Umfragewerte Parteien und Regierung**.
+Wie verändert sich die politische Stimmung in Deutschland? **Politik** zeigt die Umfragewerte der Parteien im Zeitverlauf – für die Bundestagswahl und für alle 16 Bundesländer. In der Bundesansicht kannst du außerdem verfolgen, wie zufrieden die Befragten mit der Bundesregierung und dem Bundeskanzler sind.
 
-Demo: **https://politik.cruset.com** auf `207.180.217.99`.
+**[Demo öffnen: politik.cruset.com](https://politik.cruset.com)**
 
-## Darstellung
+## Die Anwendung nutzen
 
-- AfD, Union, SPD, Grüne, Linke, BSW, FDP in dieser Reihenfolge, standardmäßig alle sichtbar. Die Karten zeigen die unveränderten Werte der neuesten Einzelumfrage; Datum und Institut stehen bei „Letzte Umfrage“. Bei mehreren Umfragen am gleichen Tag gilt die zuerst aufgeführte Umfrage der Quelle. Fehlende Werte bleiben leer (–), echte null Prozent werden angezeigt. Klick auf eine Karte schaltet die betreffende Linie um. Die Linien zeigen weiterhin den 7-Tage-Durchschnitt.
-- Die Linienfarben entsprechen den effektiven Hintergrundfarben der bedingten Formatierung in Zeile 9 des Blatts `BUNDESTAGSWAHL`: `#009EE0`, `#005974`, `#E3000F`, `#008939`, `#B61C3E`, `#792351`, `#FFE209`.
-- Horizontal scrollbar, ungefähr zwölf Monate pro Ansicht. Start beim neuesten Zeitraum. Auch per Touch oder Tastatur bedienbar.
-- Mauszeiger oder Tippen auf das Diagramm zeigt Werte für einen Tag.
-- Bundestagswahlergebnisse erscheinen als größere Punkte mit Tooltip „Bundestagswahl“. Wiederholte Wahlergebniszeilen an Abschnittsgrenzen ergeben einen Punkt je Partei und Wahl. Bei mehreren Fassungen gilt die zuerst aufgeführte Fassung.
-- Das Dropdown an der Diagrammüberschrift bietet Bundestagswahl und alle 16 Bundesländer. Bei einer Länderauswahl erscheinen dessen Landesumfragen, CDU bzw. CSU und zusätzliche Parteien aus eigenen Parteispalten. Die bisherigen sieben Parteien behalten ihre Reihenfolge; Landesparteien werden angehängt.
-- Regierungs- und Kanzlerzufriedenheit sind nur bei Bundestagswahl separat zuschaltbar, standardmäßig ausgeschaltet. In Länderansichten sind die Schalter ausgeblendet. Beim Zurückwechseln bleibt die Auswahl der Linien erhalten.
-- Die Y-Achse beginnt bei 0 % und passt sich den eingeschalteten Kurven und Wahlpunkten im sichtbaren Zeitraum an. Die Obergrenze liegt zwei Prozentpunkte über dem höchsten sichtbaren Wert und wird auf die nächsten 5 Prozentpunkte aufgerundet (mindestens 10 %, höchstens 100 %). Verbundene Linien an den sichtbaren Zeitgrenzen werden berücksichtigt. Nach einer kurzen Scrollpause erfolgt die Anpassung mit einer 240-ms-Animation; bei reduzierter Bewegung ohne Animation.
-- Die schwarze Referenzlinie liegt bei 5 %, auch beim Wechsel der Achsenskalierung.
+Wähle über dem Diagramm **Bundestagswahl** oder ein Bundesland aus. Die Bundesansicht zeigt AfD, Union, SPD, Grüne, Linke, BSW und FDP. In den Länderansichten werden CDU bzw. CSU korrekt benannt und zusätzliche Landesparteien angezeigt, soweit die Quelle eigene Werte für sie enthält.
 
-## Daten und Berechnung
+Die Karten über dem Diagramm zeigen die **gemeldeten Werte der neuesten Einzelumfrage**, ohne Durchschnitt. Bei „Letzte Umfrage“ stehen das Datum und das Umfrageinstitut. Ein Strich (–) bedeutet, dass für eine Partei kein Wert in dieser Umfrage vorliegt.
 
-Quelle: [Deutschland Wählt Umfragen-Verlauf](https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview).
+Klicke auf eine Parteienkarte, um ihre Linie aus- oder wieder einzublenden. Zu Beginn sind alle Parteien eingeschaltet. In der Bundesansicht gibt es zusätzlich zwei Schalter für **Zufriedenheit Regierung** und **Zufriedenheit Bundeskanzler**. Diese sind zunächst ausgeschaltet und werden in Länderansichten nicht angeboten.
 
-Vollständige öffentliche CSV-Exporte mit folgenden Blatt-IDs:
+Das Diagramm startet beim neuesten Zeitraum und zeigt ungefähr **zwölf Monate auf einmal**. Scrolle horizontal, um frühere Entwicklungen zu sehen. Du kannst die Zeitachse auch per Touch oder mit den Pfeiltasten bedienen, wenn das Diagramm den Fokus hat. Bewege den Mauszeiger über das Diagramm oder tippe darauf, um die Werte für einen Tag zu sehen.
 
-| Blatt | gid |
-| --- | --- |
-| BUNDESTAGSWAHL | 2003908598 |
-| Zufriedenheit Bundesregierung | 1264011241 |
-| Zufriedenheit Bundeskanzler | 667187835 |
+Die Prozentachse beginnt bei null und passt sich automatisch an die sichtbaren, eingeschalteten Kurven und Wahlpunkte an. So bleiben Unterschiede auch bei niedrigeren Werten gut erkennbar. Die dünne schwarze Linie markiert **5 %**. Wahlergebnisse erscheinen als größere Punkte; ihr Tooltip nennt die jeweilige Wahl. In Länderansichten werden nur Ergebnisse der jeweiligen Landeswahl markiert.
 
-Der ursprünglich angegebene Link mit `gid=667187835` zeigt tatsächlich auf die Kanzlerzufriedenheit. Die Bundesansicht lädt diese drei Blätter einzeln. Die Blatt-IDs aller Länder stehen in `src/regions.js`. Länderblätter werden beim ersten Aufruf geladen und danach ebenfalls alle 15 Minuten aktualisiert. Jedes Wahlgebiet hat einen eigenen persistenten JSON-Cache; ein Fehler in einem Länderblatt beeinträchtigt die anderen Ansichten nicht.
+## Was die Linien zeigen
 
-Pro Partei und Tag: arithmetisches Mittel aller veröffentlichten Umfragewerte vom jeweiligen Tag und den sechs vorhergehenden Kalendertagen. Jede Umfrage hat dasselbe Gewicht, auch mehrere am selben Tag. Keine Gewichtung nach Institut oder Stichprobengröße. Fehlende Werte werden ausgelassen; echte `0%` bleiben gültig. Wahlresultate und Zusammenfassungszeilen gehen nicht in den Durchschnitt ein. Die Linie verbindet vorhandene Durchschnittswerte auch über Umfragepausen hinweg, etwa an Jahreswechseln. Für solche Tage werden keine Tageswerte erfunden; im Tooltip gibt es ohne gültiges 7-Tage-Fenster keinen Messwert. Der berechnete Verlauf endet am letzten veröffentlichten Umfragedatum; die Datierung wird angezeigt.
+Alle Kurven zeigen einen **gleitenden 7-Tage-Durchschnitt**: Für jeden Tag werden die Umfragen dieses Tages und der sechs vorherigen Kalendertage zusammengefasst. Jede Umfrage zählt gleich viel. Fehlende Werte werden ausgelassen; Wahlergebnisse, Wahlabend-Prognosen und Hochrechnungen fließen nicht in den Durchschnitt ein.
 
-Länderansichten verwenden nur Landeswahlergebnisse als größere Punkte (Landtagswahl, Bürgerschaftswahl oder Abgeordnetenhauswahl). Ergebnisse von Bundestags- und Europawahlen werden dort ausgelassen und gehen ebenso wenig in die Durchschnitte ein. Wahlabend-Prognosen und Hochrechnungen sind keine Umfragen und bleiben ebenfalls ausgeschlossen. Wahlzeilen ohne vorhandene Prozentwerte werden nicht markiert. Berlin wird auf „Berlin Gesamt“ begrenzt; „Berlin West“ und Zeilen ohne Institut werden nicht als Umfragen verwendet.
+Das gilt auch für die beiden Zufriedenheitskurven. Dafür werden zunächst die beiden positiven Antwortanteile der jeweiligen Umfrage addiert und anschließend über sieben Tage gemittelt.
 
-Historische Abschnitte haben andere Parteispalten: Der Import ordnet die Spalten bei jeder wiederholten Überschrift neu zu. BSW wird vor seiner Erfassung nicht als null Prozent behandelt.
+Die Linien verbinden vorhandene Durchschnittswerte auch über Umfragepausen hinweg. Für Tage ohne Messwerte im 7-Tage-Fenster wird im Tooltip kein Wert angezeigt. Die Parteikarten und die Kurven können unterschiedliche Werte zeigen: Die Karten geben die letzte Einzelumfrage wieder, die Kurven den Durchschnitt mehrerer Umfragen.
 
-Zufriedenheit: F+G je Umfrage am Veröffentlichungstag. Ist nur eine der beiden Prozentzellen vorhanden, wird diese verwendet. Aus diesen Summen wird pro Tag der gleitende 7-Tage-Durchschnitt berechnet: aktueller Tag und sechs vorherige Kalendertage, jede Umfrage gleich gewichtet. Fortsetzungszeilen ohne eigenes Datum übernehmen Datum und Institut der unmittelbar zugehörigen Umfrage; Leer- und Abschnittszeilen unterbrechen diese Zuordnung. Nicht prozentuale Bewertungen, etwa auf einer Skala von −5 bis +5, bleiben ausgeschlossen. Mehrere Beobachtungen am selben Datum bleiben erhalten. Linien verbinden vorhandene Durchschnittswerte auch über Umfragepausen hinweg. Der Tooltip zeigt den Durchschnitt und die Zahl der Umfragen im jeweiligen 7-Tage-Fenster; bei einem leeren Fenster erscheint kein Wert.
+## Datenquelle und Aktualisierung
 
-Server und geöffnete Browseransicht aktualisieren alle 15 Minuten. Die Quelldatei muss öffentlich lesbar bleiben. Bei einem Quellenfehler verwendet der Server seinen letzten erfolgreichen Cache und kennzeichnet ihn als veraltet. Ein Neustart behält den Cache im Docker-Volume. Ohne verfügbaren Cache liefert `/api/data` HTTP 503 und die Oberfläche einen Wiederholen-Knopf.
+Die Daten stammen aus der öffentlichen Google-Tabelle [Deutschland Wählt – Umfragen-Verlauf](https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview). Unter dem Diagramm findest du die beteiligten Umfrageinstitute und einen Link zur Originaltabelle.
 
-## Lokal starten
+Die Anwendung ruft die Daten **alle 15 Minuten** ab; der letzte Abruf steht unten auf der Seite. Das Datum der neuesten Umfrage hängt davon ab, wann die Quelle neue Ergebnisse veröffentlicht. Schlägt eine Aktualisierung fehl, bleiben bereits verfügbare Daten sichtbar und werden entsprechend gekennzeichnet.
 
-Node.js 22 oder neuer, im Container Node.js 24. Keine npm-Abhängigkeiten und kein Google-API-Schlüssel nötig.
+Die Darstellung fasst verschiedene Institute und Frageformulierungen zusammen. Sie hilft, Entwicklungen zu vergleichen; sie ist keine Wahlprognose.
 
-```sh
-npm test
-npm start
-```
+## Autor und Technik
 
-Danach `http://localhost:3000`. Optional `PORT=3105 npm start`. `DATA_DIR` setzt das Cache-Verzeichnis, standardmäßig `./data`.
+Entwickelt von **[José Cruset](https://x.com/josecruset)**. Den Quellcode findest du im [GitHub-Repo](https://github.com/josecruset/politik).
 
-Dateien: `src/data.js` für Import und Berechnung, `src/regions.js` für Wahlgebiete und Blatt-IDs, `src/server.js` für HTTP und Cache, `public/` für HTML, CSS und SVG-Diagramm. Die Frontend-Dateien werden direkt ausgeliefert; kein Build nötig.
-
-## Demo und automatisches Deployment
-
-GitHub Actions: `.github/workflows/deploy.yml`. **Jeder Push**, ohne Branch- oder Pfadfilter, sowie ein manueller `workflow_dispatch` startet die Tests und deployt den exakten Commit. Parallel eintreffende Runs werden serialisiert. Bei mehreren schnellen Pushes kann GitHub ältere wartende Runs ersetzen; der neueste Stand wird ausgerollt. Ein fehlgeschlagener Test verhindert das Deployment.
-
-Repository-Secrets:
-
-- `STAGING_SSH_KEY`: dedizierter privater Ed25519-Schlüssel für dieses Deployment.
-- `STAGING_KNOWN_HOSTS`: bereits verifizierte SSH-Hostschlüssel für `207.180.217.99`.
-
-Der öffentliche Schlüssel ist auf dem Demo-Server in `/root/.ssh/authorized_keys` mit `restrict` und dem festen Kommando `/usr/local/bin/politik-deploy` eingetragen. Er ermöglicht ausschließlich `deploy <Commit-SHA>`, keine interaktive Shell, Portweiterleitung oder freie Remote-Kommandos. Der private Schlüssel liegt ausschließlich als GitHub-Secret vor.
-
-Serverlayout:
-
-- Container: `politik-app`
-- Infrastruktur: `/root/politik/compose.yaml`
-- Installiertes Deployment-Skript: `/usr/local/bin/politik-deploy` (Quelle im Repository: `deployment/politik-deploy`)
-- Releases: `/root/politik/releases/<Commit-SHA>`
-- Aktive Revision: `/root/politik/.env`
-- Images: `politik:<Commit-SHA>`
-- Persistente Daten: Docker-Volume `politik_politik-data`
-- Netzwerk: vorhandenes `traefik_network`
-
-Das Deployment-Skript prüft den Archivinhalt, baut das Docker-Image, startet ausschließlich den Politik-Service und prüft Container-Gesundheit sowie den echten Datenimport. Bei einem Fehler nach dem Containerwechsel wird eine vorhandene Vorgängerversion wieder gestartet. GitHub prüft anschließend HTTPS, Datenbereitschaft und Commit-SHA unter `/healthz`. Der erste Rollout hat noch keine Vorgängerversion.
-
-Traefik verwendet den vorhandenen HTTPS-Einstieg `websecure`, den Let's-Encrypt-Resolver `myresolver` und `security-headers@file`. Es werden keine Hostports geöffnet. Der App-Prozess läuft als Benutzer `node` mit schreibgeschütztem Root-Dateisystem, ohne Linux-Capabilities und mit 256 MB Speicherlimit. Nur das Datenvolume und `/tmp` sind beschreibbar. Die Demo sendet `noindex`.
-
-Änderungen an `compose.yaml` oder am hostseitigen Deployment-Skript sind Infrastrukturänderungen und müssen separat auf dem Demo-Server installiert werden. Reguläre Pushes übertragen nur die Anwendung und den Dockerfile.
-
-## Betrieb und Fehlerdiagnose
-
-```sh
-ssh root@staging
-docker logs --tail 100 politik-app
-docker inspect politik-app --format '{{.State.Health.Status}}'
-cd /root/politik
-docker compose ps
-```
-
-- `/healthz`: Prozessstatus, `version` (Commit-SHA), `dataReady`, `fetchedAt`.
-- `/api/data` oder `/api/data?region=bundestag`: Bundesansicht. Mit `region=bayern`, `region=berlin` usw. wird die Länderansicht geladen; gültige IDs stehen in `src/regions.js`. Unbekannte IDs liefern HTTP 400. Die Antwort enthält das gewählte Wahlgebiet und alle Dropdown-Optionen sowie Parteien, neueste Einzelumfrage mit Institut und Rohwerten, tägliche Durchschnittswerte inklusive Umfragezahl, Wahlresultate, tägliche 7-Tage-Durchschnitte der Zufriedenheit inklusive Umfragezahl, Quellenlink und `stale`.
-- Wenn CSV-Import scheitert: öffentliche Freigabe, Blatt-IDs, Überschriften, Datumsformat und Prozentformate der Quelle prüfen. Vorhandene Daten bleiben erhalten.
-- Wenn HTTPS scheitert: DNS-Ziel, Traefik-Router und Let's-Encrypt-Logs prüfen. TLS wird von Traefik bereitgestellt.
-- Wenn GitHub „Permission denied“ meldet: die beiden Secrets und den eingeschränkten Eintrag in `authorized_keys` prüfen.
-- Releases und Images werden für Rollback aufbewahrt; bei längerem Betrieb alte, nicht aktive Versionen nach Bedarf entfernen. Das Datenvolume nicht löschen.
-
-Manueller Rollback auf eine bekannte vorhandene Revision:
-
-```sh
-cd /root/politik
-APP_VERSION=<vorhandene-Commit-SHA> docker compose up -d --no-build --wait
-printf 'APP_VERSION=%s\n' '<vorhandene-Commit-SHA>' > .env
-```
-
-Die App vergleicht verschiedene Institute und Frageformulierungen entsprechend den gelieferten Blättern. Zufriedenheitsdaten werden nicht methodisch vereinheitlicht. Unter dem Diagramm werden die Institute des gewählten Wahlgebiets aufgeführt. Die Bundesansicht berücksichtigt auch Institute der beiden Zufriedenheitsblätter. Groß-/Kleinschreibungsvarianten werden zusammengefasst, historische Namenszusätze bleiben erhalten.
-
-Parteifarben sind anhand der Quelltabelle übernommen; spätere Änderungen an deren Formatierung erfordern eine Anpassung der Farbkonstanten.
+Informationen zu Installation, Datenimport, genauen Berechnungsregeln, automatischem Deployment und Betrieb stehen in der **[technischen Dokumentation](TECHNIK.md)**.
