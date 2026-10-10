@@ -101,7 +101,7 @@ function render(firstDate = null, latest = false, animate = false) {
     // A subtle outline makes the source's bright yellow FDP line readable.
     if (party.id === 'fdp') curveLayer.append(element('path', { d: path, fill: 'none', stroke: '#b0a545', 'stroke-width': 3.3, opacity: .6, 'vector-effect': 'non-scaling-stroke' }));
     if (['union', 'bsw', 'es-pce', 'cat-alianca', 'cat-comuns', 'cat-valents', 'cat-pdecat', 'bcn-alianca', 'bcn-comu', 'bcn-canvi', 'bcn-pdecat'].includes(party.id)) curveLayer.append(element('path', { d: path, class: 'dark-line-outline', fill: 'none', stroke: '#dce6e1', 'stroke-width': 3.6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .4, 'vector-effect': 'non-scaling-stroke' }));
-    const line = element('path', { d: path, fill: 'none', stroke: party.color, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'data-line': party.id, 'vector-effect': 'non-scaling-stroke' });
+    const line = element('path', { d: path, fill: 'none', stroke: party.color, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'data-line': party.id, 'vector-effect': 'non-scaling-stroke', ...(party.kind === 'response-group' ? { 'stroke-dasharray': '6 4' } : {}) });
     line.append(element('title', {}, party.label)); curveLayer.append(line);
   }
   for (const series of data.approval.filter(s => active.has(s.id))) {
@@ -275,7 +275,8 @@ async function load(initial = true) {
     $('data-note').textContent = data.dataNote || ''; $('data-note').hidden = !data.dataNote;
     $('measurement-note').textContent = data.measurementNote || ''; $('measurement-note').hidden = !data.measurementNote;
     $('axis-label').textContent = data.axisLabel || 'Umfragewert in %';
-    $('average-note').textContent = `Die Grafik zeigt für ${country === 'de' && region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + (region === 'congreso' ? data.country.label : data.region.label)} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
+    $('average-note').textContent = `Die Grafik zeigt für ${country === 'de' && region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : (region === 'barcelona' ? 'die Parteien und Antwortgruppen in ' : 'die Parteien in ') + (region === 'congreso' ? data.country.label : data.region.label)} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
+    $('legend').setAttribute('aria-label', region === 'barcelona' ? 'Parteien und Antwortgruppen ein- und ausblenden' : 'Parteien ein- und ausblenden');
     const latestParties = data.parties.filter(p => data.latestPoll?.values[p.id] > 0);
     const otherParties = data.parties.filter(p => !(data.latestPoll?.values[p.id] > 0));
     $('legend').style.setProperty('--party-columns', Math.max(1, Math.min(7, latestParties.length)));

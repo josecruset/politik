@@ -2,7 +2,7 @@ import { inflateRawSync } from 'node:zlib';
 import { parseCSV, rollingAverage, listPollsters } from './data.js';
 import { isoDate } from './spain.js';
 
-export const BARCELONA_POLICY = 1;
+export const BARCELONA_POLICY = 2;
 export const BARCELONA_PORTAL = 'https://portaldades.ajuntament.barcelona.cat';
 export const BARCELONA_CONFIG = `${BARCELONA_PORTAL}/portal/config/apimanagerconsumercredentials.json`;
 export const BARCELONA_SEARCH = `${BARCELONA_PORTAL}/services/backend/rest/search?${new URLSearchParams({ query: 'Baròmetre de Barcelona', source: 'SURVEY', language: 'ca', start: '0', rows: '100' })}`;
@@ -23,7 +23,13 @@ const definitions = [
 ];
 const normalize = value => value.trim().replace(/\s+/g, ' ').toUpperCase();
 const partyIds = new Map(definitions.flatMap(([id, , , names]) => names.map(name => [name, `bcn-${id}`])));
-const nonPartyAnswers = new Set(['NO HO SAP', 'NO CONTESTA', 'ABSTENCIÓ', 'BLANC / NUL', 'EN BLANC / NUL', 'ALTRES']);
+const responseGroups = [
+  ['undecided', 'Unentschlossen / keine Antwort', '#78889E', ['NO HO SAP', 'NO CONTESTA']],
+  ['abstention', 'Nichtwähler', '#A17C56', ['ABSTENCIÓ']],
+  ['blank', 'Leer / ungültig', '#B28AA6', ['BLANC / NUL', 'EN BLANC / NUL']],
+  ['other', 'Andere Parteien', '#899C94', ['ALTRES']],
+];
+const answerIds = new Map([...partyIds, ...responseGroups.flatMap(([id, , , answers]) => answers.map(answer => [answer, `bcn-${id}`]))]);
 
 // The official CSV downloads are ZIPs. Read the single CSV in memory, without
 // extracting paths to disk. Central-directory sizes also handle data descriptors.
@@ -62,14 +68,17 @@ export function parseBarcelonaPoll(csv, metadata) {
     if (row.length !== header.length) throw new Error('Barcelona: verschobene CSV-Spalten');
     const rawWeight = row[weight].trim(), value = Number(rawWeight.replace(',', '.')), answer = normalize(row[intention]);
     if (!/^\d+(?:[.,]\d+)?$/.test(rawWeight) || !Number.isFinite(value) || value <= 0) throw new Error('Barcelona: ungültiges Befragungsgewicht');
-    const id = partyIds.get(answer);
-    if (!id && !nonPartyAnswers.has(answer)) throw new Error(`Barcelona: unbekannte Antwort zur Wahlabsicht: ${answer}`);
+    const id = answerIds.get(answer);
+    if (!id) throw new Error(`Barcelona: unbekannte Antwort zur Wahlabsicht: ${answer}`);
     // Include undecided, abstention and non-answers in the official denominator.
     totalWeight += value;
-    if (id) totals.set(id, (totals.get(id) || 0) + value);
+    totals.set(id, (totals.get(id) || 0) + value);
   }
   if (!totals.size || !Number.isFinite(totalWeight)) throw new Error('Barcelona: keine kommunalen Parteianteile');
   const values = Object.fromEntries(definitions.map(([id]) => [`bcn-${id}`, totals.has(`bcn-${id}`) ? Math.round(totals.get(`bcn-${id}`) / totalWeight * 1000) / 10 : null]));
+  // Combine raw weights before rounding. An absent response category is a
+  // measured zero, unlike a party without its own reported category.
+  for (const [id] of responseGroups) values[`bcn-${id}`] = Math.round((totals.get(`bcn-${id}`) || 0) / totalWeight * 1000) / 10;
   return { id: info.id, date, pollster, values, fieldwork: `${survey.fieldStartDate.slice(0, 10)} – ${iso(date)}`, publishedAt: info.publishDate, sourceUrl: `${BARCELONA_PORTAL}/ca/enquestes/${info.id}` };
 }
 
@@ -77,11 +86,14 @@ export function buildBarcelonaData(polls, today = Date.now()) {
   const unique = [...new Map(polls.filter(p => p && p.date <= today).map(p => [p.id, p])).values()].sort((a, b) => a.date - b.date);
   if (!unique.length) throw new Error('Barcelona: keine verwertbaren Umfragen');
   const latest = unique.at(-1);
-  const parties = definitions.filter(([id]) => unique.some(p => p.values[`bcn-${id}`] !== null)).map(([id, label, color]) => ({ id: `bcn-${id}`, label, color }));
+  const parties = [
+    ...definitions.filter(([id]) => unique.some(p => p.values[`bcn-${id}`] !== null)).map(([id, label, color]) => ({ id: `bcn-${id}`, label, color })),
+    ...responseGroups.map(([id, label, color]) => ({ id: `bcn-${id}`, label, color, kind: 'response-group' })),
+  ];
   return {
     barcelonaPolicy: BARCELONA_POLICY, barcelonaPolls: unique, fetchedAt: new Date().toISOString(), sourceUrl: latest.sourceUrl,
     dateBasis: 'fieldwork-end', measurement: 'direct-intention', axisLabel: 'Direkte Wahlabsicht in %',
-    measurementNote: 'Direkte kommunale Wahlabsicht unter allen Befragten mit Wahlrecht. Unentschlossene und Nichtwähler zählen zur Bezugsgröße. Keine modellierte Wahlschätzung.',
+    measurementNote: 'Direkte kommunale Wahlabsicht unter allen Befragten mit Wahlrecht. Die Antwortgruppen ergänzen die Parteien auf rund 100 %; kleine Abweichungen entstehen durch Rundung. „Nichtwähler“ bezeichnet Befragte, die nicht wählen möchten. Keine modellierte Wahlschätzung.',
     dataNote: 'Barcelona: Originalanteile des städtischen Barometers mit offizieller Befragungsgewichtung, auf eine Nachkommastelle gerundet. Datierung am Ende des Befragungszeitraums. Das Barometer erscheint überwiegend halbjährlich; der 7-Tage-Durchschnitt entspricht deshalb meist einer Einzelumfrage. Kleine Punkte markieren Umfragetage. Reine Rückblicke auf bereits abgegebene Stimmen (unter anderem Ende 2022 und die Nachwahlwellen 2019/2023) werden ausgelassen. Wahlergebnisse werden wegen ihrer abweichenden Bezugsgröße nicht mit diesen Anteilen vermischt. Junts umfasst auch Trias per Barcelona / Junts, CUP auch CUP – Capgirem Barcelona; Barcelona pel Canvi bleibt separat.',
     parties, points: rollingAverage(unique, parties.map(p => p.id)), pollCount: unique.length, latestPollDate: iso(latest.date),
     latestPoll: { date: iso(latest.date), pollster: latest.pollster, values: latest.values, fieldwork: latest.fieldwork },

@@ -25,6 +25,10 @@ test('Barcelona applies respondent weights to the whole sample and uses intentio
   assert.equal(poll.values['bcn-psc'], 10);
   assert.equal(poll.values['bcn-erc'], 20);
   assert.equal(poll.values['bcn-junts'], null);
+  assert.equal(poll.values['bcn-undecided'], 70);
+  assert.equal(poll.values['bcn-abstention'], 0);
+  assert.equal(poll.values['bcn-blank'], 0);
+  assert.equal(poll.values['bcn-other'], 0);
   assert.equal(poll.date, Date.UTC(2026, 9, 8));
   const aliases = 'DATA_ENQ,INT_VOT,PES\n2026-10-08,TRIAS PER BARCELONA / JUNTS,1\n2026-10-08,JUNTS,1\n2026-10-08,CUP - CAPGIREM BARCELONA,1\n2026-10-08,ABSTENCIÓ,7\n';
   const mapped = parseBarcelonaPoll(aliases, metadata());
@@ -32,6 +36,20 @@ test('Barcelona applies respondent weights to the whole sample and uses intentio
   assert.equal(mapped.values['bcn-cup'], 10);
   const rounded = parseBarcelonaPoll(csv.replace(',7,PSC', ',3,PSC'), metadata());
   assert.equal(rounded.values['bcn-psc'], 16.7);
+});
+
+test('Barcelona groups every remaining answer using original weights before rounding', () => {
+  const full = 'DATA_ENQ,INT_VOT,PES\n2026-10-08,PSC,42.8\n2026-10-08,NO HO SAP,37.4\n2026-10-08,NO CONTESTA,7.7\n2026-10-08,ABSTENCIÓ,9.8\n2026-10-08,EN BLANC / NUL,1.6\n2026-10-08,ALTRES,0.6\n';
+  const poll = parseBarcelonaPoll(full, metadata());
+  assert.equal(poll.values['bcn-undecided'], 45.1);
+  assert.equal(poll.values['bcn-abstention'], 9.8);
+  assert.equal(poll.values['bcn-blank'], 1.6);
+  assert.equal(poll.values['bcn-other'], 0.6);
+  const sum = Object.values(poll.values).reduce((s, v) => s + (v ?? 0), 0);
+  assert.ok(Math.abs(sum - 100) <= .2);
+  const rounding = parseBarcelonaPoll('DATA_ENQ,INT_VOT,PES\n2026-10-08,PSC,97.92\n2026-10-08,NO HO SAP,1.04\n2026-10-08,NO CONTESTA,1.04\n', metadata());
+  assert.equal(rounding.values['bcn-undecided'], 2.1);
+  assert.equal(parseBarcelonaPoll(full.replace('EN BLANC / NUL', 'BLANC / NUL'), metadata()).values['bcn-blank'], 1.6);
 });
 
 test('Barcelona excludes known recall-only data and fails on unknown schema, answers or weights', () => {
@@ -54,8 +72,12 @@ test('Barcelona keeps raw latest values, uses equal survey weights, and preserve
   assert.deepEqual(data.approval, []);
   assert.deepEqual(data.elections, []);
   assert.equal(data.measurement, 'direct-intention');
+  assert.equal(data.latestPoll.values['bcn-undecided'], 35);
+  assert.equal(data.points.at(-1).values['bcn-undecided'].value, 35);
+  assert.equal(data.parties.filter(p => p.kind === 'response-group').length, 4);
   const nearby = { ...older, date: Date.UTC(2026, 9, 7) };
   assert.equal(buildBarcelonaData([nearby, latest]).points.at(-1).values['bcn-psc'].value, 32.5);
+  assert.equal(buildBarcelonaData([nearby, latest]).points.at(-1).values['bcn-undecided'].value, 52.5);
   const far = { ...older, date: Date.UTC(2026, 8, 1) };
   assert.equal(buildBarcelonaData([far, latest]).points.find(p => p.date === '2026-09-08').values['bcn-psc'], null);
   assert.equal(buildBarcelonaData([older, latest], Date.UTC(2026, 9, 7)).latestPollDate, '2026-10-01');
@@ -85,6 +107,9 @@ test('Barcelona discovers new waves, refreshes latest and corrected data, and re
   downloads = 0;
   await fetchBarcelonaData(first, fetchJson, fetchBytes);
   assert.equal(downloads, 2);
+  downloads = 0;
+  await fetchBarcelonaData({ ...first, barcelonaPolicy: 1 }, fetchJson, fetchBytes);
+  assert.equal(downloads, 2); // Older caches lack the response groups and must be rebuilt.
   await assert.rejects(fetchBarcelonaData(first, async () => { throw new Error('offline'); }, fetchBytes), /offline/);
   await assert.rejects(fetchBarcelonaData(first, async url => url === BARCELONA_CONFIG ? { clientId: 'public' } : { code: 200, count: 100, data: [] }, fetchBytes), /unvollständiges/);
 });
