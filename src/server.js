@@ -5,6 +5,7 @@ import { buildData, buildStateData, rollingApprovalAverage, SHEETS, SOURCE_ID } 
 
 import { COUNTRIES, findArea, cacheName } from './countries.js';
 import { fetchSpainData, SPAIN_POLICY } from './spain.js';
+import { fetchCataloniaData, CATALONIA_POLICY } from './catalonia.js';
 
 const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
 const cacheDir = process.env.DATA_DIR || fileURLToPath(new URL('../data/', import.meta.url));
@@ -14,7 +15,7 @@ const caches = new Map();
 for (const region of areas) {
   let data = null;
   try { data = JSON.parse(await readFile(`${cacheDir}/${cacheName(region.country, region.id)}.json`, 'utf8')); } catch {}
-  if (region.country === 'es' ? data?.spainPolicy !== SPAIN_POLICY : region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
+  if (region.id === 'katalonien' ? data?.cataloniaPolicy !== CATALONIA_POLICY : region.country === 'es' ? data?.spainPolicy !== SPAIN_POLICY : region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
   // Upgrade persisted raw observations even when the source is temporarily offline.
   for (const series of data?.approval || []) {
     if (series.aggregation !== 'rolling-7-days') {
@@ -37,13 +38,19 @@ async function fetchJson(url) {
   if (!response.ok) throw new Error(`Spanien-Datenquelle: HTTP ${response.status}`);
   return response.json();
 }
+async function fetchHtml(url) {
+  const response = await fetch(url, { headers: { 'User-Agent': 'Politik/1.0 (public polling visualisation; github.com/josecruset/politik)' }, signal: AbortSignal.timeout(45000) });
+  if (!response.ok) throw new Error(`Katalonien-Datenquelle: HTTP ${response.status}`);
+  return response.text();
+}
 async function refresh(region = areas[0]) {
   const entry = caches.get(region.id);
   if (entry.pending) return entry.pending;
   entry.lastAttempt = Date.now();
   entry.pending = (async () => {
     let data;
-    if (region.country === 'es') data = await fetchSpainData(entry.data, fetchJson);
+    if (region.id === 'katalonien') data = await fetchCataloniaData(fetchHtml);
+    else if (region.country === 'es') data = await fetchSpainData(entry.data, fetchJson);
     else if (region.id === 'bundestag') {
       const entries = await Promise.all(Object.entries(SHEETS).map(async ([name, gid]) => [name, await fetchSheet(gid)]));
       data = buildData(Object.fromEntries(entries));

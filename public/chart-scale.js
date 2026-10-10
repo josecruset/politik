@@ -29,6 +29,6 @@ export function visibleMaximum(curves, markers, first, last, markerPadding = 0) 
 
 export function axisMaximum(curves, markers, first, last, markerPadding = 0) {
   // Two percentage points of headroom, rounded up in steps of five.
-  // Keep the 5% reference readable, including when all series are switched off.
+  // Keep an empty view usable when all series are switched off.
   return Math.min(100, Math.max(10, Math.ceil((visibleMaximum(curves, markers, first, last, markerPadding) + 2) / 5) * 5));
 }

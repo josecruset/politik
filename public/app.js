@@ -9,7 +9,7 @@ let data, width, height, scale, start, end, ymax;
 const active = new Set();
 const selections = new Map();
 let selectedCountry = 'de', selectedRegion = 'bundestag', loadController;
-const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswahl' }]], ['es', [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }]]]);
+const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswahl' }]], ['es', [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }, { id: 'katalonien', label: 'Katalonien' }]]]);
 const lastRegions = new Map(), views = new Map();
 const selectionKey = () => `${selectedCountry}:${selectedRegion}`;
 const scroll = $('chart-scroll'), chart = $('chart');
@@ -37,7 +37,10 @@ function toggle(series, approval = false) {
     const name = document.createElement('span'); name.className = 'party-name'; name.append(swatch(series.color), label);
     const value = document.createElement('span'); value.className = 'party-value';
     const last = data.latestPoll?.values[series.id];
-    value.append(document.createTextNode(last === null || last === undefined ? '–' : last.toLocaleString('de-DE', { maximumFractionDigits: 2 })));
+    const range = data.latestPoll?.ranges?.[series.id];
+    if (range) value.classList.add('interval-value');
+    const rawValue = range ? `${range.low.toLocaleString('de-DE')}–${range.high.toLocaleString('de-DE')}` : last === null || last === undefined ? '–' : last.toLocaleString('de-DE', { maximumFractionDigits: 2 });
+    value.append(document.createTextNode(rawValue));
     const unit = document.createElement('small'); unit.textContent = '%'; value.append(unit);
     button.append(name, value);
   }
@@ -76,6 +79,7 @@ function render(firstDate = null, latest = false, animate = false) {
   }
   curveLayer = element('g', { id: 'curves' }); chart.append(curveLayer);
   const baseY = value => height - 41 - value / 100 * (height - 55);
+  const observationDates = new Set(data.observationDates || []);
   for (const party of data.parties.filter(p => active.has(p.id))) {
     let path = '', connected = false;
     const points = []; curves.push(points);
@@ -85,10 +89,15 @@ function render(firstDate = null, latest = false, animate = false) {
       if (!v) continue;
       points.push({ time: new Date(point.date).getTime(), value: v.value });
       path += `${connected ? 'L' : 'M'}${x(point.date).toFixed(2)},${baseY(v.value).toFixed(2)}`; connected = true;
+      if (observationDates.has(point.date)) {
+        const dot = element('circle', { cx: x(point.date), cy: y(v.value), r: 2.8, fill: party.color, 'data-observation': point.date, 'data-party': party.id, 'pointer-events': 'none' });
+        chart.append(dot); dots.push({ element: dot, value: v.value });
+        markers.push({ time: new Date(point.date).getTime(), value: v.value });
+      }
     }
     // A subtle outline makes the source's bright yellow FDP line readable.
     if (party.id === 'fdp') curveLayer.append(element('path', { d: path, fill: 'none', stroke: '#b0a545', 'stroke-width': 3.3, opacity: .6, 'vector-effect': 'non-scaling-stroke' }));
-    if (['union', 'bsw', 'es-pce'].includes(party.id)) curveLayer.append(element('path', { d: path, class: 'dark-line-outline', fill: 'none', stroke: '#dce6e1', 'stroke-width': 3.6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .4, 'vector-effect': 'non-scaling-stroke' }));
+    if (['union', 'bsw', 'es-pce', 'cat-alianca', 'cat-comuns', 'cat-valents', 'cat-pdecat'].includes(party.id)) curveLayer.append(element('path', { d: path, class: 'dark-line-outline', fill: 'none', stroke: '#dce6e1', 'stroke-width': 3.6, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', opacity: .4, 'vector-effect': 'non-scaling-stroke' }));
     const line = element('path', { d: path, fill: 'none', stroke: party.color, 'stroke-width': 2.4, 'stroke-linejoin': 'round', 'stroke-linecap': 'round', 'data-line': party.id, 'vector-effect': 'non-scaling-stroke' });
     line.append(element('title', {}, party.label)); curveLayer.append(line);
   }
@@ -261,8 +270,9 @@ async function load(initial = true) {
     }));
     $('source-credits').hidden = !data.sources?.length;
     $('data-note').textContent = data.dataNote || ''; $('data-note').hidden = !data.dataNote;
-    $('average-note').textContent = `Die Grafik zeigt für ${country === 'de' && region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + (country === 'es' ? data.country.label : data.region.label)} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
+    $('average-note').textContent = `Die Grafik zeigt für ${country === 'de' && region === 'bundestag' ? 'Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler' : 'die Parteien in ' + (region === 'congreso' ? data.country.label : data.region.label)} den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.`;
     $('legend').style.setProperty('--party-columns', Math.min(7, data.parties.length));
+    $('legend').classList.toggle('regional-legend', country === 'es' && region !== 'congreso');
     $('legend').replaceChildren(...data.parties.map(p => toggle(p)));
     $('approval-legend').replaceChildren(...data.approval.map(p => toggle(p, true)));
     $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)}${data.latestPoll ? ` · ${data.latestPoll.pollster}` : ''} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;

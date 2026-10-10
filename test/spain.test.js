@@ -12,6 +12,8 @@ const today = Date.UTC(2026, 9, 10);
 test('country and region validation preserves German API defaults and distinct caches', () => {
   assert.equal(findArea().region.id, 'bundestag');
   assert.equal(findArea('es').region.id, 'congreso');
+  assert.equal(findArea('es', 'katalonien').region.label, 'Katalonien');
+  assert.equal(findArea('de', 'katalonien'), null);
   assert.equal(findArea('de', 'bayern').region.label, 'Bayern');
   assert.equal(findArea('es', 'bayern'), null);
   assert.equal(findArea('de', 'congreso'), null);
@@ -19,6 +21,7 @@ test('country and region validation preserves German API defaults and distinct c
   assert.equal(cacheName('de', 'bundestag'), 'polls');
   assert.equal(cacheName('de', 'bayern'), 'polls-bayern');
   assert.equal(cacheName('es', 'congreso'), 'polls-es-congreso');
+  assert.equal(cacheName('es', 'katalonien'), 'polls-es-katalonien');
 });
 
 test('Spanish fieldwork dates, invalid values, future polls and duplicate identities are handled', () => {
