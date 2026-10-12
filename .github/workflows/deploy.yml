@@ -18,6 +18,8 @@ jobs:
           node-version: '24'
       - name: Test calculations and parsing
         run: npm test
+      - name: Test reviewed topic import parsers
+        run: python3 -m unittest discover -s test -p '*_test.py'
       - name: Prepare application archive
         run: tar -czf /tmp/politik-release.tar.gz Dockerfile .dockerignore package.json src public
       - name: Configure deployment SSH key

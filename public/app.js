@@ -1,4 +1,5 @@
 import { axisMaximum } from './chart-scale.js';
+import { loadContext, clearContext, drawEventTrack } from './context-ui.js';
 
 const $ = id => document.getElementById(id);
 const DAY = 86400000;
@@ -125,6 +126,7 @@ function render(firstDate = null, latest = false, animate = false) {
   chart.append(element('line', { id: 'crosshair', y1: 14, y2: height - 41, stroke: 'var(--crosshair)', 'stroke-dasharray': '3 4', visibility: 'hidden', 'pointer-events': 'none' }));
   scroll.scrollLeft = latest ? scroll.scrollWidth : firstDate === null ? 0 : (firstDate - start) / DAY * scale;
   updateScale(animate); updatePeriod(); hideTooltip();
+  drawEventTrack();
 }
 
 function paintScale(maximum) {
@@ -227,6 +229,7 @@ function inspect(event) {
 scroll.addEventListener('scroll', () => {
   if (!data) return;
   updatePeriod(); hideTooltip();
+  drawEventTrack();
   clearTimeout(scaleTimer);
   // Wait for scrolling to settle so the scale does not jump on every pixel.
   scaleTimer = setTimeout(() => updateScale(), 160);
@@ -290,6 +293,7 @@ async function load(initial = true) {
     $('updated').textContent = `${data.stale ? 'Aktualisierung fehlgeschlagen · letzter erfolgreicher Abruf' : 'Daten abgerufen'}: ${new Date(data.fetchedAt).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', dateStyle: 'short', timeStyle: 'short' })} · alle 15 Minuten`;
     $('loading').hidden = true;
     render(previousDate, wasLatest);
+    void loadContext(data, () => ({ start, end, scale, width, scrollLeft: scroll.scrollLeft }));
   } catch (error) {
     if (controller.signal.aborted || country !== selectedCountry || region !== selectedRegion) return;
     if (!initial) { $('updated').textContent = 'Aktualisierung fehlgeschlagen · die zuletzt geladenen Daten bleiben sichtbar'; return; }
@@ -311,6 +315,7 @@ function updateCountryText() {
   document.title = `${$('page-title').textContent} · ${germany ? 'Deutschland' : 'Spanien'}`;
 }
 function switchView() {
+  clearContext();
   loadController?.abort(); data = null; active.clear();
   clearTimeout(scaleTimer); cancelAnimationFrame(scaleAnimation); curveLayer = null;
   chart.replaceChildren(); $('y-axis').replaceChildren(); $('legend').replaceChildren(); $('approval-legend').replaceChildren();

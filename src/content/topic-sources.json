@@ -1,0 +1,165 @@
+{
+  "version": 1,
+  "checkedAt": "2026-10-12",
+  "series": [
+    {
+      "id": "fgw",
+      "country": "de",
+      "region": "bundestag",
+      "label": "Deutschland · Forschungsgruppe Wahlen: Politbarometer",
+      "question": "Was ist Ihrer Meinung nach gegenwärtig das wichtigste Problem in Deutschland? Und was ist ein weiteres wichtiges Problem?",
+      "population": "Wahlberechtigte Bevölkerung in Deutschland",
+      "measurement": "Bis zu zwei Nennungen; veröffentlichte Anteile, kein 7-Tage-Durchschnitt. Ausgewählte Kategorien der beiden offiziellen Langzeitdateien; keine vollständige Antwortliste. Fehlende Werte bleiben fehlend.",
+      "sourceUrl": "https://www.forschungsgruppe.de/Umfragen/Politbarometer/Langzeitentwicklung_-_Themen_im_Ueberblick/Politik_II/",
+      "questionUrl": "https://www.forschungsgruppe.de/Umfragen/Politbarometer/Langzeitentwicklung_-_Themen_im_Ueberblick/Politik_II/Fragetext_PB_2025_V2.pdf",
+      "dateBasis": "Quellendatum (Veröffentlichung); Feldzeit soweit belegt"
+    },
+    {
+      "id": "cis",
+      "country": "es",
+      "region": "congreso",
+      "label": "Spanien · CIS-Barometer",
+      "question": "¿Cuál es, a su juicio, el principal problema que existe actualmente en España? ¿Y el segundo? ¿Y el tercero?",
+      "population": "Spanische Bevölkerung ab 18 Jahren, landesweit",
+      "measurement": "Bis zu drei spontane Nennungen. Spalte TOTAL aus den gewichteten veröffentlichten Ergebnissen; Summe kann über 100 % liegen. Keine persönliche Betroffenheit.",
+      "sourceUrl": "https://www.cis.es/es/estudios/barometro-de-septiembre-2026",
+      "questionUrl": "https://www.cis.es/es/estudios/barometro-de-septiembre-2026",
+      "dateBasis": "Ende der Feldzeit"
+    },
+    {
+      "id": "ceo",
+      "country": "es",
+      "region": "katalonien",
+      "label": "Katalonien · CEO Baròmetre d’Opinió Política",
+      "question": "En la seva opinió, quins creu que són els principals problemes que té actualment Catalunya?",
+      "population": "In Katalonien lebende spanische Staatsangehörige ab 18 Jahren",
+      "measurement": "Mehrfachnennungen (Frage 1), Basis alle Befragten. Nicht mit Frage 2 zum wichtigsten Problem unter den Antwortenden vermischt. Veröffentlichte Anteile ohne Durchschnitt.",
+      "sourceUrl": "https://web.gencat.cat/ca/generalitat/dades-indicadors/centre-estudis-opinio/darrers-estudis",
+      "questionUrl": "https://documents.dadesobertes.gencat.cat/ceo/docs/REO1167_questionari.pdf",
+      "dateBasis": "Ende der Feldzeit"
+    },
+    {
+      "id": "bcn",
+      "country": "es",
+      "region": "barcelona",
+      "label": "Barcelona · städtisches Barometer",
+      "question": "Quin considera que és el problema més greu que té la ciutat de Barcelona en aquests moments?",
+      "population": "In Barcelona gemeldete Personen ab 18 Jahren mit kommunalem Wahlrecht",
+      "measurement": "Eine spontane Antwort, PROB_BCN. Offizielle Befragungsgewichte PES; eigene Aggregation auf eine Nachkommastelle. Kategorien exakt wie codiert, keine nachträgliche Themenzusammenfassung.",
+      "sourceUrl": "https://portaldades.ajuntament.barcelona.cat/ca/enquestes/26046",
+      "questionUrl": "https://w10.bcn.cat/APPS/riswestudis/documentacio.do?reqCode=mostrarImatge&idDoc=21061",
+      "dateBasis": "Ende der Feldzeit"
+    }
+  ],
+  "sources": [
+    {
+      "file": "fgw1.xlsx",
+      "url": "https://www.forschungsgruppe.de/Umfragen/Politbarometer/Langzeitentwicklung_-_Themen_im_Ueberblick/Politik_II/9_Probleme_1_1.xlsx",
+      "kind": "fgw",
+      "sha256": "9de337f4841c60396f7944bfe7608586c3389cd45cc30e34d547d954637a1138"
+    },
+    {
+      "file": "fgw2.xlsx",
+      "url": "https://www.forschungsgruppe.de/Umfragen/Politbarometer/Langzeitentwicklung_-_Themen_im_Ueberblick/Politik_II/10_Probleme_2_1.xlsx",
+      "kind": "fgw",
+      "sha256": "58a5f7421de33f5ee8b3272a3ce0272255ecb1ad2379a50665189c00de4628ef"
+    },
+    {
+      "file": "cis3571.pdf",
+      "url": "https://www.cis.es/documents/20117/14189298/es3571mar.pdf/73a0b29c-085c-f339-fa8a-712eb8f55bc1?version=1.0&t=1788778182659",
+      "kind": "cis",
+      "sha256": "28b65af43f663331d41b792aa27563e71f26456fcdaef88b9ed604aa2010aaf3",
+      "series": "cis",
+      "id": "cis-3571",
+      "date": "2026-07-06",
+      "fieldwork": {
+        "start": "2026-07-01",
+        "end": "2026-07-06"
+      }
+    },
+    {
+      "file": "cis3577.pdf",
+      "url": "https://www.cis.es/documents/20117/14250083/es3577mar.pdf/ec0cb565-d864-472d-0461-add459e7b19e?version=1.0&t=1790164379049",
+      "kind": "cis",
+      "sha256": "a15df5203ac6859d5bcea35298c6496c5d4cda09736d28b5d4157568feff490a",
+      "series": "cis",
+      "id": "cis-3577",
+      "date": "2026-09-04",
+      "fieldwork": {
+        "start": "2026-09-01",
+        "end": "2026-09-04"
+      }
+    },
+    {
+      "file": "ceo1145.pdf",
+      "url": "https://upceo.ceo.gencat.cat/wsceop/9928/Taules%20estad%C3%ADstiques_1145.pdf",
+      "kind": "ceo",
+      "sha256": "b8a568b4642a82c60d811aa7a1359764677eff4995d74997e87792f161aab80d",
+      "series": "ceo",
+      "id": "ceo-1145",
+      "date": "2025-11-11",
+      "fieldwork": {
+        "start": "2025-10-13",
+        "end": "2025-11-11"
+      }
+    },
+    {
+      "file": "ceo1167.pdf",
+      "url": "https://documents.dadesobertes.gencat.cat/ceo/docs/REO1167_taules_estadistiques.pdf",
+      "kind": "ceo",
+      "sha256": "8c258fb118ec1e4803ab03098bff9eaaaa981f7c3dbc38d87ccdb0caabce9f24",
+      "series": "ceo",
+      "id": "ceo-1167",
+      "date": "2026-06-25",
+      "fieldwork": {
+        "start": "2026-05-21",
+        "end": "2026-06-25"
+      }
+    },
+    {
+      "file": "bcn25044.zip",
+      "url": "https://w10.bcn.cat/APPS/riswestudis/documentacio.do?reqCode=mostrarImatge&idDoc=18927",
+      "kind": "bcn",
+      "sha256": "59763b289748f1f0fd56f6d04b62687e7e637c1783d5fa310d1fe82a0298b134",
+      "series": "bcn",
+      "id": "bcn-25044",
+      "date": "2025-06-03",
+      "fieldwork": {
+        "start": "2025-05-26",
+        "end": "2025-06-03"
+      }
+    },
+    {
+      "file": "bcn25049.zip",
+      "url": "https://w10.bcn.cat/APPS/riswestudis/documentacio.do?reqCode=mostrarImatge&idDoc=19731",
+      "kind": "bcn",
+      "sha256": "71ce3731658da11ea134d7e5340bca9d5fc39d4b5ed5afed6b6016773793fd3e",
+      "series": "bcn",
+      "id": "bcn-25049",
+      "date": "2025-11-25",
+      "fieldwork": {
+        "start": "2025-11-17",
+        "end": "2025-11-25"
+      }
+    },
+    {
+      "file": "bcn26046.zip",
+      "url": "https://w10.bcn.cat/APPS/riswestudis/documentacio.do?reqCode=mostrarImatge&idDoc=21228",
+      "kind": "bcn",
+      "sha256": "30ef1a02999888f5391479b6da41c2c4529e1da3a1c3265cbecd91d3090cb9bd",
+      "series": "bcn",
+      "id": "bcn-26046",
+      "date": "2026-06-05",
+      "fieldwork": {
+        "start": "2026-05-27",
+        "end": "2026-06-05"
+      }
+    }
+  ],
+  "fgwFieldwork": {
+    "2026-10-08": {
+      "start": "2026-10-05",
+      "end": "2026-10-07"
+    }
+  }
+}

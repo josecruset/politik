@@ -1,0 +1,488 @@
+[
+  {
+    "id": "de-climate-cornerstones-2019",
+    "date": "2019-09-20",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Eckpunkte des Klimaschutzprogramms 2030",
+    "description": "Die Bundesregierung stellt die Eckpunkte ihres Klimaschutzprogramms 2030 vor, einschließlich einer CO₂-Bepreisung für Verkehr und Wärme. Der Marker bezeichnet die Vorstellung der Eckpunkte, nicht das spätere Inkrafttreten einzelner Gesetze.",
+    "source": {
+      "title": "Bundesregierung: Climate Action Programme 2030",
+      "url": "https://www.bundesregierung.de/breg-en/issues/climate-action/klimaschutzprogramm-2030-1674080"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "bcn-low-emission-zone-2020",
+    "date": "2020-01-01",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Umweltzone Rondes de Barcelona startet",
+    "description": "Die Umweltzone tritt in Kraft. Für bestimmte Fahrzeuge ohne Umweltplakette werden werktägliche Zufahrtsbeschränkungen eingeführt; Ausnahmen und spätere Erweiterungen gehören zur stufenweisen Umsetzung.",
+    "source": {
+      "title": "Àrea Metropolitana de Barcelona: La ZBE",
+      "url": "https://www.amb.cat/web/mobilitat/mobilitat-sostenible/zbe/zones-baixes-emissions/la-zbe"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-sanchez-investiture-2020",
+    "date": "2020-01-07",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Sánchez erhält Vertrauen für neue Regierung",
+    "description": "Der Congreso bestätigt Pedro Sánchez als Regierungschef. Die anschließende Regierungsbildung führt zur Koalition aus PSOE und Unidas Podemos. Dies ist eine Investitur, kein Ergebnis einer Parlamentswahl.",
+    "source": {
+      "title": "La Moncloa: Pedro Sánchez, investido presidente del Gobierno",
+      "url": "https://www.lamoncloa.gob.es/presidente/actividades/paginas/2020/070120-investidura.aspx"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "th-kemmerich-government-2020",
+    "date": "2020-02-05",
+    "country": "de",
+    "regions": [
+      "thueringen"
+    ],
+    "category": "government",
+    "title": "Kemmerich übernimmt Regierungsamt in Thüringen",
+    "description": "Der Landtag bestimmt Thomas Kemmerich im dritten Wahlgang zum Ministerpräsidenten. Das amtliche Protokoll dokumentiert 45 Stimmen für Kemmerich, 44 für Bodo Ramelow und eine Enthaltung. Der Marker bezeichnet den Wechsel im Regierungsamt.",
+    "source": {
+      "title": "Thüringer Landtag: Plenarprotokoll 7/7 vom 5. Februar 2020",
+      "url": "https://parldok.thueringer-landtag.de/ParlDok/dokument/74220/7_plenarsitzung.pdf"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "th-ramelow-government-2020",
+    "date": "2020-03-04",
+    "country": "de",
+    "regions": [
+      "thueringen"
+    ],
+    "category": "government",
+    "title": "Ramelow kehrt ins Regierungsamt zurück",
+    "description": "Bodo Ramelow übernimmt erneut das Amt des Thüringer Ministerpräsidenten. Damit endet die Amtszeit Thomas Kemmerichs, der nach seinem Rücktritt zunächst geschäftsführend im Amt geblieben war.",
+    "source": {
+      "title": "Thüringer Landtag: Aufgaben und Amtszeiten der Ministerpräsidenten",
+      "url": "https://www.thueringer-landtag.de/landtag/aufgaben-des-landtags/wahlen/"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-covid-alarm-2020",
+    "date": "2020-03-14",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Spanien erklärt Corona-Alarmzustand",
+    "description": "Der Ministerrat erklärt angesichts von COVID-19 landesweit den Alarmzustand. Das Dekret beschränkt die Mobilität auf definierte Zwecke und setzt den Präsenzunterricht aus.",
+    "source": {
+      "title": "La Moncloa: El Gobierno decreta el estado de alarma",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/resumenes/paginas/2020/14032020_alarma.aspx"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-contact-restrictions-2020",
+    "date": "2020-03-22",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bund und Länder erweitern Corona-Kontaktbeschränkungen",
+    "description": "Bund und Länder vereinbaren angesichts der Corona-Pandemie eine weitere Begrenzung sozialer Kontakte und einen Mindestabstand im öffentlichen Raum. Der Marker bezeichnet die gemeinsame politische Vereinbarung; die rechtliche Umsetzung erfolgt durch die Länder.",
+    "source": {
+      "title": "Bundesregierung: gemeinsame Leitlinien, Pressemitteilung 104/20 vom 22. März 2020",
+      "url": "https://www.bundesregierung.de/resource/blob/2196306/1733914/46d4ecea00396d98aa905b58fd031b96/2020-03-23-beschluss-laender-statement-kanzlerin-eng-data.pdf?download=1"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "cat-aragones-investiture-2021",
+    "date": "2021-05-21",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "government",
+    "title": "Aragonès erhält Regierungsauftrag in Katalonien",
+    "description": "Das Parlament investiert Pere Aragonès mit Unterstützung von ERC, Junts und CUP als Präsidenten der Generalitat. Es handelt sich um die parlamentarische Regierungsbildung, nicht um ein Wahlergebnis.",
+    "source": {
+      "title": "Parlament de Catalunya: El Parlament investeix Pere Aragonès",
+      "url": "https://www.parlament.cat/web/actualitat/noticies/index.html?p_id=270420372"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-proces-pardons-2021",
+    "date": "2021-06-22",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Teilbegnadigungen im Procés-Verfahren",
+    "description": "Der spanische Ministerrat beschließt Teilbegnadigungen für neun noch inhaftierte Verurteilte des Procés-Verfahrens. Die verbleibenden Haftstrafen werden erlassen, die Amtsverbote bleiben bestehen; die Begnadigungen sind an Bedingungen geknüpft.",
+    "source": {
+      "title": "La Moncloa: El espíritu constitucional – Erläuterung der Entscheidung vom Vortag",
+      "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/paginas/2021/prar20210623.aspx"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "nrw-wuest-government-2021",
+    "date": "2021-10-27",
+    "country": "de",
+    "regions": [
+      "nordrhein-westfalen"
+    ],
+    "category": "government",
+    "title": "Wüst wird Regierungschef in NRW",
+    "description": "Hendrik Wüst übernimmt nach der parlamentarischen Bestätigung das Amt des Ministerpräsidenten von Nordrhein-Westfalen. Er folgt Armin Laschet nach.",
+    "source": {
+      "title": "Landtag Nordrhein-Westfalen: Wahl von Ministerpräsident Hendrik Wüst",
+      "url": "https://www.landtag.nrw.de/home/mediathek/videoportal/der-landtag-in-der-17-wahlperiod/landtag-wahlt-hendrik-wust-zum-m.html"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-scholz-government-2021",
+    "date": "2021-12-08",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Scholz übernimmt Kanzleramt",
+    "description": "Olaf Scholz wird vom Bundestag zum Bundeskanzler bestimmt und anschließend ernannt. Er folgt Angela Merkel nach; SPD, Grüne und FDP bilden die neue Bundesregierung.",
+    "source": {
+      "title": "Deutscher Bundestag: Olaf Scholz mit 395 Stimmen zum Bundeskanzler gewählt",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2021/kw49-de-kanzlerwahl-870142"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "global-full-scale-invasion-ukraine-2022",
+    "date": "2022-02-24",
+    "country": "all",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Russlands großangelegte Invasion der Ukraine",
+    "description": "Russland beginnt die großangelegte Invasion der Ukraine. Der Marker bezeichnet diese Eskalation des seit 2014 bestehenden Krieges, nicht den Beginn sämtlicher Kampfhandlungen zwischen Russland und der Ukraine.",
+    "source": {
+      "title": "Bundesregierung: Ansprache zum russischen Überfall auf die Ukraine am 24. Februar 2022",
+      "url": "https://www.bundesregierung.de/breg-de/service/newsletter-und-abos/bulletin/ansprache-von-bundeskanzler-olaf-scholz-2007936"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-scholz-zeitenwende-2022",
+    "date": "2022-02-27",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Scholz spricht von einer Zeitenwende",
+    "description": "In der Sondersitzung des Bundestags zum russischen Angriff auf die Ukraine erläutert Bundeskanzler Olaf Scholz den Kurs der Bundesregierung. Er kündigt unter anderem ein Sondervermögen für die Bundeswehr an. Das Zitat beschreibt seine politische Einordnung; eine Wirkung auf Umfragen wird nicht behauptet.",
+    "quote": "Der 24. Februar 2022 markiert eine Zeitenwende in der Geschichte unseres Kontinents.",
+    "speaker": "Olaf Scholz, Bundeskanzler",
+    "occasion": "Regierungserklärung in der Sondersitzung des Bundestags zum Krieg gegen die Ukraine am 27. Februar 2022 in Berlin",
+    "source": {
+      "title": "Bundesregierung: Regierungserklärung von Bundeskanzler Olaf Scholz, Bulletin 25-2",
+      "url": "https://www.bundesregierung.de/breg-de/service/newsletter-und-abos/bulletin/regierungserklaerung-von-bundeskanzler-olaf-scholz-2008606"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "berlin-wegner-government-2023",
+    "date": "2023-04-27",
+    "country": "de",
+    "regions": [
+      "berlin"
+    ],
+    "category": "government",
+    "title": "Wegner übernimmt Berliner Regierungsamt",
+    "description": "Kai Wegner wird Regierender Bürgermeister und ein Senat aus CDU und SPD tritt sein Amt an. Wegner folgt Franziska Giffey nach.",
+    "source": {
+      "title": "Land Berlin: Kai Wegner zum Regierenden Bürgermeister gewählt – neuer Senat im Amt",
+      "url": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2023/pressemitteilung.1318344.php"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "bcn-collboni-government-2023",
+    "date": "2023-06-17",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "government",
+    "title": "Collboni wird Bürgermeister Barcelonas",
+    "description": "Der Stadtrat bestimmt Jaume Collboni mit den Stimmen von PSC, Barcelona en Comú und PP zum Bürgermeister. Er folgt Ada Colau nach. Der Marker bezeichnet die Investitur im Stadtrat, nicht das Kommunalwahlergebnis.",
+    "source": {
+      "title": "Ajuntament de Barcelona: Jaume Collboni, nou alcalde de Barcelona",
+      "url": "https://www.barcelona.cat/infobarcelona/ca/tema/ajuntament/jaume-collboni-nou-alcalde-de-barcelona_1298756.html"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-building-energy-law-2023",
+    "date": "2023-09-08",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag verabschiedet GEG-Novelle",
+    "description": "Der Bundestag verabschiedet die Novelle des Gebäudeenergiegesetzes. Die Änderung verknüpft Vorgaben für neue Heizungen mit der kommunalen Wärmeplanung und enthält Übergangsregelungen. Der Marker bezeichnet den Bundestagsbeschluss.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt das Gebäudeenergiegesetz",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2023/kw36-de-gebaudeenergiegesetz-957824"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-supplementary-budget-judgment-2023",
+    "date": "2023-11-15",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Haushaltsurteil des Bundesverfassungsgerichts",
+    "description": "Das Bundesverfassungsgericht erklärt das Zweite Nachtragshaushaltsgesetz 2021 für nichtig. Die Übertragung von Kreditermächtigungen über 60 Milliarden Euro auf den Energie- und Klimafonds ist damit unwirksam.",
+    "source": {
+      "title": "Bundesverfassungsgericht: Urteil vom 15. November 2023, 2 BvF 1/22",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2023/11/fs20231115_2bvf000122.html"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-sanchez-investiture-2023",
+    "date": "2023-11-16",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Sánchez erhält neuen Regierungsauftrag",
+    "description": "Der Congreso bestätigt Pedro Sánchez erneut als Regierungschef. Die Investitur legt die Grundlage für die neue Regierung aus PSOE und Sumar; sie wird als Regierungsbildung und nicht als Wahlergebnis gezeigt.",
+    "source": {
+      "title": "La Moncloa: Pedro Sánchez, investido presidente del Gobierno por mayoría absoluta",
+      "url": "https://www.lamoncloa.gob.es/presidente/actividades/Paginas/2023/161123-sanchez-2sesion-investidura-xv-legislatura.aspx"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "cat-drought-emergency-2024",
+    "date": "2024-02-01",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "crisis",
+    "title": "Dürre-Notstand im Ter-Llobregat-System",
+    "description": "Die Generalitat erklärt die Notstandsstufe für das Wasserversorgungssystem Ter-Llobregat. Davon betroffen sind unter anderem Barcelona und Gemeinden im Raum Girona; die Entscheidung betrifft nicht pauschal ganz Katalonien.",
+    "source": {
+      "title": "Generalitat de Catalunya: El Govern decreta l’emergència per sequera",
+      "url": "https://exteriors.gencat.cat/ca/ambits-dactuacio/afers_exteriors/delegacions_govern/regne_unit_i_irlanda/actualitat/20240201-emergencia-sequera"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-amnesty-entry-2024",
+    "date": "2024-06-11",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Amnestiegesetz tritt in Kraft",
+    "description": "Das spanische Amnestiegesetz für bestimmte Handlungen im Zusammenhang mit dem katalanischen Unabhängigkeitsprozess wird veröffentlicht und tritt in Kraft. Dieser Marker bezeichnet das Inkrafttreten; er behauptet keine sofortige Amnestierung aller Betroffenen.",
+    "source": {
+      "title": "BOE: Ley Orgánica 1/2024, de 10 de junio",
+      "url": "https://www.boe.es/eli/es/lo/2024/06/10/1"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "bcn-tourist-apartments-announcement-2024",
+    "date": "2024-06-21",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Barcelona kündigt Auslaufen touristischer Wohnungen an",
+    "description": "Die Stadtregierung kündigt an, die bestehenden Genehmigungen für touristische Wohnungen im November 2028 auslaufen zu lassen. Der Marker bezeichnet die Ankündigung und nicht ein bereits 2024 wirksames Verbot.",
+    "source": {
+      "title": "Ajuntament de Barcelona: Mesures estructurals contra l’emergència habitacional",
+      "url": "https://ajuntament.barcelona.cat/premsa/2024/06/21/barcelona-impulsa-mesures-estructurals-per-fer-front-a-lemergencia-habitacional-i-augmentar-loferta-dhabitatge/"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "cat-illa-office-2024",
+    "date": "2024-08-10",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "government",
+    "title": "Illa tritt Amt als Generalitat-Präsident an",
+    "description": "Salvador Illa tritt sein Amt als Präsident der Generalitat an und folgt Pere Aragonès nach. Der Marker bezeichnet den Amtsantritt am 10. August, nach der Investitur im Parlament am 8. August.",
+    "source": {
+      "title": "Generalitat de Catalunya: Discurs institucional de presa de possessió de Salvador Illa",
+      "url": "https://govern.cat/govern/docs/2024/08/16/12/50/508e6858-2014-4bb9-a6f6-8abe25a70548.pdf"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-dana-crisis-2024",
+    "date": "2024-10-29",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "DANA-Überflutungen und nationaler Krisenstab",
+    "description": "Schwere Überflutungen treffen vor allem die Region Valencia sowie weitere Teile Spaniens. Die Regierung richtet am 29. Oktober einen Krisenstab ein. Die regionale Katastrophe wird wegen der nationalen Krisenreaktion auch in der spanischen Chronik angezeigt.",
+    "source": {
+      "title": "Departamento de Seguridad Nacional: Constituido comité de crisis para el seguimiento de los efectos de la DANA",
+      "url": "https://www.dsn.gob.es/es/actualidad/sala-de-prensa/constituido-comite-de-crisis-para-el-seguimiento-de-los-efectos-de-la-dana"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-coalition-break-2024",
+    "date": "2024-11-06",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Scholz kündigt Lindners Entlassung an",
+    "description": "Bundeskanzler Olaf Scholz kündigt nach gescheiterten Koalitionsgesprächen die Entlassung von Finanzminister Christian Lindner an. Die Zusammenarbeit der Regierungsparteien SPD, Grüne und FDP endet. Die formelle Entlassung erfolgt am folgenden Tag.",
+    "source": {
+      "title": "Bundesregierung: Erklärung zur Entlassung des Bundesministers der Finanzen vom 6. November 2024",
+      "url": "https://www.bundesregierung.de/resource/blob/975954/2319068/d03e8b2437a7cf73b1025d14a3f5bf31/106-1bk-entlassung-lindner-data.pdf?download=1"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "th-voigt-government-2024",
+    "date": "2024-12-12",
+    "country": "de",
+    "regions": [
+      "thueringen"
+    ],
+    "category": "government",
+    "title": "Voigt übernimmt Thüringer Regierungsamt",
+    "description": "Mario Voigt übernimmt das Amt des Thüringer Ministerpräsidenten und folgt Bodo Ramelow nach. Der Marker bezeichnet den Wechsel an der Regierungsspitze.",
+    "source": {
+      "title": "Thüringer Landtag: Aufgaben und Amtszeiten der Ministerpräsidenten",
+      "url": "https://www.thueringer-landtag.de/landtag/aufgaben-des-landtags/wahlen/"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-iberian-blackout-2025",
+    "date": "2025-04-28",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Großflächiger Stromausfall auf der Iberischen Halbinsel",
+    "description": "Ein großflächiger Stromausfall unterbricht die Versorgung in weiten Teilen des spanischen Festlands und Portugals. Die spanische Regierung beruft den Nationalen Sicherheitsrat ein. Es wird keine ungesicherte Ursache des Ausfalls angegeben.",
+    "source": {
+      "title": "La Moncloa: Declaración tras la reunión extraordinaria del Consejo de Seguridad Nacional",
+      "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/paginas/2025/20250428-sanchez-reunion-consej-seguridad-nacional.aspx"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-merz-government-2025",
+    "date": "2025-05-06",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Merz übernimmt Kanzleramt",
+    "description": "Friedrich Merz wird im zweiten Wahlgang vom Bundestag zum Bundeskanzler bestimmt und ernannt. Er folgt Olaf Scholz nach. Der Marker bezeichnet die Regierungsbildung, nicht das Bundestagswahlergebnis.",
+    "source": {
+      "title": "Deutscher Bundestag: Friedrich Merz mit 325 Stimmen zum Bundeskanzler gewählt",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw19-de-kanzlerwahl-1062470"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-new-military-service-2025",
+    "date": "2025-12-05",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt neues Wehrdienstgesetz",
+    "description": "Der Bundestag beschließt das Wehrdienst-Modernisierungsgesetz. Es sieht unter anderem die Erfassung junger Erwachsener vor und setzt zunächst auf freiwilligen Dienst. Eine Bedarfswehrpflicht benötigt eine weitere gesetzliche Entscheidung.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag stimmt für neues Wehrdienstgesetz",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-wehrdienst-1128220"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-regularization-process-2026",
+    "date": "2026-01-27",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Regierung startet außerordentliches Regularisierungsverfahren",
+    "description": "Der spanische Ministerrat beschließt den Beginn der dringlichen Bearbeitung eines außerordentlichen Regularisierungsverfahrens für bereits in Spanien lebende ausländische Personen. Der Marker bezeichnet den Verfahrensbeginn, nicht die Erteilung einzelner Aufenthaltstitel.",
+    "source": {
+      "title": "La Moncloa: Audiencia pública del texto de la regularización extraordinaria – Entscheidung des Ministerrats vom 27. Januar",
+      "url": "https://www.lamoncloa.gob.es/serviciosdeprensa/notasprensa/inclusion/paginas/2026/280126-audiencia-publica-regularizacion.aspx"
+    },
+    "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-fuel-relief-agreement-2026",
+    "date": "2026-09-18",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bund und Länder vereinbaren Spritpreis-Entlastung",
+    "description": "Bund und Länder vereinbaren ein Entlastungspaket mit einer befristeten Senkung der Energiesteuer auf Benzin und Diesel. Die Mitteilung nennt eine Umsetzung bis zum 1. Oktober; der Marker bezeichnet die politische Vereinbarung vom 18. September.",
+    "source": {
+      "title": "Bundesregierung: Bund und Länder beschließen Spritpreis-Entlastungspaket",
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/bund-und-laender-beschliessen-spritpreis-entlastungspaket-2453198"
+    },
+    "verifiedAt": "2026-10-12"
+  }
+]

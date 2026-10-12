@@ -7,6 +7,7 @@ import { COUNTRIES, findArea, cacheName } from './countries.js';
 import { fetchSpainData, SPAIN_POLICY } from './spain.js';
 import { fetchCataloniaData, CATALONIA_POLICY } from './catalonia.js';
 import { fetchBarcelonaData, BARCELONA_POLICY } from './barcelona.js';
+import { contextFor } from './context.js';
 
 const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
 const cacheDir = process.env.DATA_DIR || fileURLToPath(new URL('../data/', import.meta.url));
@@ -72,7 +73,7 @@ async function refresh(region = areas[0]) {
   return entry.pending;
 }
 
-const files = { '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/theme.js': ['theme.js', 'text/javascript'], '/chart-scale.js': ['chart-scale.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
+const files = { '/context-ui.js': ['context-ui.js', 'text/javascript'], '/seat-model.js': ['seat-model.js', 'text/javascript'], '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/theme.js': ['theme.js', 'text/javascript'], '/chart-scale.js': ['chart-scale.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
 const server = createServer(async (request, response) => {
   const url = new URL(request.url, 'http://localhost');
   const path = url.pathname;
@@ -99,6 +100,12 @@ const server = createServer(async (request, response) => {
       }
       if (!entry.data) { response.writeHead(503); return response.end(JSON.stringify({ error: `Die Umfragedaten für ${region.label} konnten noch nicht geladen werden. Bitte erneut versuchen.` })); }
       return response.end(JSON.stringify({ ...entry.data, country: { id: country.id, label: country.label }, countries: COUNTRIES.map(({ id, label }) => ({ id, label })), region: { id: region.id, label: region.label }, regions: country.regions.map(({ id, label }) => ({ id, label })), stale: Boolean(entry.lastError) || Date.now() - new Date(entry.data.fetchedAt).getTime() > ttl }));
+    }
+    if (path === '/api/context') {
+      const area = findArea(url.searchParams.get('country') || 'de', url.searchParams.get('region'));
+      response.setHeader('Content-Type', 'application/json; charset=utf-8'); response.setHeader('Cache-Control', 'no-cache');
+      if (!area) { response.writeHead(400); return response.end(JSON.stringify({ error: 'Unbekanntes Wahlgebiet' })); }
+      return response.end(JSON.stringify(contextFor(area.country.id, area.region.id)));
     }
     if (!files[path]) { response.writeHead(404); return response.end('Nicht gefunden'); }
     const [file, type] = files[path];

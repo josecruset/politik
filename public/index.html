@@ -27,8 +27,27 @@
       <div id="loading" class="loading">Die Umfragen werden geladen …</div>
     </div>
     <div class="scroll-note"><span aria-hidden="true">← →</span> Horizontal scrollen, um frühere Monate zu sehen. <span>Je Ansicht ca. 12 Monate.</span></div>
+    <div id="event-track" class="event-track" hidden aria-label="Politische Ereignisse auf der Zeitachse"><div id="event-track-inner"></div></div>
     <details id="other-parties" class="other-parties" hidden><summary>Weitere Parteien im Verlauf</summary><div id="other-parties-legend" class="timeline-legend" aria-label="Weitere Parteien ein- und ausblenden"></div></details>
     <div id="additional" class="additional"><div id="approval-legend" class="approval-legend"></div></div>
+  </section>
+  <section class="dashboard context-section" aria-labelledby="seat-title">
+    <div class="section-header"><h2 id="seat-title">Sitzmodell und rechnerische Mehrheiten</h2><label>Berechnungsbasis <select id="seat-mode"><option value="poll">Letzte Einzelumfrage</option><option value="average">Aktueller 7-Tage-Durchschnitt</option></select></label></div>
+    <p id="seat-basis" class="context-note">Warte auf Umfragedaten …</p><p id="seat-warning" class="measurement-note"></p>
+    <div id="seat-exceptions"></div><div class="seat-layout"><svg id="hemicycle" viewBox="0 0 460 235" role="img" aria-label="Sitze im bedingten Modell"></svg><div><p id="seat-threshold"></p><p>Wähle Parteien für eine gemeinsame Sitzzahl:</p><div id="seat-parties" class="control-list"></div><p id="coalition-result" role="status"></p><progress id="coalition-progress" value="0" max="630" aria-label="Gemeinsame Sitze"></progress></div></div><div id="seat-sources" class="context-sources"></div>
+  </section>
+  <section class="dashboard context-section" aria-labelledby="topics-title">
+    <h2 id="topics-title">Welche Probleme beschäftigen die Menschen am meisten?</h2><p id="topic-scope" class="context-note"></p>
+    <div class="section-header"><strong id="topic-series"></strong><label>Erhebung <select id="topic-wave" aria-label="Themenerhebung auswählen"></select></label></div>
+    <p id="topic-question"></p><p id="topic-method" class="context-note"></p><p id="topic-fieldwork" class="context-note"></p><div id="topic-sources" class="context-sources"></div>
+    <div class="topic-layout"><div><h3>Rangliste der gewählten Erhebung</h3><ol id="topic-ranking" class="topic-ranking"></ol></div><div><h3>Ausgewählte Themen im Verlauf</h3><label>Zeitraum <select id="topic-period"><option value="24">Letzte 24 Monate der Reihe</option><option value="all">Gesamter importierter Verlauf</option></select></label><p class="context-note">Einzelne Erhebungen, ohne Glättung. Lücken und neue Kategorien bleiben erkennbar. Quellenkategorien werden nicht länderübergreifend zusammengeführt.</p><div id="topic-toggles" class="control-list"></div><div class="topic-chart-scroll"><svg id="topic-chart" viewBox="0 0 800 310" role="img" aria-label="Verlauf ausgewählter Probleme"></svg></div><p id="topic-selection" role="status" class="context-note"></p></div></div>
+    <p id="topic-updated" class="context-note"></p>
+  </section>
+  <section class="dashboard context-section" aria-labelledby="events-title">
+    <div class="section-header"><h2 id="events-title">Politische Ereignischronik</h2><label><input id="events-visible" type="checkbox"> Markierungen unter den Umfragekurven anzeigen</label></div>
+    <p class="context-note">Kuratierte Auswahl ab 2019. Ereignisse und Umfragen können zeitlich zusammenfallen; daraus folgt keine Ursache. Wahlen bleiben ausschließlich als vorhandene Wahlpunkte sichtbar.</p>
+    <div class="control-list"><label>Region <select id="event-region"><option value="current">Zum ausgewählten Wahlgebiet</option><option value="all">Alle Regionen des Landes</option></select></label><label>Ereignistyp <select id="event-category"><option value="all">Alle Ereignistypen</option><option value="government">Regierungswechsel</option><option value="crisis">Krisen</option><option value="decision">Politische Beschlüsse</option><option value="statement">Politikeraussagen</option></select></label></div>
+    <p id="event-count" class="context-note"></p><div id="event-detail" hidden></div><ol id="event-list" class="event-list"></ol>
   </section>
   <section class="notes"><div><h3>Durchschnitt der letzten 7 Tage</h3><p id="average-note">Die Grafik zeigt für Parteien sowie die Zufriedenheit mit Regierung und Bundeskanzler den Durchschnitt aller Umfragen der letzten sieben Tage. Jede Umfrage wird gleich gewichtet; fehlende Werte werden ausgelassen. Vorhandene Kurvenpunkte werden auch über Umfragepausen hinweg verbunden.</p><p id="data-note" class="data-note" hidden></p></div><div><h3>Umfrageinstitute</h3><p id="pollsters">Die Umfrageinstitute werden geladen …</p><a id="source" href="https://docs.google.com/spreadsheets/d/1aT2f8yc8p9-XjOqFCTQ1nDeP5GEORu9QZDOtUwF8smI/htmlview" target="_blank" rel="noopener noreferrer">Originaltabelle ansehen ↗</a><div id="source-credits" class="source-credits" hidden></div></div></section>
   <footer><div><span>POLITIK. <span class="footer-muted">Stimmung sichtbar machen.</span></span><div class="footer-credits"><span>Autor: <a href="https://x.com/josecruset" target="_blank" rel="noopener noreferrer">José Cruset</a></span><a href="https://github.com/josecruset/politik" target="_blank" rel="noopener noreferrer">GitHub-Repo</a></div></div><span id="updated">Automatische Datenaktualisierung alle 15 Minuten</span></footer>
