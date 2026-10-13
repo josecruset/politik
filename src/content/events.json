@@ -1,5 +1,412 @@
 [
   {
+    "id": "bw-green-black-government-2016",
+    "date": "2016-05-12",
+    "country": "de",
+    "regions": [
+      "baden-wuerttemberg"
+    ],
+    "category": "government",
+    "title": "Grün-schwarze Regierung in Baden-Württemberg beginnt",
+    "description": "Winfried Kretschmann wird erneut vereidigt. Grüne und CDU bilden nun gemeinsam die Landesregierung; zuvor regierten Grüne und SPD. Der Marker bezeichnet die Regierungsbildung.",
+    "source": {
+      "title": "Landtag Baden-Württemberg: Plenarprotokoll 16/2",
+      "url": "https://www.landtag-bw.de/resource/blob/232644/bd2afed6d260a6a06bf965e9038ab928/16_0002_12052016.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-rajoy-investiture-2016",
+    "date": "2016-10-29",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Rajoy erhält erneut das Vertrauen des Kongresses",
+    "description": "Der Kongress erteilt Mariano Rajoy im zweiten Wahlgang der Investitur das Vertrauen. Damit wird die Regierungsbildung nach einer längeren Phase mit einer geschäftsführenden Regierung möglich. Der Marker bezeichnet die parlamentarische Investitur, keine Parlamentswahl.",
+    "source": {
+      "title": "La Moncloa: Mariano Rajoy es reelegido presidente del Gobierno",
+      "url": "https://www.lamoncloa.gob.es/presidente/actividades/Paginas/2016/22102016investidura.aspx?galv2r=1"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bcn-peuat-approval-2017",
+    "date": "2017-01-27",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Barcelona beschließt Regeln für touristische Unterkünfte",
+    "description": "Der Gemeinderat genehmigt den besonderen Stadtentwicklungsplan PEUAT endgültig. Er regelt die Ansiedlung touristischer Unterkünfte und begrenzt deren Wachstum je nach Stadtgebiet. Der Marker bezeichnet den ursprünglichen Beschluss, nicht spätere Neufassungen des Plans.",
+    "source": {
+      "title": "Ajuntament de Barcelona: Planungsunterlage mit Beschlussdatum des ursprünglichen PEUAT",
+      "url": "https://ajuntament.barcelona.cat/sants-montjuic/sites/default/files/plenari/fitxers/document_carrer_viriat_37.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "nrw-laschet-government-2017",
+    "date": "2017-06-27",
+    "country": "de",
+    "regions": [
+      "nordrhein-westfalen"
+    ],
+    "category": "government",
+    "title": "Laschet übernimmt NRW-Regierungsamt",
+    "description": "Armin Laschet wird vom Landtag zum Ministerpräsidenten bestimmt und vereidigt. Er folgt Hannelore Kraft nach; CDU und FDP bilden das Regierungsbündnis.",
+    "source": {
+      "title": "Landtag NRW: Plenarprotokoll 17/2 vom 27. Juni 2017",
+      "url": "https://www.landtag.nrw.de/portal/WWW/dokumentenarchiv/Dokument/MMP17-2.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "sh-guenther-government-2017",
+    "date": "2017-06-28",
+    "country": "de",
+    "regions": [
+      "schleswig-holstein"
+    ],
+    "category": "government",
+    "title": "Günther übernimmt Regierungsamt in Schleswig-Holstein",
+    "description": "Daniel Günther wird zum Ministerpräsidenten bestimmt und vereidigt. Das neue Regierungsbündnis besteht aus CDU, Grünen und FDP.",
+    "source": {
+      "title": "Landtag Schleswig-Holstein: Daniel Günther ist neuer Ministerpräsident",
+      "url": "https://www.landtag.ltsh.de/nachrichten/17_06_ministerpraesident/"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-marriage-equality-2017",
+    "date": "2017-06-30",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag öffnet die Ehe für gleichgeschlechtliche Paare",
+    "description": "Der Bundestag beschließt die Öffnung der Ehe für Personen gleichen Geschlechts. Der Marker bezeichnet den Parlamentsbeschluss; das Gesetz tritt erst im Oktober in Kraft.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag öffnet die Ehe für gleichgeschlechtliche Paare",
+      "url": "https://www.bundestag.de/webarchiv/textarchiv/2017/kw26-de-ehe-fuer-alle-513682"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "mv-schwesig-government-2017",
+    "date": "2017-07-04",
+    "country": "de",
+    "regions": [
+      "mecklenburg-vorpommern"
+    ],
+    "category": "government",
+    "title": "Schwesig übernimmt Regierungsamt in Mecklenburg-Vorpommern",
+    "description": "Manuela Schwesig wird Ministerpräsidentin von Mecklenburg-Vorpommern. Die Amtschronik des Landtags datiert den Beginn auf den 4. Juli 2017.",
+    "source": {
+      "title": "Landtag Mecklenburg-Vorpommern: Amtschronik Manuela Schwesig",
+      "url": "https://www.landtag-mv.de/abgeordnete-und-fraktionen/abgeordnete/abgeordnetenportraet/manuela-schwesig"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-barcelona-cambrils-attacks-2017",
+    "date": "2017-08-17",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "crisis",
+    "title": "Terroranschläge in Barcelona und Cambrils",
+    "description": "Ein Fahrzeuganschlag auf der Rambla in Barcelona löst eine Sicherheitskrise aus. In der folgenden Nacht kommt es auch in Cambrils zu einem Anschlag. Der Marker steht am Beginn der zusammenhängenden Ereignisse vom 17. und 18. August.",
+    "source": {
+      "title": "Mossos d’Esquadra: Commemoració dels atemptats del 17 i 18 d’agost de 2017",
+      "url": "https://mossos.gencat.cat/ca/detalls/Article/commemoracio_17A"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-article155-catalonia-2017",
+    "date": "2017-10-27",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Artikel 155: Zentralregierung übernimmt Regierungsaufgaben in Katalonien",
+    "description": "Nach der Ermächtigung des Senats beschließt die spanische Regierung Maßnahmen nach Artikel 155 der Verfassung, einschließlich der Absetzung der katalanischen Regierung und der Übernahme von Regierungsaufgaben. Der Marker bezeichnet den Beschluss vom 27. Oktober; die zugehörigen Dekrete werden am Folgetag veröffentlicht.",
+    "source": {
+      "title": "La Moncloa: Consejo de Ministros sobre las medidas del artículo 155",
+      "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/paginas/2017/prot20171027_1.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-lindner-jamaica-2017",
+    "date": "2017-11-19",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Lindner erklärt Abbruch der Jamaika-Sondierungen",
+    "description": "Die FDP beendet die Sondierungen mit CDU, CSU und Grünen. Ihr Vorsitzender begründet den Schritt mit fehlenden gemeinsamen Vorstellungen. Die Parteimitteilung erscheint am folgenden Tag.",
+    "source": {
+      "title": "FDP: Besser nicht regieren, als falsch",
+      "url": "https://www.fdp.de/besser-nicht-regieren-als-falsch"
+    },
+    "verifiedAt": "2026-10-13",
+    "quote": "Es ist besser, nicht zu regieren, als falsch zu regieren.",
+    "speaker": "Christian Lindner, FDP-Vorsitzender",
+    "occasion": "Erklärung zum Abbruch der Jamaika-Sondierungen am Abend des 19. November 2017"
+  },
+  {
+    "id": "sn-kretschmer-government-2017",
+    "date": "2017-12-13",
+    "country": "de",
+    "regions": [
+      "sachsen"
+    ],
+    "category": "government",
+    "title": "Kretschmer wird sächsischer Regierungschef",
+    "description": "Michael Kretschmer wird zum Ministerpräsidenten des Freistaates Sachsen bestimmt und vereidigt. Der Eintrag bezeichnet den Wechsel im Regierungsamt.",
+    "source": {
+      "title": "Staatskanzlei Sachsen: Michael Kretschmer zum neuen Ministerpräsidenten gewählt",
+      "url": "https://www.ministerpraesident.sachsen.de/michael-kretschmer-ist-neuer-ministerpraesident-des-freistaates-sachsen-5856.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-merkel-fourth-government-2018",
+    "date": "2018-03-14",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Merkel beginnt vierte Amtszeit als Bundeskanzlerin",
+    "description": "Der Bundestag bestimmt Angela Merkel erneut zur Bundeskanzlerin. Nach Ernennung und Vereidigung wird die neue Bundesregierung aus CDU, CSU und SPD gebildet. Es handelt sich um eine Regierungsbildung.",
+    "source": {
+      "title": "Deutscher Bundestag: Amtliches Protokoll der 19. Sitzung vom 14. März 2018",
+      "url": "https://www.bundestag.de/dokumente/protokolle/amtlicheprotokolle/ap19019-547628"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "by-soeder-government-2018",
+    "date": "2018-03-16",
+    "country": "de",
+    "regions": [
+      "bayern"
+    ],
+    "category": "government",
+    "title": "Söder übernimmt bayerisches Regierungsamt",
+    "description": "Markus Söder wird zum Ministerpräsidenten bestimmt und unmittelbar vereidigt. Er folgt Horst Seehofer nach.",
+    "source": {
+      "title": "Bayerischer Landtag: Markus Söder zum neuen Ministerpräsidenten gewählt",
+      "url": "https://www.bayern.landtag.de/aktuelles/aus-dem-plenum/landtag-waehlt-markus-soeder-zum-neuen-ministerpraesidenten/"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-merkel-migration-explanation-2018",
+    "date": "2018-03-21",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Merkel erläutert Schlussfolgerungen aus der Flüchtlingsaufnahme",
+    "description": "In ihrer Regierungserklärung erläutert Merkel die Aufnahme Schutzsuchender 2015 und 2016, europäische Zusammenarbeit und Rückführungen. Sie bezeichnet die damalige Aufnahme als humanitäre Ausnahmesituation und fordert, eine Wiederholung zu vermeiden. Dies ist eine Zusammenfassung ihrer Position.",
+    "source": {
+      "title": "Bundesregierung: Merkel erläutert Schlussfolgerungen aus der Flüchtlingsaufnahme",
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/regierungserklaerung-von-bundeskanzlerin-merkel-862354"
+    },
+    "verifiedAt": "2026-10-13",
+    "statementFormat": "summary",
+    "speaker": "Angela Merkel, Bundeskanzlerin",
+    "occasion": "Erste Regierungserklärung der vierten Merkel-Regierung vor dem Bundestag"
+  },
+  {
+    "id": "hh-tschentscher-government-2018",
+    "date": "2018-03-28",
+    "country": "de",
+    "regions": [
+      "hamburg"
+    ],
+    "category": "government",
+    "title": "Tschentscher wird Hamburgs Erster Bürgermeister",
+    "description": "Peter Tschentscher tritt das Amt des Ersten Bürgermeisters von Hamburg an. Die amtliche Biografie nennt den 28. März 2018 als Beginn seiner Amtszeit.",
+    "source": {
+      "title": "Senatskanzlei Hamburg: Biografie Peter Tschentscher",
+      "url": "https://www.hamburg.de/politik-und-verwaltung/senat/der-hamburger-senat/peter-tschentscher-210516"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "by-police-law-2018",
+    "date": "2018-05-15",
+    "country": "de",
+    "regions": [
+      "bayern"
+    ],
+    "category": "decision",
+    "title": "Bayern beschließt neue Polizeibefugnisse",
+    "description": "Der Landtag beschließt die umstrittene Novelle des Polizeiaufgabengesetzes. Sie erweitert unter anderem präventive Überwachungs- und Fahndungsbefugnisse. Der Marker bezeichnet den Beschluss, nicht das Inkrafttreten am 25. Mai.",
+    "source": {
+      "title": "Bayerischer Landtag: Landtag verabschiedet Polizeiaufgabengesetz",
+      "url": "https://www.bayern.landtag.de/en/aktuelles/aus-dem-plenum/landtag-verabschiedet-polizeiaufgabengesetz/"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-gurtel-judgment-notification-2018",
+    "date": "2018-05-24",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Gürtel-Urteil wird öffentlich bekannt",
+    "description": "Die Entscheidung zur ersten Verfahrensphase der Korruptionsaffäre Gürtel wird bekannt. Die Audiencia Nacional sieht die PP als zivilrechtlich haftende Begünstigte. Das Urteil selbst ist auf den 17. Mai datiert; dieser Marker bezeichnet seine öffentliche Bekanntgabe am 24. Mai und keine strafrechtliche Verurteilung der Partei.",
+    "source": {
+      "title": "RTVE: La Audiencia Nacional condena al PP por lucrarse con la trama Gürtel",
+      "url": "https://www.rtve.es/noticias/20180524/caso-guertel-audiencia-nacional-condena-pp-por-lucrarse-trama-guertel-acredita-caja-b/1738968.shtml"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-sanchez-no-confidence-2018",
+    "date": "2018-06-01",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Misstrauensvotum führt zum Regierungswechsel zu Sánchez",
+    "description": "Nach dem erfolgreichen konstruktiven Misstrauensvotum gegen Mariano Rajoy erhält Pedro Sánchez den Regierungsauftrag. Der Marker bezeichnet den parlamentarischen Regierungswechsel am 1. Juni, nicht die Vereidigung am Folgetag.",
+    "source": {
+      "title": "La Moncloa: Declaraciones de Pedro Sánchez tras su investidura",
+      "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/Paginas/2018/prdi20180106.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-bridge-part-time-2018",
+    "date": "2018-10-18",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Brückenteilzeit",
+    "description": "Der Bundestag verabschiedet einen Anspruch auf zeitlich begrenzte Teilzeitarbeit mit Rückkehr zur ursprünglichen Arbeitszeit. Das Gesetz enthält Bedingungen zur Betriebsgröße und wird zum Jahresbeginn 2019 wirksam.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Brückenteilzeit",
+      "url": "https://www.bundestag.de/webarchiv/textarchiv/2018/kw42-de-brueckenteilzeit-573220"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bcn-protected-housing-share-2018",
+    "date": "2018-12-05",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Barcelona führt 30-Prozent-Quote für geförderten Wohnraum ein",
+    "description": "Die Änderung des Generalbebauungsplans wird endgültig genehmigt. Bei Neubauten und umfassenden Sanierungen mit mehr als 600 Quadratmetern Wohnfläche soll grundsätzlich ein Anteil von 30 Prozent für geschützten beziehungsweise bezahlbaren Wohnraum reserviert werden. Übergangsregeln bleiben zu beachten.",
+    "source": {
+      "title": "Ajuntament de Barcelona: Reserva de vivienda asequible en suelo urbano consolidado",
+      "url": "https://bcnroc.ajuntament.barcelona.cat/jspui/bitstream/11703/130614/6/VIVIENDA.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-minimum-wage-900-2019",
+    "date": "2019-01-01",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Mindestlohn steigt auf 900 Euro monatlich",
+    "description": "Die für 2019 festgelegte Mindestlohnerhöhung wird wirksam. Für eine Vollzeitbeschäftigung beträgt der gesetzliche Mindestlohn 900 Euro monatlich bei 14 Zahlungen. Der zugrunde liegende Beschluss stammt vom 21. Dezember 2018; der Marker bezeichnet den Beginn der Geltung.",
+    "source": {
+      "title": "BOE: Real Decreto 1462/2018, salario mínimo interprofesional para 2019",
+      "url": "https://www.boe.es/buscar/pdf/2018/BOE-A-2018-17773-consolidado.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bb-parity-law-2019",
+    "date": "2019-01-31",
+    "country": "de",
+    "regions": [
+      "brandenburg"
+    ],
+    "category": "decision",
+    "title": "Brandenburg beschließt Parité-Gesetz",
+    "description": "Der Landtag beschließt eine abwechselnde Besetzung der Landeslisten mit Frauen und Männern. Die gesetzlichen Vorgaben werden später vom Landesverfassungsgericht für nichtig erklärt. Der Marker bezeichnet den ursprünglichen Gesetzesbeschluss, keinen Wahltermin.",
+    "source": {
+      "title": "Landtag Brandenburg: Gesetzesverzeichnis mit Beschluss-, Ausfertigungs- und Verkündungsdatum",
+      "url": "https://www.landtag.brandenburg.de/de/zweites_gesetz_zur_aenderung_des_brandenburgischen_landeswahlgesetzes_-_parit-gesetz/9448"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-skilled-immigration-law-2019",
+    "date": "2019-06-07",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Erstes Fachkräfteeinwanderungsgesetz beschlossen",
+    "description": "Der Bundestag beschließt neue Zugangswege für Fachkräfte aus Nicht-EU-Staaten sowie Regelungen zur Duldung bei Ausbildung und Beschäftigung. Der Marker bezeichnet den Gesetzesbeschluss, nicht das spätere Inkrafttreten.",
+    "source": {
+      "title": "Deutscher Bundestag: Erstes Fachkräfteeinwanderungsgesetz beschlossen",
+      "url": "https://www.bundestag.de/webarchiv/textarchiv/2019/kw23-pa-inneres-fachkraefte-644166"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "by-biodiversity-law-2019",
+    "date": "2019-07-17",
+    "country": "de",
+    "regions": [
+      "bayern"
+    ],
+    "category": "decision",
+    "title": "Landtag übernimmt Artenschutz-Volksbegehren",
+    "description": "Der Bayerische Landtag verabschiedet den Gesetzentwurf des Volksbegehrens „Rettet die Bienen“ und ein ergänzendes Gesetz. Sie enthalten unter anderem Gewässerrandstreifen und Maßnahmen für Biotopverbund und Ökolandbau.",
+    "source": {
+      "title": "Bayerischer Landtag: Landtag nimmt Artenschutz-Volksbegehren an",
+      "url": "https://www.bayern.landtag.de/aktuelles/aus-dem-plenum/landtag-nimmt-artenschutz-volksbegehren-an/"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "hb-bovenschulte-government-2019",
+    "date": "2019-08-15",
+    "country": "de",
+    "regions": [
+      "bremen"
+    ],
+    "category": "government",
+    "title": "Bovenschulte und neuer Bremer Senat im Amt",
+    "description": "Die Bürgerschaft bestimmt Andreas Bovenschulte zum Präsidenten des Senats und bestätigt die weiteren Senatsmitglieder. Die neue Landesregierung konstituiert sich anschließend.",
+    "source": {
+      "title": "Senat Bremen: Neuer Senat gewählt, Ressortaufteilung beschlossen",
+      "url": "https://www.senatspressestelle.bremen.de/pressemitteilungen/neuer-senat-in-bremen-gewaehlt-koalition-beschliesst-ressortaufteilung-322964"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "de-climate-cornerstones-2019",
     "date": "2019-09-20",
     "country": "de",
@@ -14,6 +421,122 @@
       "url": "https://www.bundesregierung.de/breg-en/issues/climate-action/klimaschutzprogramm-2030-1674080"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-merkel-un-climate-2019",
+    "date": "2019-09-23",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Merkel fordert gemeinsames Handeln gegen Erderwärmung",
+    "description": "Beim UN-Klimagipfel erläutert Merkel Deutschlands Klimaziele, internationale Finanzierung und die geplante CO₂-Bepreisung. Die Rede wird im Bulletin am 24. September veröffentlicht; der Auftritt findet am Vortag statt.",
+    "source": {
+      "title": "Bundesregierung: Merkel fordert gemeinsames Handeln gegen Erderwärmung",
+      "url": "https://www.bundesregierung.de/breg-de/service/newsletter-und-abos/bulletin/rede-von-bundeskanzlerin-dr-angela-merkel-1674360"
+    },
+    "verifiedAt": "2026-10-13",
+    "quote": "Es ist eine globale Herausforderung, die nur gemeinsam bewältigt werden kann.",
+    "speaker": "Angela Merkel, Bundeskanzlerin",
+    "occasion": "Rede beim Klimagipfel der Vereinten Nationen in New York am 23. September 2019"
+  },
+  {
+    "id": "sa-halle-terror-2019",
+    "date": "2019-10-09",
+    "country": "de",
+    "regions": [
+      "sachsen-anhalt",
+      "bundestag"
+    ],
+    "category": "crisis",
+    "title": "Antisemitischer Terroranschlag in Halle",
+    "description": "Ein bewaffneter Täter versucht am jüdischen Feiertag Jom Kippur in die Synagoge von Halle einzudringen und tötet zwei Menschen außerhalb des Gotteshauses. Der Generalbundesanwalt verfolgt den Anschlag als Staatsschutzverfahren; der Ort liegt in Sachsen-Anhalt.",
+    "source": {
+      "url": "https://dserver.bundestag.de/btd/19/161/1916163.pdf",
+      "title": "Bundesregierung und Bundestag: Drucksache 19/16163 zum antisemitischen Terroranschlag"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-proces-supreme-judgment-2019",
+    "date": "2019-10-14",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Oberster Gerichtshof verkündet Procés-Urteil",
+    "description": "Der Tribunal Supremo teilt sein Urteil gegen die angeklagten führenden Beteiligten des katalanischen Unabhängigkeitsprozesses mit. Neun Angeklagte werden wegen Aufruhrs, teilweise zusätzlich wegen Veruntreuung, zu Freiheitsstrafen verurteilt. Der Marker bezeichnet das damalige Urteil; spätere Begnadigungen und Amnestieregeln sind eigene Ereignisse.",
+    "source": {
+      "title": "Consejo General del Poder Judicial: Sentencia en la causa del procés",
+      "url": "https://www.poderjudicial.es/portal/site/cgpj/menuitem.65d2c4456b6ddb628e635fc1dc432ea0/?lang_choosen=es&vgnextfmt=default&vgnextlocale=es&vgnextoid=519192ec3c8cd610VgnVCM1000006f48ac0aRCRD"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-franco-exhumation-2019",
+    "date": "2019-10-24",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Francos sterbliche Überreste werden umgebettet",
+    "description": "Die sterblichen Überreste Francisco Francos werden aus dem Valle de los Caídos auf den Friedhof Mingorrubio verlegt. Die Regierung bestätigt am selben Tag die abgeschlossene Umbettung. Der Marker bezeichnet die Durchführung, nicht frühere Beschlüsse oder Gerichtsentscheidungen.",
+    "source": {
+      "title": "La Moncloa: Declaración de Pedro Sánchez sobre la exhumación de Franco",
+      "url": "https://www.lamoncloa.gob.es/presidente/actividades/paginas/2019/241019-ps-declaracion.aspx?mode=Light"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-measles-protection-law-2019",
+    "date": "2019-11-14",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag verabschiedet Masernschutzgesetz",
+    "description": "Das Parlament beschließt Nachweispflichten zum Masernschutz unter anderem für Kinder in Gemeinschaftseinrichtungen. Das Gesundheitsministerium dokumentiert den Bundestagsbeschluss; die Regeln sollen im März 2020 wirksam werden.",
+    "source": {
+      "title": "Bundesgesundheitsministerium: The Bundestag adopts the Measles Protection Act",
+      "url": "https://www.bundesgesundheitsministerium.de/en/press/press-release/press/2019/measles-protection-act"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-climate-law-parliament-2019",
+    "date": "2019-11-15",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt erstes Bundes-Klimaschutzgesetz",
+    "description": "Der Bundestag verabschiedet das Klimapaket mit gesetzlich verankerten Klimazielen und jährlichen Emissionsbudgets für einzelne Sektoren. Dieser Gesetzesbeschluss ist ein eigener Schritt nach den Regierungs-Eckpunkten vom September.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt erstes Bundes-Klimaschutzgesetz",
+      "url": "https://www.bundestag.de/webarchiv/textarchiv/2019/kw46-de-klimaschutzgesetz-freitag-667244"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "hh-climate-plan-2019",
+    "date": "2019-12-03",
+    "country": "de",
+    "regions": [
+      "hamburg"
+    ],
+    "category": "decision",
+    "title": "Hamburger Senat beschließt neuen Klimaplan",
+    "description": "Der Senat beschließt die Fortschreibung des Klimaplans und einen Klimaschutz-Gesetzentwurf. Der damalige Plan setzt ein CO₂-Minderungsziel von 55 Prozent bis 2030 gegenüber 1990. Der Marker bezeichnet die Senatsentscheidung, nicht den späteren parlamentarischen Gesetzesbeschluss.",
+    "source": {
+      "title": "Senat Hamburg: Neuer Klimaplan und neues Klimaschutzgesetz",
+      "url": "https://www.hamburg.de/politik-und-verwaltung/behoerden/bukea/aktuelles/pressemeldungen/2019-12-03-sk-bue-hamburger-klimaplan2019-230420"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "bcn-low-emission-zone-2020",
@@ -64,6 +587,55 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "he-hanau-terror-2020",
+    "date": "2020-02-19",
+    "country": "de",
+    "regions": [
+      "hessen",
+      "bundestag"
+    ],
+    "category": "crisis",
+    "title": "Rassistischer Terroranschlag in Hanau",
+    "description": "Ein Täter ermordet in Hanau neun Menschen aus rassistischen Motiven und anschließend seine Mutter. Der Anschlag führt zu Ermittlungen von Bundesanwaltschaft und BKA sowie einer bundespolitischen Debatte über Rechtsterrorismus.",
+    "source": {
+      "title": "Bundeszentrale für politische Bildung: Tatablauf, Ermittlungen und bundespolitische Maßnahmen",
+      "url": "https://www.bpb.de/kurz-knapp/hintergrund-aktuell/505333/19-februar-2020-anschlag-in-hanau/"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "be-rent-cap-entry-2020",
+    "date": "2020-02-23",
+    "country": "de",
+    "regions": [
+      "berlin"
+    ],
+    "category": "decision",
+    "title": "Berliner Mietendeckel tritt überwiegend in Kraft",
+    "description": "Das Berliner Mietenbegrenzungsgesetz tritt mit Ausnahme des Verbots überhöhter Mieten in Kraft. Es sieht einen Mietenstopp und Obergrenzen vor. Das Bundesverfassungsgericht erklärt das Gesetz später wegen fehlender Landeszuständigkeit für nichtig.",
+    "source": {
+      "title": "Bundesverfassungsgericht: Sachverhalt und Inkrafttreten des Berliner Mietendeckels",
+      "url": "https://bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/DE/2021/bvg21-028.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-assisted-suicide-judgment-2020",
+    "date": "2020-02-26",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Verfassungsgericht hebt Verbot geschäftsmäßiger Suizidhilfe auf",
+    "description": "Das Bundesverfassungsgericht erklärt § 217 StGB für nichtig. Das allgemeine Persönlichkeitsrecht umfasst nach dem Urteil selbstbestimmtes Sterben und die Freiheit, hierfür Hilfe Dritter zu suchen.",
+    "source": {
+      "title": "Bundesverfassungsgericht: Urteil vom 26. Februar 2020, 2 BvR 2347/15",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Entscheidungen/DE/2020/02/rs20200226_2bvr234715.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "th-ramelow-government-2020",
     "date": "2020-03-04",
     "country": "de",
@@ -96,6 +668,41 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "es-covid-erte-package-2020",
+    "date": "2020-03-17",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Corona-Hilfspaket erleichtert Kurzarbeit",
+    "description": "Der Ministerrat beschließt außerordentliche wirtschaftliche und soziale Corona-Maßnahmen. Dazu gehören erleichterte ERTE-Verfahren zur vorübergehenden Beschäftigungsaussetzung, Zugang zu Arbeitslosenleistungen und Unterstützungsmaßnahmen für Selbstständige und Unternehmen.",
+    "source": {
+      "title": "La Moncloa: Medidas urgentes extraordinarias frente al impacto del COVID-19",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/paginas/enlaces/170320-enlace-medidas.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-merkel-pandemic-address-2020",
+    "date": "2020-03-18",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Merkel richtet Corona-Fernsehansprache an die Bevölkerung",
+    "description": "In einer Fernseh- und Hörfunkansprache erläutert die Kanzlerin die Einschränkungen während der Pandemie und fordert solidarisches Handeln. Sie appelliert an die Bevölkerung, die Lage ernst zu nehmen.",
+    "source": {
+      "title": "Bundesregierung: Bulletin 37-1 vom 18. März 2020",
+      "url": "https://www.bundesregierung.de/resource/blob/975954/1732744/c9feb916666fec36448451cb3ba174b2/37-1-bkin-ansprache-corona-data.pdf?download=1"
+    },
+    "verifiedAt": "2026-10-13",
+    "quote": "Es ist ernst. Nehmen Sie es auch ernst.",
+    "speaker": "Angela Merkel, Bundeskanzlerin",
+    "occasion": "Ansprache zur Coronavirus-Lage über Hörfunk und Fernsehen am 18. März 2020"
+  },
+  {
     "id": "de-contact-restrictions-2020",
     "date": "2020-03-22",
     "country": "de",
@@ -110,6 +717,247 @@
       "url": "https://www.bundesregierung.de/resource/blob/2196306/1733914/46d4ecea00396d98aa905b58fd031b96/2020-03-23-beschluss-laender-statement-kanzlerin-eng-data.pdf?download=1"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-minimum-income-approval-2020",
+    "date": "2020-05-29",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Regierung beschließt Ingreso Mínimo Vital",
+    "description": "Der Ministerrat beschließt eine bedarfsabhängige Mindesteinkommensleistung als Teil der sozialen Sicherung. Sie soll Haushalten mit unzureichenden Ressourcen eine Einkommensuntergrenze sichern. Der Marker bezeichnet den Regierungsbeschluss und nicht den späteren Beginn der Antragstellung.",
+    "source": {
+      "title": "La Moncloa: El Gobierno aprueba el Ingreso Mínimo Vital",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/resumenes/paginas/2020/290520-cministros.aspx?gal1er=4&galv2r=7"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-economic-stimulus-agreement-2020",
+    "date": "2020-06-03",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Koalition vereinbart Corona-Konjunkturpaket",
+    "description": "Die Regierungskoalition vereinbart ein Konjunktur- und Zukunftspaket über 130 Milliarden Euro. Vorgesehen sind unter anderem eine befristete Mehrwertsteuersenkung, Familienhilfen und Unterstützung für Kommunen. Der Marker bezeichnet die politische Einigung.",
+    "source": {
+      "title": "Bundesregierung: Economic stimulus package – An ambitious programme",
+      "url": "https://www.bundesregierung.de/breg-en/news/konjunkturpaket-1757640"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-coal-exit-law-2020",
+    "date": "2020-07-03",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Kohleausstieg",
+    "description": "Der Bundestag beschließt den schrittweisen Ausstieg aus der Kohleverstromung bis spätestens 2038 und Hilfen für betroffene Regionen. Der Eintrag zeigt den Bundestagsbeschluss und behauptet keinen sofortigen Ausstieg.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Kohleausstieg",
+      "url": "https://www.bundestag.de/webarchiv/textarchiv/2020/kw10-de-kohleausstiegsgesetz-682602"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-eu-recovery-agreement-2020",
+    "date": "2020-07-21",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "EU-Wiederaufbaufonds eröffnet umfangreiche Hilfen für Spanien",
+    "description": "Die europäischen Staats- und Regierungschefs einigen sich auf den Corona-Wiederaufbaufonds und den mehrjährigen EU-Finanzrahmen. Die spanische Regierung erläutert die vorgesehenen Zuschüsse und Kredite sowie die geplante Verwendung für die wirtschaftliche und soziale Erholung. Der Marker bezeichnet die politische Einigung, keine bereits erfolgte Auszahlung.",
+    "source": {
+      "title": "La Moncloa: El Gobierno destinará los fondos europeos a modernizar la economía",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/resumenes/Paginas/2020/210720-cministros.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-torra-disqualification-2020",
+    "date": "2020-09-28",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "government",
+    "title": "Torras Amtsverbot wird rechtskräftig",
+    "description": "Der Tribunal Supremo bestätigt das anderthalbjährige Amtsverbot gegen Quim Torra wegen Ungehorsams. Die rechtskräftige Entscheidung und ihre Vollstreckung beenden seine Amtsausübung als Präsident der Generalitat.",
+    "source": {
+      "title": "Tribunal Supremo: Urteil vom 28. September 2020 im Verfahren gegen Joaquim Torra",
+      "url": "https://www.poderjudicial.es/stfls/TRIBUNAL%20SUPREMO/DOCUMENTOS%20DE%20INTER%C3%89S/TS%20Penal%2028%20sep%202020.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-wirecard-inquiry-2020",
+    "date": "2020-10-01",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag setzt Wirecard-Untersuchungsausschuss ein",
+    "description": "Nach dem Zusammenbruch des Zahlungsdienstleisters Wirecard setzt das Parlament einen Untersuchungsausschuss ein. Er soll das Verhalten der Bundesregierung und ihrer Aufsichtsbehörden im Zusammenhang mit dem Unternehmen prüfen.",
+    "source": {
+      "title": "Deutscher Bundestag: Arbeit und Aufgaben des Wirecard-Untersuchungsausschusses",
+      "url": "https://www.bundestag.de/webarchiv/Ausschuesse/ausschuesse19/untersuchungsausschuesse/3untersuchungsausschuss/796582-796582"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bb-parity-judgment-2020",
+    "date": "2020-10-23",
+    "country": "de",
+    "regions": [
+      "brandenburg"
+    ],
+    "category": "decision",
+    "title": "Landesverfassungsgericht verwirft Parité-Gesetz",
+    "description": "Das Verfassungsgericht Brandenburg erklärt die Vorgaben zur geschlechterparitätischen Besetzung der Landeslisten für nichtig. Die Entscheidung betrifft unter anderem Wahlgleichheit und Chancengleichheit der Parteien.",
+    "source": {
+      "title": "Verfassungsgericht Brandenburg: Paritätsgesetz verfassungswidrig",
+      "url": "https://verfassungsgericht.brandenburg.de/verfgbbg/de/presse-statistik/pressemitteilungen/detail/~23-10-2020-paritaetsgesetz-verfassungswidrig"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-second-covid-alarm-2020",
+    "date": "2020-10-25",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Spanien verhängt zweiten landesweiten Corona-Alarmzustand",
+    "description": "Die Regierung beschließt angesichts der zweiten Pandemiewelle erneut einen Alarmzustand. Er schafft unter anderem den Rahmen für nächtliche Mobilitätsbeschränkungen und für Maßnahmen der autonomen Gemeinschaften. Der Marker bezeichnet den neuen Beschluss, nicht die spätere parlamentarische Verlängerung.",
+    "source": {
+      "title": "La Moncloa: Comparecencia de Pedro Sánchez tras el Consejo de Ministros",
+      "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/paginas/2020/prsp25102020.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-november-corona-restrictions-2020",
+    "date": "2020-10-28",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bund und Länder vereinbaren neue Corona-Beschränkungen",
+    "description": "Angesichts steigender Infektionszahlen vereinbaren Bund und Länder zusätzliche, zunächst für November vorgesehene Einschränkungen. Dazu gehören Schließungen in Gastronomie, Kultur und Freizeit; die Umsetzung erfolgt ab 2. November.",
+    "source": {
+      "title": "Bundesregierung: Corona-Pandemie – Merkel informiert über neue Maßnahmen",
+      "url": "https://www.bundesregierung.de/breg-de/suche/merkel-nach-mpk-1805186"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "sa-broadcast-ratification-withdrawal-2020",
+    "date": "2020-12-08",
+    "country": "de",
+    "regions": [
+      "sachsen-anhalt"
+    ],
+    "category": "decision",
+    "title": "Sachsen-Anhalt zieht Rundfunkbeitragsvorlage zurück",
+    "description": "Die Landesregierung nimmt die Vorlage zur Zustimmung zum Medienänderungsstaatsvertrag zurück. Damit bleibt die vorgesehene Beitragserhöhung zunächst ohne Zustimmung Sachsen-Anhalts; der Vorgang steht im Zusammenhang mit einem Konflikt der Regierungskoalition.",
+    "source": {
+      "url": "https://www.rundfunkbeitrag.de/presse-und-aktuelles/hinweise/beitragsanpassung-2021/dezember-2020-ratifizierung-des-1-medienaenderungsstaatsvertrags-vorerst-gestoppt",
+      "title": "ARD ZDF Deutschlandradio Beitragsservice: Sachsen-Anhalts Entscheidung vom 8. Dezember 2020"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "be-rent-cap-judgment-publication-2021",
+    "date": "2021-04-15",
+    "country": "de",
+    "regions": [
+      "berlin"
+    ],
+    "category": "decision",
+    "title": "Nichtigkeit des Berliner Mietendeckels wird öffentlich",
+    "description": "Das Bundesverfassungsgericht veröffentlicht den Beschluss vom 25. März 2021: Der Berliner Mietendeckel ist wegen fehlender Gesetzgebungskompetenz des Landes nichtig. Der Marker bezeichnet ausdrücklich die öffentliche Bekanntgabe am 15. April.",
+    "source": {
+      "title": "Bundesverfassungsgericht: Pressemitteilung 28/2021",
+      "url": "https://bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/DE/2021/bvg21-028.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-federal-emergency-brake-2021",
+    "date": "2021-04-21",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Corona-Bundesnotbremse",
+    "description": "Das Parlament beschließt bundeseinheitliche, inzidenzabhängige Maßnahmen einschließlich Kontaktbeschränkungen und nächtlicher Ausgangsbeschränkungen. Der Marker bezeichnet den Bundestagsbeschluss des vierten Bevölkerungsschutzgesetzes.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Corona-Bundesnotbremse",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2021/kw16-de-infektionsschutzgesetz-834802"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-recovery-plan-approval-2021",
+    "date": "2021-04-27",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Spanien beschließt Wiederaufbau- und Transformationsplan",
+    "description": "Der Ministerrat genehmigt den Plan de Recuperación, Transformación y Resiliencia zur Verwendung der europäischen Wiederaufbaumittel. Er verbindet Investitionen unter anderem in Digitalisierung und Klimaschutz mit Reformen. Der Marker bezeichnet Spaniens Planbeschluss vor der anschließenden europäischen Prüfung.",
+    "source": {
+      "title": "La Moncloa: Plan de Recuperación, Transformación y Resiliencia",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/paginas/enlaces/270421-enlace-plan.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-climate-judgment-publication-2021",
+    "date": "2021-04-29",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Klimaschutzbeschluss des Verfassungsgerichts veröffentlicht",
+    "description": "Das Gericht veröffentlicht seinen Beschluss vom 24. März 2021: Für Emissionsminderungen ab 2031 fehlen ausreichende Vorgaben, wodurch Freiheitsrechte künftig unverhältnismäßig belastet werden können. Das Markerdatum bezeichnet ausdrücklich die Veröffentlichung, nicht das Beschlussdatum.",
+    "source": {
+      "title": "Bundesverfassungsgericht: Pressemitteilung 31/2021 vom 29. April 2021",
+      "url": "https://www.bundesverfassungsgericht.de/SharedDocs/Pressemitteilungen/EN/2021/bvg21-031.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bw-kretschmann-third-government-2021",
+    "date": "2021-05-12",
+    "country": "de",
+    "regions": [
+      "baden-wuerttemberg"
+    ],
+    "category": "government",
+    "title": "Kretschmanns dritte Landesregierung im Amt",
+    "description": "Winfried Kretschmann wird erneut vereidigt; der Landtag bestätigt die neue Landesregierung. Grüne und CDU setzen ihre gemeinsame Regierungsarbeit fort.",
+    "source": {
+      "title": "Land Baden-Württemberg: Kretschmann als Ministerpräsident wiedergewählt",
+      "url": "https://www.baden-wuerttemberg.de/de/service/alle-meldungen/meldung/pid/kretschmann-als-ministerpraesident-wiedergewaehlt-1/"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "cat-aragones-investiture-2021",
@@ -129,6 +977,22 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "de-supply-chain-law-2021",
+    "date": "2021-06-11",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Lieferkettengesetz",
+    "description": "Der Bundestag verabschiedet menschenrechtliche und umweltbezogene Sorgfaltspflichten für größere Unternehmen in ihren Lieferketten. Die Anwendung beginnt gestaffelt ab 2023; der Marker zeigt die parlamentarische Entscheidung.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Lieferkettengesetz",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2021/kw23-de-lieferkettengesetz-845608"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "es-proces-pardons-2021",
     "date": "2021-06-22",
     "country": "es",
@@ -143,6 +1007,108 @@
       "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/paginas/2021/prar20210623.aspx"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-climate-neutrality-law-2021",
+    "date": "2021-06-24",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Klimaneutralität bis 2045 gesetzlich beschlossen",
+    "description": "Der Bundestag verschärft das Klimaschutzgesetz und zieht das Ziel der Klimaneutralität auf 2045 vor. Für 2030 wird das Minderungsziel auf mindestens 65 Prozent gegenüber 1990 angehoben.",
+    "source": {
+      "title": "Deutscher Bundestag: Klimaneutralität bis 2045 gesetzlich beschlossen",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2021/kw25-de-klimaschutzgesetz-846922"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-euthanasia-law-effective-2021",
+    "date": "2021-06-25",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Gesetz zur Sterbehilfe tritt in Kraft",
+    "description": "Das Gesetz zur Regulierung der Euthanasie wird wirksam. Es schafft unter gesetzlich bestimmten Voraussetzungen und Kontrollverfahren einen Anspruch auf Hilfe beim Sterben. Das Gesetz wurde bereits im März veröffentlicht; der Marker bezeichnet sein Inkrafttreten.",
+    "source": {
+      "title": "BOE: Ley Orgánica 3/2021, de regulación de la eutanasia",
+      "url": "https://boe.es/buscar/act.php?id=BOE-A-2021-4628"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "nrw-rlp-flood-2021",
+    "date": "2021-07-14",
+    "country": "de",
+    "regions": [
+      "nordrhein-westfalen",
+      "rheinland-pfalz",
+      "bundestag"
+    ],
+    "category": "crisis",
+    "title": "Flutkatastrophe in NRW und Rheinland-Pfalz",
+    "description": "Extremer Regen und Hochwasser am 14. und 15. Juli treffen unter anderem das Ahrtal und Teile Nordrhein-Westfalens. Der Marker liegt am Beginn dieses zweitägigen Katastrophenzeitraums. Bund und Länder richten Hilfsfonds ein; Krisenmanagement und Wiederaufbau werden auch bundespolitisch aufgearbeitet.",
+    "source": {
+      "title": "Bundespräsident: Rückblick auf die Flutnacht 14./15. Juli 2021 und gemeinsame Krisenhilfe von Bund und Ländern",
+      "url": "https://www.bundesregierung.de/breg-de/service/newsletter-und-abos/bulletin/rede-von-bundespraesident-dr-frank-walter-steinmeier-2062956"
+    },
+    "verifiedAt": "2026-10-13",
+    "endDate": "2021-07-15"
+  },
+  {
+    "id": "de-kabul-evacuation-start-2021",
+    "date": "2021-08-16",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Deutschland beginnt Evakuierungs-Luftbrücke aus Kabul",
+    "description": "Nach der Machtübernahme der Taliban startet die Bundeswehr die militärische Evakuierung aus Kabul. Die Bundesregierung priorisiert deutsche Staatsangehörige, Botschaftspersonal und gefährdete Menschen, die für Deutschland gearbeitet haben.",
+    "source": {
+      "title": "Bundesregierung: Afghanistan – Developments are bitter, dramatic and appalling",
+      "url": "https://www.bundesregierung.de/breg-en/service/archive/evacuation-1951244"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-merkel-afghanistan-assessment-2021",
+    "date": "2021-08-25",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Merkel räumt unterschätzte Afghanistan-Entwicklung ein",
+    "description": "In ihrer Regierungserklärung zur Lage in Afghanistan erklärt Merkel, die internationale Koalition habe das Tempo des Taliban-Vormarschs unterschätzt. Sie erläutert die Evakuierung und Deutschlands gemeinsame Verantwortung mit seinen Verbündeten.",
+    "source": {
+      "title": "Bundesregierung: Merkel räumt unterschätzte Afghanistan-Entwicklung ein",
+      "url": "https://www.bundesregierung.de/breg-de/suche/regierungserklaerung-von-bundeskanzlerin-dr-angela-merkel-1954370"
+    },
+    "verifiedAt": "2026-10-13",
+    "quote": "Das gilt auch für Deutschland.",
+    "speaker": "Angela Merkel, Bundeskanzlerin",
+    "occasion": "Regierungserklärung zur Lage in Afghanistan vor dem Bundestag am 25. August 2021; Bezug auf die unterschätzte Geschwindigkeit des Taliban-Vormarschs"
+  },
+  {
+    "id": "sa-haseloff-third-government-2021",
+    "date": "2021-09-16",
+    "country": "de",
+    "regions": [
+      "sachsen-anhalt"
+    ],
+    "category": "government",
+    "title": "Neue Regierung aus CDU, SPD und FDP in Sachsen-Anhalt",
+    "description": "Reiner Haseloff wird im zweiten Wahlgang erneut Ministerpräsident und vereidigt. Er beruft das neue Kabinett aus CDU, SPD und FDP. Die Darstellung betrifft die Regierungsbildung.",
+    "source": {
+      "title": "Landtag Sachsen-Anhalt: Haseloff gelingt die zweite Wiederwahl",
+      "url": "https://www.landtag.sachsen-anhalt.de/haseloff-gelingt-die-zweite-wiederwahl"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "nrw-wuest-government-2021",
@@ -161,6 +1127,22 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "mv-schwesig-red-red-government-2021",
+    "date": "2021-11-15",
+    "country": "de",
+    "regions": [
+      "mecklenburg-vorpommern"
+    ],
+    "category": "government",
+    "title": "SPD und Linke bilden neue Landesregierung",
+    "description": "Manuela Schwesig wird erneut vereidigt und ernennt das neue Kabinett. Das Regierungsbündnis in Mecklenburg-Vorpommern besteht nun aus SPD und Linken.",
+    "source": {
+      "title": "Landtag Mecklenburg-Vorpommern: Regierungsbildung am 15. November 2021",
+      "url": "https://www.landtag-mv.de/aktuelles/artikel/landtag-beendet-zweiten-sitzungstag-der-neuen-wahlperiode-manuela-schwesig-erneut-ministerpraesidentin"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "de-scholz-government-2021",
     "date": "2021-12-08",
     "country": "de",
@@ -175,6 +1157,38 @@
       "url": "https://www.bundestag.de/dokumente/textarchiv/2021/kw49-de-kanzlerwahl-870142"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "be-giffey-government-2021",
+    "date": "2021-12-21",
+    "country": "de",
+    "regions": [
+      "berlin"
+    ],
+    "category": "government",
+    "title": "Giffey und neuer Berliner Senat treten Amt an",
+    "description": "Franziska Giffey wird Regierende Bürgermeisterin. Die Mitglieder des Senats aus SPD, Grünen und Linken werden ernannt und vereidigt.",
+    "source": {
+      "title": "Land Berlin: Franziska Giffey gewählt, neuer Senat im Amt",
+      "url": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2021/pressemitteilung.1160117.php"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-labour-reform-approval-2021",
+    "date": "2021-12-28",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Regierung beschließt Arbeitsmarktreform",
+    "description": "Der Ministerrat verabschiedet nach der Einigung mit Gewerkschaften und Arbeitgeberverbänden die Arbeitsmarktreform. Sie verändert unter anderem Regeln für befristete Verträge und Tarifverhandlungen. Einzelne Regelungen haben Übergangsfristen; der Marker bezeichnet den Regierungsbeschluss.",
+    "source": {
+      "title": "La Moncloa: El Gobierno aprueba la reforma laboral",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/resumenes/Paginas/2021/281221-rp-cministros.aspx"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "global-full-scale-invasion-ukraine-2022",
@@ -212,6 +1226,347 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "sl-rehlinger-government-2022",
+    "date": "2022-04-25",
+    "country": "de",
+    "regions": [
+      "saarland"
+    ],
+    "category": "government",
+    "title": "Rehlinger übernimmt Regierungsamt im Saarland",
+    "description": "Anke Rehlinger wird durch den saarländischen Landtag zur Ministerpräsidentin bestimmt. Der Marker bezeichnet ihren Amtsantritt, nicht das Landtagswahlergebnis. Die amtliche Mitteilung Brandenburgs bestätigt ausdrücklich die Entscheidung desselben Tages.",
+    "source": {
+      "title": "Staatskanzlei Brandenburg: Woidke gratuliert zur heutigen Bestimmung Rehlingers als Ministerpräsidentin",
+      "url": "https://brandenburg.de/sixcms/detail.php?gsid=bb1.c.737037.de"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-iberian-gas-mechanism-2022",
+    "date": "2022-05-13",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Regierung beschließt iberischen Strompreis-Mechanismus",
+    "description": "Ein außerordentlicher Ministerrat beschließt den mit Portugal entwickelten Mechanismus zur Begrenzung des für die Stromerzeugung angesetzten Gaspreises. Er soll den Einfluss teuren Gases auf den Stromgroßhandelspreis verringern. Der Beschluss betrifft keinen allgemeinen Preisdeckel für sämtliche Gasrechnungen.",
+    "source": {
+      "title": "La Moncloa: Mecanismo para limitar el precio del gas utilizado en la generación eléctrica",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/resumenes/Paginas/2022/130522-rp-cministros-extraordinario.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "mv-climate-foundation-inquiry-2022",
+    "date": "2022-05-18",
+    "country": "de",
+    "regions": [
+      "mecklenburg-vorpommern"
+    ],
+    "category": "decision",
+    "title": "Landtag setzt Untersuchung zur Klimastiftung ein",
+    "description": "Der Landtag beschließt einen Untersuchungsausschuss zu Vorgängen rund um die Stiftung Klima- und Umweltschutz MV, insbesondere im Zusammenhang mit Nord Stream 2. Die Quelle berichtet am 17. Juni über die Konstituierung und bestätigt den Einsetzungsbeschluss vom 18. Mai.",
+    "source": {
+      "title": "Landtag Mecklenburg-Vorpommern: Einsetzung und Konstituierung des Untersuchungsausschusses",
+      "url": "https://www.landtag-mv.de/aktuelles/artikel/konstituierende-sitzung-untersuchungsausschuss-zur-klimaschutzstiftung-nimmt-arbeit-auf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "he-rhein-government-2022",
+    "date": "2022-05-31",
+    "country": "de",
+    "regions": [
+      "hessen"
+    ],
+    "category": "government",
+    "title": "Rhein übernimmt hessisches Regierungsamt",
+    "description": "Boris Rhein wird zum Ministerpräsidenten bestimmt und vereidigt. CDU und Grüne tragen die neue Regierung; der Beschluss des Landtags dokumentiert Wahl, Vereidigung und Vertrauenserklärung.",
+    "source": {
+      "title": "Hessischer Landtag: Beschlussprotokoll der 105. Sitzung",
+      "url": "https://starweb.hessen.de/cache/hessen/landtag/Plenum/20/Beschlussprotokoll_PL_105.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-bundeswehr-special-fund-2022",
+    "date": "2022-06-03",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Bundeswehr-Sondervermögen",
+    "description": "Das Parlament beschließt ein Sondervermögen von 100 Milliarden Euro zur Stärkung der Bündnis- und Verteidigungsfähigkeit. Der Gesetzesbeschluss folgt auf die Ankündigung in der Zeitenwende-Rede vom Februar.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Bundeswehr-Sondervermögen",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2022/kw19-pa-haushalt-sondervermoegen-891366"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-minimum-wage-twelve-law-2022",
+    "date": "2022-06-03",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Zwölf-Euro-Mindestlohn beschlossen",
+    "description": "Der Bundestag beschließt die einmalige gesetzliche Anhebung des Mindestlohns auf zwölf Euro pro Stunde ab Oktober 2022. Das Markerdatum zeigt den Beschluss, nicht den Beginn des erhöhten Lohnanspruchs.",
+    "source": {
+      "title": "Deutscher Bundestag: Namentliche Abstimmung Mindestlohn vom 3. Juni 2022",
+      "url": "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung?id=779"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-school-language-law-approval-2022",
+    "date": "2022-06-08",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Parlament beschließt neues Gesetz zu Schulsprachen",
+    "description": "Das katalanische Parlament verabschiedet das Gesetz über Gebrauch und Lernen der Amtssprachen im nichtuniversitären Unterricht. Es hält Katalanisch als normalerweise verwendete Unterrichtssprache fest und sieht die Verwendung des Kastilischen nach den Sprachprojekten der Schulen vor. Der Marker bezeichnet die parlamentarische Verabschiedung, nicht die Datierung des Gesetzes am 9. Juni.",
+    "source": {
+      "title": "Parlament de Catalunya: El Ple aprova la nova llei sobre el català a l’escola",
+      "url": "https://www.parlament.cat/web/actualitat/noticies/index.html?p_format=D&p_id=270461288"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-gas-alert-stage-2022",
+    "date": "2022-06-23",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Deutschland ruft Gas-Alarmstufe aus",
+    "description": "Das Wirtschaftsministerium ruft die zweite Stufe des Notfallplans Gas aus. Es verweist auf verringerte russische Lieferungen und hohe Marktpreise. Die Versorgung ist zu diesem Zeitpunkt weiterhin gewährleistet; die Alarmstufe ist nicht die Notfallstufe.",
+    "source": {
+      "title": "Bundeswirtschaftsministerium: Alarmstufe des Notfallplans Gas",
+      "url": "https://www.bundeswirtschaftsministerium.de/Redaktion/DE/Pressemitteilungen/2022/06/20220623-bundesministerium-ruft-alarmstufe-des-notfallplans-gas-aus.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "sh-green-black-government-2022",
+    "date": "2022-06-29",
+    "country": "de",
+    "regions": [
+      "schleswig-holstein"
+    ],
+    "category": "government",
+    "title": "CDU und Grüne bilden neue Regierung in Schleswig-Holstein",
+    "description": "Daniel Günther wird erneut vereidigt und stellt sein neues Kabinett vor. CDU und Grüne bilden die Regierung; die FDP gehört dem bisherigen Dreierbündnis nicht mehr an.",
+    "source": {
+      "title": "Landtag Schleswig-Holstein: Daniel Günther wiedergewählt",
+      "url": "https://www.landtag.ltsh.de/nachrichten/22_06_28_wahl_mp_eid_minister/"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-scholz-prague-europe-2022",
+    "date": "2022-08-29",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Scholz skizziert Reformen für die Europäische Union",
+    "description": "An der Karls-Universität stellt Scholz Vorschläge zur Zukunft der EU vor, darunter Erweiterung und Reformen europäischer Entscheidungsverfahren. Dies ist eine Zusammenfassung der Rede, keine bereits beschlossene EU-Reform.",
+    "source": {
+      "title": "Bundesregierung: Rede an der Karls-Universität am 29. August 2022",
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/rede-von-bundeskanzler-scholz-an-der-karls-universitaet-am-29-august-2022-in-prag-2079534.pdf"
+    },
+    "verifiedAt": "2026-10-13",
+    "statementFormat": "summary",
+    "speaker": "Olaf Scholz, Bundeskanzler",
+    "occasion": "Europapolitische Rede an der Karls-Universität in Prag"
+  },
+  {
+    "id": "de-energy-protective-shield-2022",
+    "date": "2022-09-29",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Regierung kündigt Energie-Abwehrschirm an",
+    "description": "Die Bundesregierung kündigt einen wirtschaftlichen Abwehrschirm von bis zu 200 Milliarden Euro gegen die hohen Energiekosten an. Gas- und Strompreisbremsen sollen Haushalte und Unternehmen unterstützen; der Eintrag zeigt die Ankündigung.",
+    "source": {
+      "title": "Bundesfinanzministerium: Wirtschaftlicher Abwehrschirm und Gaspreisbremse",
+      "url": "https://www.bundesfinanzministerium.de/Monatsberichte/2022/10/Inhalte/Kapitel-2b-Schlaglicht/2b-mit-entschlossenheit-durch-die-energiekrise.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-junts-leaves-government-2022",
+    "date": "2022-10-07",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "government",
+    "title": "Junts entscheidet sich für Austritt aus der Regierung",
+    "description": "Die Mitglieder von Junts entscheiden sich in einer parteiinternen Abstimmung für den Austritt aus der Koalition mit ERC. Pere Aragonès kündigt an, weiter zu regieren und seine Regierung neu zu besetzen. Der Marker bezeichnet die politische Austrittsentscheidung, nicht eine Parlamentswahl.",
+    "source": {
+      "title": "RTVE: Junts decideix sortir del Govern",
+      "url": "https://www.rtve.es/catalunya/noticies/20221007/junts-decideix-sortir-del-govern/2405455.shtml"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-sexual-freedom-law-effective-2022",
+    "date": "2022-10-07",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Gesetz zur sexuellen Selbstbestimmung tritt in Kraft",
+    "description": "Die umfassende Reform zum Schutz der sexuellen Selbstbestimmung wird wirksam. Sie stellt fehlende Zustimmung in den Mittelpunkt des Sexualstrafrechts und umfasst auch Präventions- und Schutzmaßnahmen. Der Marker bezeichnet das Inkrafttreten der ursprünglichen Regelung; die spätere Änderung der Strafrahmen folgt 2023.",
+    "source": {
+      "title": "BOE: Ley Orgánica 10/2022, de garantía integral de la libertad sexual",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-14630"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-democratic-memory-law-effective-2022",
+    "date": "2022-10-21",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Gesetz zur demokratischen Erinnerung tritt in Kraft",
+    "description": "Das neue Gesetz zur demokratischen Erinnerung wird wirksam. Es erweitert den gesetzlichen Rahmen zur Anerkennung und Aufarbeitung der Opfer des Bürgerkriegs und der Diktatur, einschließlich der Suche nach Verschwundenen. Der Marker bezeichnet das Inkrafttreten nach der Veröffentlichung vom 20. Oktober.",
+    "source": {
+      "title": "BOE: Ley 20/2022, de Memoria Democrática",
+      "url": "https://www.boe.es/eli/es/l/2022/10/19/20/con/20221020"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "hb-climate-strategy-agreement-2022",
+    "date": "2022-11-08",
+    "country": "de",
+    "regions": [
+      "bremen"
+    ],
+    "category": "decision",
+    "title": "Bremer Senat legt Klimaschutzstrategie fest",
+    "description": "Der Senat verständigt sich auf prioritäre Schritte für Netto-Null-CO₂-Emissionen bis 2038, darunter Wärmeversorgung, Verkehr und die Transformation von Industrie. Der Marker bezeichnet die politische Verständigung, nicht ein bereits erreichtes Klimaziel.",
+    "source": {
+      "title": "Senat Bremen: Verständigung zur Klimaschutzstrategie",
+      "url": "https://www.senatspressestelle.bremen.de/pressemitteilungen/verstaendigung-zur-klimaschutzstrategie-des-senats-409472"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "ni-weil-red-green-government-2022",
+    "date": "2022-11-08",
+    "country": "de",
+    "regions": [
+      "niedersachsen"
+    ],
+    "category": "government",
+    "title": "Weils dritte Landesregierung beginnt",
+    "description": "Stephan Weil wird erneut Ministerpräsident. Er beruft das Kabinett mit Mitgliedern von SPD und Grünen; Kultusministerin Julia Willie Hamburg wird seine Stellvertreterin.",
+    "source": {
+      "title": "Staatskanzlei Niedersachsen: Landtag wählt Stephan Weil",
+      "url": "https://www.stk.niedersachsen.de/startseite/presseinformationen/niedersachsischer-landtag-wahlt-stephan-weil-zum-ministerprasidenten-216926.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-citizen-benefit-compromise-2022",
+    "date": "2022-11-25",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag bestätigt Bürgergeld-Kompromiss",
+    "description": "Der Bundestag stimmt dem Vermittlungsvorschlag zum Bürgergeld zu. Nach dem vorherigen Nein des Bundesrates wird die Reform unter anderem bei Karenzzeit und Schonvermögen verändert; die Einführung ist für Januar 2023 vorgesehen.",
+    "source": {
+      "title": "Deutscher Bundestag: Beschlussempfehlung Vermittlungsausschuss – Bürgergeld",
+      "url": "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung?id=822"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-leopard-delivery-announcement-2023",
+    "date": "2023-01-25",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Deutschland sagt Leopard-2-Panzer für die Ukraine zu",
+    "description": "Die Bundesregierung kündigt die Lieferung von Leopard-2-Kampfpanzern aus Bundeswehrbeständen an und genehmigt Partnerstaaten die Weitergabe eigener Panzer. Der Marker zeigt die Lieferentscheidung, nicht die spätere Ankunft in der Ukraine.",
+    "source": {
+      "title": "Bundesregierung: Deutschland sagt Leopard-2-Panzer für die Ukraine zu",
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/bundesregierung-kuendigt-lieferung-von-leopard-2-panzern-an-die-ukraine-an-2160236.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bw-climate-law-2023",
+    "date": "2023-02-01",
+    "country": "de",
+    "regions": [
+      "baden-wuerttemberg"
+    ],
+    "category": "decision",
+    "title": "Baden-Württemberg beschließt erweitertes Klimagesetz",
+    "description": "Der Landtag verabschiedet das Klimaschutz- und Klimawandelanpassungsgesetz. Es verbindet Klimaschutzziele mit Anpassung an Klimafolgen und setzt unter anderem auf kommunale Planung und Photovoltaikpflichten.",
+    "source": {
+      "title": "Umweltministerium Baden-Württemberg: Gesetzesbeschluss am 1. Februar 2023",
+      "url": "https://um.baden-wuerttemberg.de/de/klima-energie/klimaschutz/klimagesetz-baden-wuerttemberg"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-trans-lgbti-law-effective-2023",
+    "date": "2023-03-02",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Gesetz zu Rechten von trans Personen und LGTBI tritt in Kraft",
+    "description": "Das Gesetz zur Gleichstellung von trans Personen und zur Garantie der Rechte von LGTBI-Personen wird wirksam. Es regelt unter anderem die Änderung des Geschlechtseintrags und Maßnahmen gegen Diskriminierung. Der Marker bezeichnet das Inkrafttreten, nicht das Ausfertigungsdatum vom 28. Februar.",
+    "source": {
+      "title": "BOE: Ley 4/2023, igualdad de las personas trans y derechos LGTBI",
+      "url": "https://boe.es/buscar/act.php?id=BOE-A-2023-5366"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-nuclear-exit-completed-2023",
+    "date": "2023-04-15",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Die letzten deutschen Kernkraftwerke beenden den Leistungsbetrieb",
+    "description": "Die Anlagen Emsland, Isar 2 und Neckarwestheim 2 stellen den Leistungsbetrieb ein. Damit wird der gesetzliche Atomausstieg nach dem zusätzlichen Streckbetrieb vollzogen. Die Ministeriumsmitteilung erscheint bereits am 13. April.",
+    "source": {
+      "title": "Bundeswirtschaftsministerium: Deutschland beendet das Zeitalter der Atomkraft",
+      "url": "https://www.bundeswirtschaftsministerium.de/Redaktion/DE/Pressemitteilungen/2023/04/20230413-deutschland-beendet-das-zeitalter-der-atomkraft.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "berlin-wegner-government-2023",
     "date": "2023-04-27",
     "country": "de",
@@ -226,6 +1581,38 @@
       "url": "https://www.berlin.de/rbmskzl/aktuelles/pressemitteilungen/2023/pressemitteilung.1318344.php"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-sexual-penalties-revision-effective-2023",
+    "date": "2023-04-29",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Änderung der Sexualstrafrechtsreform tritt in Kraft",
+    "description": "Die Änderung des Sexualstrafrechts wird wirksam. Sie passt nach der Reform von 2022 die Strafrahmen insbesondere bei Gewalt oder Einschüchterung an und behält die zentrale Bedeutung der Zustimmung bei. Der Marker bezeichnet die neue gesetzliche Regelung, keine nachträgliche Aufhebung bereits rechtskräftiger Strafmilderungen.",
+    "source": {
+      "title": "BOE: Ley Orgánica 4/2023, modificación de los delitos contra la libertad sexual",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-10213"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-housing-law-effective-2023",
+    "date": "2023-05-26",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Nationales Wohnungsgesetz tritt in Kraft",
+    "description": "Das Gesetz über das Recht auf Wohnraum wird wirksam. Es schafft unter anderem einen Rahmen für angespannte Wohnungsmärkte und Mietregulierung sowie Maßnahmen für bezahlbaren Wohnraum. Die konkrete Anwendung in den autonomen Gemeinschaften folgt gesonderten Entscheidungen.",
+    "source": {
+      "title": "BOE: Ley 12/2023, por el derecho a la vivienda",
+      "url": "https://www.boe.es/buscar/act.php?id=BOE-A-2023-12203&lang=es&p=20250123&tn=0"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "bcn-collboni-government-2023",
@@ -244,6 +1631,22 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "de-skilled-immigration-reform-2023",
+    "date": "2023-06-23",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag erweitert Fachkräfteeinwanderung",
+    "description": "Der Bundestag beschließt die Weiterentwicklung des Fachkräfteeinwanderungsrechts. Die Reform erweitert Zugangswege und führt eine Chancenkarte mit Punktesystem ein; die einzelnen Regeln treten später gestaffelt in Kraft.",
+    "source": {
+      "title": "Deutscher Bundestag: Fachkräfteeinwanderung, Abstimmung vom 23. Juni 2023",
+      "url": "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung/?id=858"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "de-building-energy-law-2023",
     "date": "2023-09-08",
     "country": "de",
@@ -258,6 +1661,42 @@
       "url": "https://www.bundestag.de/dokumente/textarchiv/2023/kw36-de-gebaudeenergiegesetz-957824"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "sh-baltic-storm-flood-2023",
+    "date": "2023-10-20",
+    "country": "de",
+    "regions": [
+      "schleswig-holstein"
+    ],
+    "category": "crisis",
+    "title": "Schwere Ostsee-Sturmflut trifft Schleswig-Holstein",
+    "description": "Die Sturmflut in der Nacht vom 20. auf den 21. Oktober verursacht schwere Schäden an Teilen der Ostseeküste. Der Landtag befasst sich anschließend in einer Sondersitzung mit Krisenbewältigung, Wiederaufbau und Küstenschutz.",
+    "source": {
+      "title": "Landtag Schleswig-Holstein: Ostsee-Sturmflut und Sondersitzung",
+      "url": "https://www.landtag.ltsh.de/nachrichten/23_11_01_sturmflut_regierungserklaerung_sondersitzung/"
+    },
+    "verifiedAt": "2026-10-13",
+    "endDate": "2023-10-21"
+  },
+  {
+    "id": "de-habeck-antisemitism-address-2023",
+    "date": "2023-11-01",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Habeck spricht in Videobotschaft gegen Antisemitismus",
+    "description": "Nach dem Hamas-Terrorangriff auf Israel spricht Habeck über antisemitische Bedrohungen, Deutschlands Verantwortung und den Schutz jüdischen Lebens. Das Bulletin erscheint am 2. November, die Videobotschaft am Vortag.",
+    "source": {
+      "title": "Bundesregierung: Habeck spricht in Videobotschaft gegen Antisemitismus",
+      "url": "https://www.bundesregierung.de/breg-de/service/newsletter-und-abos/bulletin/rede-des-bundesministers-fuer-wirtschaft-und-klimaschutz-dr-robert-habeck--2248442"
+    },
+    "verifiedAt": "2026-10-13",
+    "quote": "Antisemitismus ist in keiner Gestalt zu tolerieren – in keiner.",
+    "speaker": "Robert Habeck, Bundeswirtschaftsminister und Vizekanzler",
+    "occasion": "Videobotschaft zu Israel und Antisemitismus am 1. November 2023"
   },
   {
     "id": "de-supplementary-budget-judgment-2023",
@@ -292,6 +1731,54 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "hh-climate-strengthening-law-2023",
+    "date": "2023-12-06",
+    "country": "de",
+    "regions": [
+      "hamburg"
+    ],
+    "category": "decision",
+    "title": "Hamburg beschließt Klimaschutzstärkungsgesetz",
+    "description": "Die Bürgerschaft verabschiedet die zweite Novelle des Hamburgischen Klimaschutzgesetzes. Sie erweitert unter anderem Vorgaben für Photovoltaik und sieht für Flachdächer eine spätere Solargründach-Pflicht vor. Der Marker bezeichnet den Gesetzesbeschluss; die für 2027 vorgesehene Pflicht ist zu diesem Zeitpunkt noch nicht wirksam.",
+    "source": {
+      "url": "https://www.hamburg.de/politik-und-verwaltung/behoerden/bukea/faq-pv-pflicht-in-hamburg-989204",
+      "title": "Umweltbehörde Hamburg: amtliche Erläuterung zum Beschluss vom 6. Dezember 2023"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "he-cdu-spd-government-2024",
+    "date": "2024-01-18",
+    "country": "de",
+    "regions": [
+      "hessen"
+    ],
+    "category": "government",
+    "title": "CDU und SPD bilden neue hessische Landesregierung",
+    "description": "Boris Rhein wird erneut vereidigt und sein neues Kabinett tritt an. Das Regierungsbündnis besteht nun aus CDU und SPD; Kaweh Mansoori wird stellvertretender Regierungschef.",
+    "source": {
+      "title": "Hessische Staatskanzlei: Vereidigung des Regierungschefs und des Kabinetts am 18. Januar 2024",
+      "url": "https://hessen.de/bildergalerien/konstituierende-sitzung-des-landtags-und-wahl-des-ministerpraesidenten"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-citizenship-reform-2024",
+    "date": "2024-01-19",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag reformiert Staatsangehörigkeitsrecht",
+    "description": "Der Bundestag beschließt eine Reform mit grundsätzlich kürzeren Aufenthaltsfristen für Einbürgerungen und erleichterter Mehrstaatigkeit. Der Eintrag bezeichnet die damalige Gesetzesentscheidung, nicht alle späteren Änderungen des Einbürgerungsrechts.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag erleichtert Zugang zur deutschen Staatsangehörigkeit",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2023/kw48-de-staatsangehoerigkeitsrecht-979630"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "cat-drought-emergency-2024",
     "date": "2024-02-01",
     "country": "es",
@@ -307,6 +1794,107 @@
       "url": "https://exteriors.gencat.cat/ca/ambits-dactuacio/afers_exteriors/delegacions_govern/regne_unit_i_irlanda/actualitat/20240201-emergencia-sequera"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-cannabis-law-2024",
+    "date": "2024-02-23",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Teillegalisierung von Cannabis",
+    "description": "Der Bundestag verabschiedet das Cannabisgesetz mit begrenztem Besitz und Eigenanbau für Erwachsene sowie Regeln für Anbauvereinigungen. Der Marker zeigt den Beschluss; die Umsetzung beginnt anschließend in mehreren Schritten.",
+    "source": {
+      "title": "Bundesgesundheitsministerium: Bundestag beschließt kontrollierte Abgabe von Cannabis zu Konsumzwecken",
+      "url": "https://www.bundesgesundheitsministerium.de/presse/pressemitteilungen/bt-beschliesst-kontrollierte-abgabe-von-cannabis-zu-konsumzwecken-pm-23-02-2024"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-rent-caps-first-phase-2024",
+    "date": "2024-03-16",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Mietpreisregulierung startet in 140 katalanischen Gemeinden",
+    "description": "Die erste Erklärung angespannter Wohnungsmärkte wird wirksam. Für 140 Gemeinden, darunter Barcelona, gelten damit die einschlägigen Regeln zur Begrenzung von Wohnungsmieten. Die Bekanntmachung im BOE erfolgte am 15. März; der Marker bezeichnet den Beginn ihrer Wirksamkeit.",
+    "source": {
+      "title": "Generalitat de Catalunya: Limitació del preu del lloguer, dates de les zones tensionades",
+      "url": "https://habitatge.gencat.cat/ca/ambits/preus-ingressos-i-zones/limit-preu-lloguer/preguntes-frequents-zmrt/"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-self-determination-law-2024",
+    "date": "2024-04-12",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Selbstbestimmungsgesetz",
+    "description": "Das Parlament beschließt vereinfachte Änderungen des Geschlechtseintrags und der Vornamen durch Erklärung beim Standesamt. Das Gesetz ersetzt das bisherige Verfahren nach dem Transsexuellengesetz; der Eintrag zeigt den Beschluss.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Selbstbestimmungsgesetz",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2024/kw15-de-geschlechtseintrag-997406"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-climate-law-cross-sector-2024",
+    "date": "2024-04-26",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag ändert Steuerung des Klimaschutzgesetzes",
+    "description": "Der Bundestag verabschiedet die zweite Änderung des Klimaschutzgesetzes. Bei zusätzlichen Maßnahmen soll künftig eine vorausschauende, sektorübergreifende Gesamtrechnung der Emissionen maßgeblich sein. Regierung und Opposition bewerten die Änderung unterschiedlich.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag ändert Steuerung des Klimaschutzgesetzes",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2024/kw17-de-klimaschutzgesetz-999794"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-sanchez-stays-declaration-2024",
+    "date": "2024-04-29",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Sánchez kündigt an, Regierungschef zu bleiben",
+    "description": "Nach fünf Tagen öffentlicher Reflexion über einen möglichen Rückzug erklärt Pedro Sánchez, die Regierung weiterführen zu wollen. Der Marker bezeichnet seine institutionelle Erklärung; Bewertungen des Umgangs mit seiner Familie bleiben als seine Position erkennbar.",
+    "source": {
+      "title": "La Moncloa: Declaración institucional del presidente del Gobierno",
+      "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/Paginas/2024/20240429-declaracion-institucional.aspx?mode=Light"
+    },
+    "verifiedAt": "2026-10-13",
+    "quote": "Asumo la decisión de continuar",
+    "speaker": "Pedro Sánchez",
+    "occasion": "Institutionelle Erklärung nach fünf Tagen Reflexion, La Moncloa",
+    "statementFormat": "quote"
+  },
+  {
+    "id": "es-palestine-recognition-2024",
+    "date": "2024-05-28",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Spanien erkennt den Staat Palästina an",
+    "description": "Der Ministerrat beschließt die offizielle Anerkennung Palästinas als Staat. Die Regierung begründet die Entscheidung mit der Unterstützung einer Zwei-Staaten-Lösung und der Suche nach Frieden. Der Marker bezeichnet die beschlossene Anerkennung, nicht die vorherige Ankündigung.",
+    "source": {
+      "title": "La Moncloa: El Gobierno aprueba el reconocimiento del Estado de Palestina",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/resumenes/paginas/2024/280524-rueda-de-prensa-ministros.aspx"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "es-amnesty-entry-2024",
@@ -341,6 +1929,22 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "rlp-schweitzer-government-2024",
+    "date": "2024-07-10",
+    "country": "de",
+    "regions": [
+      "rheinland-pfalz"
+    ],
+    "category": "government",
+    "title": "Schweitzer übernimmt Amt von Dreyer",
+    "description": "Alexander Schweitzer wird zum Ministerpräsidenten von Rheinland-Pfalz bestimmt und vereidigt. Er folgt Malu Dreyer nach. Die amtliche Rückschau wurde am Folgetag veröffentlicht; das Ereignis fand am 10. Juli statt.",
+    "source": {
+      "title": "Landesvertretung Rheinland-Pfalz: Amtswechsel am 10. Juli 2024",
+      "url": "https://landesvertretung.rlp.de/landesvertretung/pressemitteilungen/detail/alexander-schweitzer-ist-neuer-ministerpraesident-ruehrender-abschied-von-malu-dreyer-1"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "cat-illa-office-2024",
     "date": "2024-08-10",
     "country": "es",
@@ -356,6 +1960,39 @@
       "url": "https://govern.cat/govern/docs/2024/08/16/12/50/508e6858-2014-4bb9-a6f6-8abe25a70548.pdf"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "th-constitutional-opening-order-2024",
+    "date": "2024-09-27",
+    "country": "de",
+    "regions": [
+      "thueringen"
+    ],
+    "category": "decision",
+    "title": "Gericht klärt Ablauf der Thüringer Landtagskonstituierung",
+    "description": "Der Thüringer Verfassungsgerichtshof verpflichtet den Alterspräsidenten, über die vorläufige Tagesordnung abstimmen zu lassen. Die einstweilige Anordnung klärt parlamentarische Verfahrensrechte nach der unterbrochenen Sitzung vom Vortag; sie betrifft kein Landtagswahlergebnis.",
+    "source": {
+      "title": "Thüringer Verfassungsgerichtshof: Medieninformation 13/2024, VerfGH 36/24",
+      "url": "https://verfassungsgerichtshof.thueringen.de/aktuelles/presseinformationen/detailseiten?cHash=37546a58b595e70a56ca05176ae85ce5&tx_news_pi1%5Baction%5D=detail&tx_news_pi1%5Bcontroller%5D=News&tx_news_pi1%5Bnews%5D=4820"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-rent-caps-expansion-2024",
+    "date": "2024-10-10",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Mietpreisregulierung wird auf weitere 131 Gemeinden ausgeweitet",
+    "description": "Die zweite Gruppe von 131 Gemeinden wird als angespannter Wohnungsmarkt wirksam ausgewiesen. Damit umfasst die katalanische Regelung insgesamt 271 Gemeinden. Barcelona gehört bereits zur ersten Gruppe; diese Ausweitung ist keine erstmalige Einführung der Regulierung in der Stadt.",
+    "source": {
+      "title": "Generalitat de Catalunya: Preguntes freqüents sobre zones de mercat residencial tensat",
+      "url": "https://habitatge.gencat.cat/ca/ambits/preus-ingressos-i-zones/limit-preu-lloguer/preguntes-frequents-zmrt/"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "es-dana-crisis-2024",
@@ -390,6 +2027,38 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "bcn-diagonal-tram-service-2024",
+    "date": "2024-11-10",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Straßenbahn auf der Diagonal fährt bis Verdaguer",
+    "description": "Die Verlängerung der T4 zwischen Glòries und Verdaguer nimmt den Fahrgastbetrieb auf. Sie ist die erste Etappe der Verbindung der Straßenbahnnetze über die Diagonal. Der ursprünglich für den 9. November geplante Beginn verschiebt sich wegen eines Streiks auf den 10. November.",
+    "source": {
+      "title": "RTVE: El tramvia fins a Verdaguer, el primer pas per unir la Diagonal",
+      "url": "https://www.rtve.es/catalunya/noticies/20241110/tramvia-inauguracio-barcelona-verdaguer-diagonal-transport-public-sostenibilitat/16324125.shtml"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bb-spd-bsw-government-2024",
+    "date": "2024-12-11",
+    "country": "de",
+    "regions": [
+      "brandenburg"
+    ],
+    "category": "government",
+    "title": "SPD und BSW bilden Brandenburger Landesregierung",
+    "description": "Dietmar Woidke wird im zweiten Wahlgang erneut Ministerpräsident und vereidigt. Die anschließend ernannten und vereidigten Kabinettsmitglieder gehören einer von SPD und BSW getragenen Regierung an.",
+    "source": {
+      "title": "Landtag Brandenburg: Woidke erneut bestimmt, neue Regierung vereidigt",
+      "url": "https://www.landtag.brandenburg.de/de/aktuelles/neuigkeiten/aktuelle_meldungen/landtag_waehlt_dr._woidke_erneut_zum_ministerpraesidenten/41539"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "th-voigt-government-2024",
     "date": "2024-12-12",
     "country": "de",
@@ -404,6 +2073,103 @@
       "url": "https://www.thueringer-landtag.de/landtag/aufgaben-des-landtags/wahlen/"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-scholz-confidence-loss-2024",
+    "date": "2024-12-16",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "government",
+    "title": "Scholz verliert Vertrauensabstimmung",
+    "description": "Der Bundestag spricht Bundeskanzler Scholz nicht das Vertrauen aus. Er bleibt zunächst im Amt; die Abstimmung schafft die verfassungsrechtliche Voraussetzung für einen möglichen Antrag auf Auflösung des Parlaments. Der Marker zeigt keinen Wahltermin.",
+    "source": {
+      "title": "Deutscher Bundestag: Scholz verliert Vertrauensabstimmung",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2024/kw47-vertrauensfrage-1030198"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "sn-kretschmer-minority-government-2024",
+    "date": "2024-12-18",
+    "country": "de",
+    "regions": [
+      "sachsen"
+    ],
+    "category": "government",
+    "title": "Kretschmer erhält neuen Regierungsauftrag",
+    "description": "Michael Kretschmer wird im zweiten Wahlgang erneut Ministerpräsident und vereidigt. Die neue Regierung wird als Minderheitsregierung aus CDU und SPD geführt; ihre weiteren Mitglieder werden am folgenden Tag vereidigt.",
+    "source": {
+      "title": "Sächsischer Landtag: Dezemberplenum 2024",
+      "url": "https://www.landtag.sachsen.de/de/aktuelles/plenarsitzungen/plenumsfolgeseite-30706-30706.cshtml"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-migration-motion-2025",
+    "date": "2025-01-29",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Unionsantrag zur Migration erhält Mehrheit mit AfD-Stimmen",
+    "description": "Ein Entschließungsantrag der CDU/CSU zur Verschärfung der Migrationspolitik erhält im Bundestag eine Mehrheit unter Beteiligung der AfD. Die Entschließung ist rechtlich nicht bindend und löst eine Kontroverse über parlamentarische Zusammenarbeit aus.",
+    "source": {
+      "title": "Deutscher Bundestag: Unionsantrag zur Migration erhält Mehrheit mit AfD-Stimmen",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw05-de-regierungserklaerung-1041594"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-rent-caps-enforcement-effective-2025",
+    "date": "2025-01-30",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Katalonien verschärft Durchsetzung der Mietpreisgrenzen",
+    "description": "Das Dekret gegen Verstöße und Umgehung der Mietpreisregulierung wird wirksam. Es ergänzt Informationspflichten und Sanktionen, unter anderem gegen das missbräuchliche Ausweichen auf befristete Mietverträge für tatsächlich dauerhaftes Wohnen. Beschlossen wird es am 28. Januar und im DOGC am 29. Januar veröffentlicht.",
+    "source": {
+      "title": "BOE: Decreto-ley 1/2025, medidas urgentes de contención de rentas",
+      "url": "https://www.boe.es/buscar/doc.php?id=BOE-A-2025-5051&lang=es"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-influx-limitation-rejected-2025",
+    "date": "2025-01-31",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag lehnt Zustrombegrenzungsgesetz ab",
+    "description": "Der Gesetzentwurf der CDU/CSU zur Verschärfung von Migrationsregeln scheitert im Bundestag. Anders als die Entschließung vom 29. Januar hätte dieser Entwurf verbindliche Rechtsänderungen vorgenommen.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag lehnt Zustrombegrenzungsgesetz ab",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2024/kw42-de-zustrombegrenzungsgesetz-1023788"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-debt-brake-infrastructure-2025",
+    "date": "2025-03-18",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Schuldenreform und Infrastruktur-Sondervermögen",
+    "description": "Das Parlament beschließt eine Grundgesetzänderung mit Ausnahmen von der Schuldenbremse für bestimmte Sicherheitsausgaben sowie einem Sondervermögen bis zu 500 Milliarden Euro für Infrastruktur und Klimaneutralität. Das Markerdatum bezeichnet den Bundestagsbeschluss.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Schuldenreform und Infrastruktur-Sondervermögen",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw12-de-sondersitzung-1056916"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "es-iberian-blackout-2025",
@@ -438,6 +2204,186 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "hh-tschentscher-third-government-2025",
+    "date": "2025-05-07",
+    "country": "de",
+    "regions": [
+      "hamburg"
+    ],
+    "category": "government",
+    "title": "Tschentscher und neuer Hamburger Senat vereidigt",
+    "description": "Peter Tschentscher wird erneut Erster Bürgermeister und vereidigt. Er beruft anschließend die Mitglieder des neuen Senats aus SPD und Grünen; auch sie werden durch die Bürgerschaft bestätigt und vereidigt.",
+    "source": {
+      "url": "https://www.hamburg.de/politik-und-verwaltung/aktuelles/peter-tschentscher-bleibt-erster-buergermeister-1055528",
+      "title": "Senatskanzlei Hamburg: Bürgerschaftssitzung und Regierungsbildung am 7. Mai 2025"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-merz-first-policy-statement-2025",
+    "date": "2025-05-14",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Merz stellt Prioritäten seiner Bundesregierung vor",
+    "description": "In seiner ersten Regierungserklärung beschreibt Merz Sicherheit, wirtschaftliche Erneuerung und die Verteidigung der Freiheit als Leitlinien. Der Eintrag dokumentiert politische Zielsetzungen und behauptet noch keine Umsetzung der angekündigten Maßnahmen.",
+    "source": {
+      "title": "Bundesregierung: Merz stellt Prioritäten seiner Bundesregierung vor",
+      "url": "https://www.bundesregierung.de/breg-de/suche/regierungserklaerung-von-bundeskanzler-friedrich-merz-2347888"
+    },
+    "verifiedAt": "2026-10-13",
+    "quote": "Wir wollen regieren, um unser Land aus eigener Kraft heraus voranzubringen.",
+    "speaker": "Friedrich Merz, Bundeskanzler",
+    "occasion": "Erste Regierungserklärung der neuen Bundesregierung vor dem Bundestag am 14. Mai 2025"
+  },
+  {
+    "id": "bcn-casa-orsola-acquisition-2025",
+    "date": "2025-05-20",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Barcelona meldet formalisierten Kauf der Casa Orsola",
+    "description": "Die Stadt berichtet über die genehmigte Zusammenarbeit mit der Stiftung Hàbitat3 zur Formalisierung des Kaufs der Casa Orsola. Das Wohnhaus soll sozial verwaltet werden. Die politische Einigung war bereits im Februar angekündigt worden; der Marker bezeichnet die nun gemeldete Formalisierung.",
+    "source": {
+      "title": "Ajuntament de Barcelona: Formalitzada la compra de la Casa Orsola",
+      "url": "https://www.habitatge.barcelona/ca/noticia/formalitzada-la-compra-de-la-casa-orsola-per-destinar-la-a-lloguer-assequible_1517571"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "ni-lies-government-2025",
+    "date": "2025-05-20",
+    "country": "de",
+    "regions": [
+      "niedersachsen"
+    ],
+    "category": "government",
+    "title": "Lies übernimmt Regierungsamt in Niedersachsen",
+    "description": "Olaf Lies wird Ministerpräsident von Niedersachsen. Die amtliche Amtschronik datiert den Beginn seiner Amtszeit auf den 20. Mai 2025.",
+    "source": {
+      "title": "Land Niedersachsen: Ministerpräsident Olaf Lies und Datum des Amtsantritts",
+      "url": "https://www.niedersachsen.de/kinder/demokratie_und_staat/landesregierung/ministerprasident-olaf-lies-185980.html"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-airport-expansion-proposal-2025",
+    "date": "2025-06-10",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Generalitat und Zentralregierung stellen Flughafen-Ausbauvorschlag vor",
+    "description": "Die Generalitat kündigt die Einigung mit dem Verkehrsministerium über einen Vorschlag zur Erweiterung des Flughafens Barcelona-El Prat an. Weitere Planung und Umweltprüfung sind vorgesehen. Der Marker bezeichnet den vereinbarten Vorschlag, weder einen Baubeginn noch eine abgeschlossene Genehmigung.",
+    "source": {
+      "title": "Govern de Catalunya: Rückblick auf die am 10. Juni angekündigte Ausbauvereinbarung",
+      "url": "https://govern.cat/salapremsa/notes-premsa/723382/el-govern-licita-un-servei-d-assistencia-ambiental-per-a-l-ampliacio-de-l-aeroport-del-prat"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-cerdan-resignation-crisis-2025",
+    "date": "2025-06-12",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Cerdán tritt nach Korruptionsverdacht zurück",
+    "description": "PSOE-Organisationssekretär Santos Cerdán legt nach einem Ermittlungsbericht seine Ämter nieder. Pedro Sánchez entschuldigt sich öffentlich für das entgegengebrachte Vertrauen und kündigt eine externe Prüfung der Parteifinanzen an. Der Marker beschreibt Rücktritt und politische Reaktion auf einen Verdacht, keine rechtskräftige Verurteilung.",
+    "source": {
+      "title": "RTVE: Sánchez pide perdón tras el informe de la UCO sobre Cerdán",
+      "url": "https://www.rtve.es/noticias/20250612/sanchez-disculpas-psoe-santos-cerdan-informe/16622564.shtml"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-investment-tax-programme-2025",
+    "date": "2025-06-26",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt steuerliches Investitionsprogramm",
+    "description": "Das Parlament beschließt verbesserte Abschreibungsmöglichkeiten und steuerliche Änderungen für Unternehmen. Der sogenannte Investitions-Booster soll private Investitionen unterstützen; eine tatsächliche Wachstumswirkung wird mit dem Eintrag nicht behauptet.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt steuerliches Investitionsprogramm",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw26-pa-finanzen-investitionsprogramm-1093498"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-amnesty-constitutional-ruling-2025",
+    "date": "2025-06-26",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Verfassungsgericht bestätigt Amnestiegesetz mit Einschränkungen",
+    "description": "Das spanische Verfassungsgericht bestätigt das Amnestiegesetz grundsätzlich und beanstandet drei Teilaspekte. Der Marker bezeichnet diese verfassungsgerichtliche Entscheidung. Er sagt nicht aus, dass damit sämtliche strafgerichtlichen Fragen oder alle individuellen Amnestieanträge erledigt wären.",
+    "source": {
+      "title": "Tribunal Constitucional: Nota informativa 61/2025 sobre la ley de amnistía",
+      "url": "https://www.tribunalconstitucional.es/NotasDePrensaDocumentos/NP_2025_061/NOTA%20INFORMATIVA%20N%C2%BA%2061-2025.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-family-reunification-suspension-2025",
+    "date": "2025-06-27",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Familiennachzug zu subsidiär Schutzberechtigten ausgesetzt",
+    "description": "Der Bundestag beschließt die zweijährige Aussetzung des regulären Familiennachzugs zu subsidiär Schutzberechtigten. Härtefallregelungen bleiben möglich. Der Eintrag bezieht sich auf diese Schutzgruppe, nicht auf sämtliche Formen des Familiennachzugs.",
+    "source": {
+      "title": "Deutscher Bundestag: Familiennachzug zu subsidiär Schutzberechtigten ausgesetzt",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw26-pa-inneres-familiennachzug-1086756"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bcn-cruise-terminals-protocol-2025",
+    "date": "2025-07-17",
+    "country": "es",
+    "regions": [
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Barcelona und Hafen vereinbaren weniger Kreuzfahrtterminals",
+    "description": "Stadt und Hafen unterzeichnen ein Protokoll zur Neuordnung der Kreuzfahrtinfrastruktur. Es sieht eine schrittweise Verringerung von sieben auf fünf Terminals und Maßnahmen für die Mobilität vor. Der Marker bezeichnet die Vereinbarung, nicht bereits vollzogene Terminalschließungen.",
+    "source": {
+      "title": "Port de Barcelona: Protocolo para reducir terminales de cruceros y mejorar la movilidad",
+      "url": "https://www.portdebarcelona.cat/es/comunicacion/noticias/ayuntamiento-y-port-de-barcelona-firman-un-protocolo-para-reducir-las-terminales-de-cruceros-y-mejorar-la-movilidad"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "es-junts-psoe-break-2025",
+    "date": "2025-10-30",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "crisis",
+    "title": "Junts-Mitglieder bestätigen Bruch der Vereinbarung mit der PSOE",
+    "description": "Die Mitglieder von Junts bestätigen die Entscheidung der Parteiführung, die Vereinbarung mit der PSOE zu beenden. Die Führung hatte den Schritt am 27. Oktober angekündigt. Der Marker bezeichnet die endgültige parteiinterne Bestätigung und damit eine Veränderung der parlamentarischen Zusammenarbeit, keine öffentliche Wahl.",
+    "source": {
+      "title": "RTVE: La militancia de Junts avala romper con el PSOE",
+      "url": "https://www.rtve.es/noticias/20251030/militancia-junts-avala-a-cupula-rompe-con-psoe-con-8688-votos/16794161.shtml"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "de-new-military-service-2025",
     "date": "2025-12-05",
     "country": "de",
@@ -452,6 +2398,22 @@
       "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-wehrdienst-1128220"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "de-pension-package-2025",
+    "date": "2025-12-05",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Rentenpaket",
+    "description": "Das Parlament beschließt die Verlängerung der Haltelinie des Rentenniveaus und die Erweiterung der Anerkennung von Kindererziehungszeiten. Der Marker zeigt den Gesetzesbeschluss, nicht den Zeitpunkt sämtlicher Leistungsänderungen.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Rentenpaket",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2025/kw49-de-rentenpaket-1128720"
+    },
+    "verifiedAt": "2026-10-13"
   },
   {
     "id": "es-regularization-process-2026",
@@ -470,6 +2432,186 @@
     "verifiedAt": "2026-10-12"
   },
   {
+    "id": "sa-schulze-government-2026",
+    "date": "2026-01-28",
+    "country": "de",
+    "regions": [
+      "sachsen-anhalt"
+    ],
+    "category": "government",
+    "title": "Schulze übernimmt Regierungsamt in Sachsen-Anhalt",
+    "description": "Sven Schulze wird vom Landtag zum Ministerpräsidenten bestimmt und vereidigt. Er übernimmt das Amt nach dem Rücktritt Reiner Haseloffs.",
+    "source": {
+      "title": "Landtag Sachsen-Anhalt: Sven Schulze ist neuer Ministerpräsident",
+      "url": "https://www.landtag.sachsen-anhalt.de/artikel/sven-schulze-neuer-ministerpraesident"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "cat-tourist-tax-law-approval-2026",
+    "date": "2026-02-25",
+    "country": "es",
+    "regions": [
+      "katalonien",
+      "barcelona"
+    ],
+    "category": "decision",
+    "title": "Parlament beschließt höhere Tourismusabgabe",
+    "description": "Das katalanische Parlament verabschiedet die Erhöhung der Abgabe auf touristische Übernachtungen. Vorgesehen sind höhere Tarife ab April und die Verwendung eines Teils der Einnahmen für Wohnungspolitik. Der Marker bezeichnet den Parlamentsbeschluss; er verwechselt diesen nicht mit dem späteren Tarifbeginn.",
+    "source": {
+      "title": "Parlament de Catalunya: El Parlament aprova la llei que incrementa la taxa turística",
+      "url": "https://www.parlament.cat/web/actualitat/noticies/index.html?p_id=342723841"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-federal-tariff-compliance-2026",
+    "date": "2026-02-26",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Tariftreue bei Bundesaufträgen",
+    "description": "Der Bundestag beschließt tarifvertragliche Arbeitsbedingungen bei bestimmten öffentlichen Aufträgen des Bundes. Schwellenwerte und Ausnahmen begrenzen den Anwendungsbereich; der Marker bezeichnet den Parlamentsbeschluss.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Tariftreue bei Bundesaufträgen",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2026/kw09-de-tariftreuegesetz-1149750"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-basic-security-reform-2026",
+    "date": "2026-03-05",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Umbau des Bürgergeldes",
+    "description": "Das Parlament beschließt die Umgestaltung des Bürgergeldes zu einer neuen Grundsicherung. Die Reform verändert unter anderem Mitwirkungspflichten und Leistungsminderungen; der Eintrag zeigt den Beschluss, nicht das spätere Inkrafttreten.",
+    "source": {
+      "title": "Deutscher Bundestag: Bundestag beschließt Umbau des Bürgergeldes",
+      "url": "https://www.bundestag.de/dokumente/textarchiv/2026/kw10-de-grundsicherung-1150460"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bb-cdu-spd-government-2026",
+    "date": "2026-03-18",
+    "country": "de",
+    "regions": [
+      "brandenburg"
+    ],
+    "category": "government",
+    "title": "Neue SPD-CDU-Regierung in Brandenburg tritt an",
+    "description": "Dietmar Woidke ernennt die Mitglieder seines neuen Kabinetts. Die Regierungskoalition besteht nun aus SPD und CDU; die amtliche Chronik datiert den Beginn des Kabinetts Woidke V auf den 18. März.",
+    "source": {
+      "title": "Staatskanzlei Brandenburg: Woidke zur Regierungsbildung am 18. März 2026",
+      "url": "https://www.brandenburg.de/sixcms/detail.php?id=230848"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-merz-iran-europe-statement-2026",
+    "date": "2026-03-18",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Merz lehnt deutsche Beteiligung an Iran-Operationen ab",
+    "description": "In seiner Regierungserklärung zum Europäischen Rat lehnt Merz eine militärische Beteiligung Deutschlands an den Operationen der USA und Israels gegen Iran ab. Daneben fordert er eine stärkere europäische Wettbewerbsfähigkeit. Die Position wird sachlich zusammengefasst.",
+    "source": {
+      "title": "Bundesregierung: Merz lehnt deutsche Beteiligung an Iran-Operationen ab",
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/regierungserklaerung-bk-vor-er-2413260"
+    },
+    "verifiedAt": "2026-10-13",
+    "statementFormat": "summary",
+    "speaker": "Friedrich Merz, Bundeskanzler",
+    "occasion": "Regierungserklärung zum Europäischen Rat am 18. März 2026 im Bundestag"
+  },
+  {
+    "id": "es-regularization-decree-approval-2026",
+    "date": "2026-04-14",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Regierung verabschiedet Dekret zur außerordentlichen Regularisierung",
+    "description": "Der Ministerrat verabschiedet das Dekret für die außerordentliche Regularisierung bereits in Spanien lebender Menschen ohne geregelten Aufenthaltsstatus. Dies ist der abschließende Normbeschluss nach dem im Januar eingeleiteten Verfahren. Die Regierung nennt den 16. April als Beginn der Antragstellung; der Marker bezeichnet die Verabschiedung am 14. April.",
+    "source": {
+      "title": "La Moncloa: El Gobierno aprueba la regularización extraordinaria de migrantes",
+      "url": "https://www.lamoncloa.gob.es/consejodeministros/resumenes/Paginas/2026/140426-rueda-prensa-ministros.aspx"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "bw-oezdemir-government-2026",
+    "date": "2026-05-13",
+    "country": "de",
+    "regions": [
+      "baden-wuerttemberg"
+    ],
+    "category": "government",
+    "title": "Özdemir übernimmt Regierungsamt in Baden-Württemberg",
+    "description": "Cem Özdemir wird zum Ministerpräsidenten bestimmt und vereidigt. Der Beschlussüberblick des Landtags dokumentiert beide Schritte am 13. Mai.",
+    "source": {
+      "title": "Landtag Baden-Württemberg: Beschlüsse der 2. Plenarsitzung am 13. Mai 2026",
+      "url": "https://www.landtag-bw.de/resource/blob/634110/d324a5648851a83ea0acad3dc34ed970/2026-05-13_02_Plenarsitzung.pdf"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "rlp-schnieder-government-2026",
+    "date": "2026-05-18",
+    "country": "de",
+    "regions": [
+      "rheinland-pfalz"
+    ],
+    "category": "government",
+    "title": "Schnieder übernimmt Regierungsamt in Rheinland-Pfalz",
+    "description": "Gordon Schnieder wird Ministerpräsident von Rheinland-Pfalz und leistet seinen Amtseid. CDU und SPD tragen die neue Landesregierung. Die Quelle enthält seine Antrittsrede und die Ernennungen desselben Tages.",
+    "source": {
+      "title": "Staatskanzlei Rheinland-Pfalz: Antrittsrede und Ernennungen am 18. Mai 2026",
+      "url": "https://www.rlp.de/service/pressemitteilungen/detail/ministerpraesident-gordon-schnieder-ein-rheinland-pfalz-auf-das-wir-gemeinsam-stolz-sein-koennen-1"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-health-insurance-finance-2026",
+    "date": "2026-07-10",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Bundestag beschließt Finanzreform der gesetzlichen Krankenversicherung",
+    "description": "Nach kontroversen Beratungen beschließt der Bundestag Änderungen zur Stabilisierung der Beiträge in der gesetzlichen Krankenversicherung. Sie sollen deren Finanzierung ab 2027 verbessern. Der Marker bezeichnet den Gesetzesbeschluss und behauptet keinen bereits erreichten Finanzierungserfolg.",
+    "source": {
+      "title": "Deutscher Bundestag: Finanzreform der gesetzlichen Krankenversicherung, Debatte und Abstimmungen vom 10. Juli 2026",
+      "url": "https://www.bundestag.de/parlament/plenum/abstimmung/abstimmung/?id=1015"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
+    "id": "de-grid-fee-subsidy-cabinet-2026",
+    "date": "2026-09-03",
+    "country": "de",
+    "regions": [
+      "all"
+    ],
+    "category": "decision",
+    "title": "Kabinett plant weitere Zuschüsse zu Strom-Netzentgelten",
+    "description": "Das Kabinett beschließt Regelungen für einen jährlichen Bundeszuschuss zu den Übertragungsnetzentgelten in den Jahren 2027 bis 2029. Vorgesehen sind jährlich 5,525 Milliarden Euro. Dies ist ein Kabinettsbeschluss über künftige Entlastungen.",
+    "source": {
+      "title": "Bundesregierung: Kabinett plant weitere Zuschüsse zu Strom-Netzentgelten",
+      "url": "https://www.bundesregierung.de/breg-de/aktuelles/niedrigere-netzentgelte-2382396"
+    },
+    "verifiedAt": "2026-10-13"
+  },
+  {
     "id": "de-fuel-relief-agreement-2026",
     "date": "2026-09-18",
     "country": "de",
@@ -484,5 +2626,24 @@
       "url": "https://www.bundesregierung.de/breg-de/aktuelles/bund-und-laender-beschliessen-spritpreis-entlastungspaket-2453198"
     },
     "verifiedAt": "2026-10-12"
+  },
+  {
+    "id": "es-housing-decrees-announcement-2026",
+    "date": "2026-10-06",
+    "country": "es",
+    "regions": [
+      "all"
+    ],
+    "category": "statement",
+    "title": "Sánchez erläutert neue Miet- und Wohnungsmaßnahmen",
+    "description": "Pedro Sánchez erläutert zwei beschlossene Dekrete zu Wohnraum und Mietverträgen, darunter vorgeschlagene Verlängerungsmechanismen. Er weist ausdrücklich darauf hin, dass für den weitergehenden Ansatz die parlamentarische Bestätigung Voraussetzung ist. Der Marker dokumentiert diese Erklärung und behauptet keine bereits abgeschlossene künftige Umsetzung.",
+    "source": {
+      "title": "La Moncloa: Rueda de prensa tras el Consejo de Ministros del 6 de octubre",
+      "url": "https://www.lamoncloa.gob.es/presidente/intervenciones/Paginas/2026/20261006-sanchez-rueda-de-prensa-posterior-cmin.aspx?mode=Light"
+    },
+    "verifiedAt": "2026-10-13",
+    "speaker": "Pedro Sánchez",
+    "occasion": "Pressekonferenz nach dem Ministerrat, La Moncloa",
+    "statementFormat": "summary"
   }
 ]

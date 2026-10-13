@@ -73,7 +73,7 @@ async function refresh(region = areas[0]) {
   return entry.pending;
 }
 
-const files = { '/context-ui.js': ['context-ui.js', 'text/javascript'], '/seat-model.js': ['seat-model.js', 'text/javascript'], '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/theme.js': ['theme.js', 'text/javascript'], '/chart-scale.js': ['chart-scale.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
+const files = { '/event-data.js': ['event-data.js', 'text/javascript'], '/context-ui.js': ['context-ui.js', 'text/javascript'], '/seat-model.js': ['seat-model.js', 'text/javascript'], '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/theme.js': ['theme.js', 'text/javascript'], '/chart-scale.js': ['chart-scale.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
 const server = createServer(async (request, response) => {
   const url = new URL(request.url, 'http://localhost');
   const path = url.pathname;

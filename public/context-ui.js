@@ -1,8 +1,8 @@
 import { projectSeats, coalition } from './seat-model.js';
+import { EVENT_CATEGORIES as category, filterEvents, clusterEvents } from './event-data.js';
 const $ = id => document.getElementById(id), NS = 'http://www.w3.org/2000/svg';
 const date = value => new Date(value).toLocaleDateString('de-DE', { timeZone: 'UTC' });
 const percent = value => value.toLocaleString('de-DE', { maximumFractionDigits: 1 }) + ' %';
-const category = { government: 'Regierungswechsel', crisis: 'Krise', decision: 'Politischer Beschluss', statement: 'Politikeraussage' };
 const palette = ['#408fca', '#ba6b9e', '#d79535', '#5a9b78', '#9982cf', '#ca665d', '#72a6aa', '#807866'];
 let context, poll, timeline, key, controller, result, topicSet = new Set(), chosen = new Set(), exceptions = new Set();
 function node(tag, text, cls) { const e = document.createElement(tag); if (text !== undefined) e.textContent = text; if (cls) e.className = cls; return e; }
@@ -122,13 +122,21 @@ function drawTopics() {
   for (const [day, pos, anchor] of [[observations[0].date, 45, 'start'], [observations.at(-1).date, 765, 'end']]) frame.append(svg('text', { x: pos, y: 290, 'text-anchor': anchor }, date(day)));
   $('topic-selection').textContent = `${observations.length} Erhebungen im dargestellten Zeitraum. Punkte zeigen die tatsächlich erhobenen Werte.`;
 }
-function filteredEvents() {
-  const region = $('event-region').value, type = $('event-category').value;
-  return (context?.events || []).filter(e => (type === 'all' || e.category === type) && (region === 'all' || e.regions.includes('all') || e.regions.includes(region === 'current' ? poll.region.id : region)) && (!poll?.points?.length || e.date >= poll.points[0].date && e.date <= poll.points.at(-1).date));
+function eventFilter(withDates = true) {
+  return { country: poll.country.id, region: poll.region.id, filterRegion: $('event-region').value,
+    category: $('event-category').value, ...(withDates && poll.points.length ? { start: poll.points[0].date, end: poll.points.at(-1).date } : {}) };
+}
+function filteredEvents() { return filterEvents(context?.events || [], eventFilter()); }
+const eventDate = event => date(event.date) + (event.endDate && event.endDate !== event.date ? ' – ' + date(event.endDate) : '');
+function eventArea(event) {
+  if (event.country === 'all') return 'International';
+  if (event.regions.includes('all')) return poll.country.label + ' · landesweiter Kontext';
+  return event.regions.map(id => poll.regions.find(r => r.id === id)?.label || id).join(', ');
 }
 function eventCard(event) {
-  const article = node('article'); article.append(node('strong', `${date(event.date)} · ${event.title}`), node('p', `${category[event.category]} · ${event.regions.includes('all') ? 'landesweit / international' : event.regions.join(', ')}` , 'context-note'), node('p', event.description));
+  const article = node('article'); article.append(node('strong', `${eventDate(event)} · ${event.title}`), node('p', `${category[event.category]} · ${eventArea(event)}` , 'context-note'), node('p', event.description));
   if (event.quote) article.append(node('blockquote', `„${event.quote}“ — ${event.speaker}`), node('p', 'Anlass: ' + event.occasion));
+  if (event.statementFormat === 'summary') article.append(node('p', `Sinngemäße Zusammenfassung · ${event.speaker} · Anlass: ${event.occasion}`, 'context-note'));
   const sources = node('div', undefined, 'context-sources'); links(sources, [event.source]); article.append(sources, node('small', `Beleg geprüft: ${date(event.verifiedAt)}`)); return article;
 }
 function renderEvents() {
@@ -137,7 +145,8 @@ function renderEvents() {
   $('event-region').replaceChildren(node('option', 'Zum ausgewählten Wahlgebiet'), node('option', 'Alle Regionen des Landes'), ...poll.regions.map(r => { const opt = node('option', r.label); opt.value = r.id; return opt; }));
   $('event-region').options[0].value = 'current'; $('event-region').options[1].value = 'all'; $('event-region').value = selected || 'current';
   const events = filteredEvents(); $('event-list').replaceChildren(...[...events].reverse().map(e => { const li = node('li'); li.append(eventCard(e)); return li; }));
-  $('event-count').textContent = `${events.length} Ereignisse im importierten Umfragezeitraum. Die Liste ist absteigend sortiert. Auswahl ab 2019, ohne Anspruch auf Vollständigkeit.`;
+  const outside = filterEvents(context.events, eventFilter(false)).length - events.length;
+  $('event-count').textContent = `${events.length} ${events.length === 1 ? 'Ereignis' : 'Ereignisse'} im importierten Umfragezeitraum ${date(poll.points[0].date)} – ${date(poll.points.at(-1).date)}. Die Liste zeigt alle passenden Ereignisse dieses Zeitraums, neueste zuerst.${outside === 1 ? ' 1 weiterer passender Eintrag liegt außerhalb dieses Umfragezeitraums.' : outside > 1 ? ' ' + outside + ' weitere passende Einträge liegen außerhalb dieses Umfragezeitraums.' : ''}`;
   $('event-detail').hidden = true; drawEventTrack();
 }
 export function drawEventTrack() {
@@ -145,15 +154,9 @@ export function drawEventTrack() {
   const show = $('events-visible').checked; $('event-track').hidden = !show; if (!show) return;
   const view = timeline(); if (!Number.isFinite(view.start)) return;
   const inner = $('event-track-inner'); inner.style.width = view.width + 'px'; inner.style.transform = `translateX(${-view.scrollLeft}px)`; inner.replaceChildren();
-  const clusters = new Map();
-  for (const event of filteredEvents()) {
-    const position = (new Date(event.date).getTime() - view.start) / 86400000 * view.scale;
-    if (position < 0 || position > view.width) continue;
-    const bin = Math.floor(position / 24); if (!clusters.has(bin)) clusters.set(bin, []); clusters.get(bin).push({ event, position });
-  }
-  for (const group of clusters.values()) {
+  for (const group of clusterEvents(filteredEvents(), view)) {
     const b = node('button', group.length === 1 ? '◆' : String(group.length), 'event-marker'); b.type = 'button'; b.style.left = group[0].position + 'px';
-    b.setAttribute('aria-label', group.map(({ event }) => date(event.date) + ' ' + event.title).join('; ')); b.title = b.getAttribute('aria-label'); b.dataset.event = group[0].event.id;
+    b.setAttribute('aria-label', group.map(({ event }) => eventDate(event) + ' ' + event.title).join('; ')); b.title = b.getAttribute('aria-label'); b.dataset.event = group[0].event.id;
     b.addEventListener('click', () => { $('event-detail').replaceChildren(...group.map(({ event }) => eventCard(event))); $('event-detail').hidden = false; $('event-detail').scrollIntoView({ block: 'nearest', behavior: 'auto' }); }); inner.append(b);
   }
 }

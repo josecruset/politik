@@ -98,5 +98,5 @@ test('curated chronicle has sources, no elections, verified quotations and isola
   assert.ok(contextFor('de', 'bundestag').events.every(e => ['de', 'all'].includes(e.country)));
   assert.ok(contextFor('es', 'barcelona').events.every(e => ['es', 'all'].includes(e.country)));
   const bad = structuredClone(events); bad[0].category = 'election'; assert.throws(() => validateEvents(bad));
-  const quote = events.find(e => e.category === 'statement'); assert.ok(quote.quote && quote.occasion && quote.speaker);
+  const quote = events.find(e => e.category === 'statement' && e.quote); assert.ok(quote.quote && quote.occasion && quote.speaker);
 });
