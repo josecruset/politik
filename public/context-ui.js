@@ -1,4 +1,4 @@
-import { projectSeats, coalition } from './seat-model.js';
+import { projectSeats, coalition, currentSeats } from './seat-model.js';
 import { EVENT_CATEGORIES as category, filterEvents, clusterEvents } from './event-data.js';
 const $ = id => document.getElementById(id), NS = 'http://www.w3.org/2000/svg';
 const date = value => new Date(value).toLocaleDateString('de-DE', { timeZone: 'UTC' });
@@ -36,19 +36,29 @@ export async function loadContext(data, getTimeline) {
 function renderSeats() {
   if (!context || !poll) return;
   const rule = context.rule, mode = $('seat-mode').value;
-  result = projectSeats(poll, rule, mode, [...exceptions]);
-  const basis = mode === 'poll' ? `Einzelumfrage: ${date(poll.latestPoll.date)} · ${poll.latestPoll.pollster}${poll.latestPoll.fieldwork ? ' · Feldzeit ' + poll.latestPoll.fieldwork : poll.dateBasis === 'fieldwork-end' ? ' · Datum: Befragungsende' : ' · Datum der Quelle; Feldzeit nicht verfügbar'}` : `7-Tage-Durchschnitt am ${date(poll.points.at(-1).date)} · alle vorhandenen Institute; fehlende Parteiwert-Fenster ausgelassen`;
+  const actual = mode === 'actual', snapshot = context.actualSeats;
+  result = actual ? currentSeats(snapshot) : projectSeats(poll, rule, mode, [...exceptions]);
+  $('seat-title').textContent = actual ? 'Reale Sitzverteilung und rechnerische Mehrheiten' : 'Sitzmodell und rechnerische Mehrheiten';
+  $('seat-selection-label').textContent = actual ? 'Wähle Fraktionen/Gruppen für eine gemeinsame Sitzzahl:' : 'Wähle Parteien für eine gemeinsame Sitzzahl:';
+  $('hemicycle').setAttribute('aria-label', actual ? 'Reale Sitzverteilung nach Fraktionen und Gruppen' : 'Sitze im bedingten Modell');
+  const basis = actual ? '' : mode === 'poll' ? `Einzelumfrage: ${date(poll.latestPoll.date)} · ${poll.latestPoll.pollster}${poll.latestPoll.fieldwork ? ' · Feldzeit ' + poll.latestPoll.fieldwork : poll.dateBasis === 'fieldwork-end' ? ' · Datum: Befragungsende' : ' · Datum der Quelle; Feldzeit nicht verfügbar'}` : `7-Tage-Durchschnitt am ${date(poll.points.at(-1).date)} · alle vorhandenen Institute; fehlende Parteiwert-Fenster ausgelassen`;
   $('seat-basis').textContent = `${rule.title} · ${basis}${poll.stale ? ' · Umfragedaten veraltet' : ''}`;
   $('seat-warning').textContent = result.status === 'gap' ? result.reason : Array.isArray(rule.assumptions) ? rule.assumptions.join(' ') : rule.assumptions;
   links($('seat-sources'), rule.sources); $('seat-sources').append(node('span', `Regelstand geprüft: ${date(rule.checkedAt)}`));
+  if (actual) {
+    $('seat-basis').textContent = snapshot ? `${snapshot.title} · ${snapshot.legislature} · ${snapshot.qualification || 'Reale Mandate'} · Stand ${date(snapshot.asOf || snapshot.checkedAt)} · Quellen geprüft am ${date(snapshot.checkedAt)}` : 'Reale Sitzverteilung';
+    $('seat-warning').textContent = result.status === 'gap' ? result.reason : snapshot.note + (result.stale ? ' Der Datenstand wurde seit mehr als 30 Tagen nicht erneut geprüft.' : '');
+    links($('seat-sources'), snapshot?.sources || []);
+    if (snapshot?.historical) $('hemicycle').setAttribute('aria-label', 'Letzte vollständige Sitzverteilung vor der Auflösung');
+  }
   const exceptionsOpen = $('seat-exceptions').querySelector('details')?.open;
   $('hemicycle').replaceChildren(); $('seat-parties').replaceChildren(); $('seat-exceptions').replaceChildren();
-  const layout = document.querySelector('.seat-layout'); layout.hidden = result.status !== 'model';
-  if (result.status !== 'model') return;
-  if (result.missing.length) $('seat-warning').append(document.createTextNode(' Nicht ausgewiesen und im Modell ausgeschlossen: ' + result.missing.join(', ') + '.'));
-  if (result.total !== result.baseTotal) $('seat-warning').append(document.createTextNode(` Mehrheitsgarantie: ${result.total - result.baseTotal} zusätzliche Sitze gegenüber der regulären Größe.`));
+  const layout = document.querySelector('.seat-layout'); layout.hidden = result.status === 'gap';
+  if (result.status === 'gap') return;
+  if (result.missing?.length) $('seat-warning').append(document.createTextNode(' Nicht ausgewiesen und im Modell ausgeschlossen: ' + result.missing.join(', ') + '.'));
+  if (!actual && result.total !== result.baseTotal) $('seat-warning').append(document.createTextNode(` Mehrheitsgarantie: ${result.total - result.baseTotal} zusätzliche Sitze gegenüber der regulären Größe.`));
   if (result.tied) $('seat-warning').append(document.createTextNode(' Ein Sitzgleichstand wurde für das Szenario stabil nach Stimmenzahl/ID aufgelöst; gesetzliche Losentscheidungen können abweichen.'));
-  if (rule.type === 'bundestag' || rule.directException) {
+  if (!actual && (rule.type === 'bundestag' || rule.directException)) {
     const count = rule.directException || 3;
     const wrap = node('details'); wrap.open = Boolean(exceptionsOpen); wrap.append(node('summary', `Annahmen zur Grundmandatsklausel (mindestens ${count} gewonnene Wahlkreise)`));
     for (const p of result.rows.filter(p => p.value < rule.threshold && p.value > 0 && !rule.exceptions?.includes(p.id))) {
@@ -69,11 +79,11 @@ function renderSeats() {
   positions.sort((a, b) => b.angle - a.angle); let index = 0;
   for (const p of result.rows) for (let i = 0; i < p.seats; i++) {
     const pos = positions[index++], dot = svg('circle', { cx: pos.x, cy: pos.y, r: result.total > 200 ? 3.4 : result.total > 80 ? 5 : 7, fill: p.color, opacity: chosen.size && !chosen.has(p.id) ? '.25' : '1', 'data-seat-party': p.id });
-    dot.append(svg('title', {}, `${p.label}: ${p.seats} Modellsitze`)); $('hemicycle').append(dot);
+    dot.append(svg('title', {}, `${p.label}: ${p.seats} ${actual ? 'reale Sitze' : 'Modellsitze'}`)); $('hemicycle').append(dot);
   }
   $('hemicycle').append(svg('line', { x1: 230, x2: 230, y1: 9, y2: 83, stroke: 'var(--text)', 'stroke-dasharray': '3 3' }), svg('text', { x: 230, y: 160, 'text-anchor': 'middle', style: 'font-size:20px;font-weight:700;fill:var(--text)' }, `${result.total} Sitze`), svg('text', { x: 230, y: 185, 'text-anchor': 'middle' }, `Mehrheit ab ${result.majority}`));
   const sum = coalition(result, [...chosen]);
-  $('coalition-result').textContent = chosen.size ? `${sum.seats} Sitze · ${sum.majority ? 'rechnerische Mehrheit' : 'keine Mehrheit; es fehlen ' + sum.needed + ' Sitze'}. Keine Aussage über politische Koalitionsbereitschaft.` : 'Wähle eine oder mehrere Parteien.';
+  $('coalition-result').textContent = chosen.size ? `${sum.seats} Sitze · ${sum.majority ? 'rechnerische Mehrheit' : 'keine Mehrheit; es fehlen ' + sum.needed + ' Sitze'}. Keine Aussage über politische Koalitionsbereitschaft.` : actual ? 'Wähle eine oder mehrere Fraktionen/Gruppen.' : 'Wähle eine oder mehrere Parteien.';
   $('coalition-progress').hidden = false; $('coalition-progress').max = result.total; $('coalition-progress').value = sum.seats;
 }
 const series = () => context?.topics.series[0];
@@ -160,7 +170,7 @@ export function drawEventTrack() {
     b.addEventListener('click', () => { $('event-detail').replaceChildren(...group.map(({ event }) => eventCard(event))); $('event-detail').hidden = false; $('event-detail').scrollIntoView({ block: 'nearest', behavior: 'auto' }); }); inner.append(b);
   }
 }
-$('seat-mode').addEventListener('change', renderSeats);
+$('seat-mode').addEventListener('change', () => { chosen.clear(); renderSeats(); });
 $('topic-wave').addEventListener('change', () => renderTopics()); $('topic-period').addEventListener('change', drawTopics);
 for (const id of ['event-region', 'event-category']) $(id).addEventListener('change', renderEvents);
 $('events-visible').addEventListener('change', drawEventTrack);

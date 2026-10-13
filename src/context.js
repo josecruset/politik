@@ -1,5 +1,6 @@
 import { readFile } from 'node:fs/promises';
 import { seatRule } from './seat-rules.js';
+import { actualSeatsFor } from './actual-seats.js';
 import { COUNTRIES } from './countries.js';
 import { validateEventData } from '../public/event-data.js';
 const read = async name => JSON.parse(await readFile(new URL(`./content/${name}.json`, import.meta.url), 'utf8'));
@@ -22,5 +23,5 @@ export function validateTopics(data) {
 export const validateEvents = data => validateEventData(data, COUNTRIES);
 validateTopics(topics); validateEvents(events);
 export function contextFor(country, region) {
-  return { rule: seatRule(country, region), events: events.filter(e => e.country === country || e.country === 'all'), topics: { ...topics, series: topics.series.filter(s => s.country === country && (s.region === region || country === 'de' && s.region === 'bundestag')), scopeNote: country === 'de' && region !== 'bundestag' ? 'Bundesweite Themenumfrage als Kontext. Für dieses Bundesland ist keine eigene Themenreihe angebunden.' : '' } };
+  return { rule: seatRule(country, region), actualSeats: actualSeatsFor(country, region), events: events.filter(e => e.country === country || e.country === 'all'), topics: { ...topics, series: topics.series.filter(s => s.country === country && (s.region === region || country === 'de' && s.region === 'bundestag')), scopeNote: country === 'de' && region !== 'bundestag' ? 'Bundesweite Themenumfrage als Kontext. Für dieses Bundesland ist keine eigene Themenreihe angebunden.' : '' } };
 }

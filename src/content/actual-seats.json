@@ -1,0 +1,1108 @@
+[
+  {
+    "country": "de",
+    "region": "bundestag",
+    "title": "Deutscher Bundestag",
+    "legislature": "21. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2025-03-25",
+    "total": 630,
+    "note": "Amtliche Zusammensetzung nach Fraktionen. Die drei Fraktionslosen umfassen auch das SSW-Mandat. Fraktionslose sind keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 150
+      },
+      {
+        "id": "actual-union",
+        "label": "CDU/CSU",
+        "color": "#005974",
+        "seats": 208
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 120
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 85
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 64
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose (inkl. SSW)",
+        "color": "#849397",
+        "seats": 3
+      }
+    ],
+    "sources": [
+      {
+        "title": "Deutscher Bundestag: aktuelle Sitzverteilung",
+        "url": "https://www.bundestag.de/parlament/plenum/sitzverteilung"
+      },
+      {
+        "title": "Amtliche Sitzplandaten (gezählte Mandate)",
+        "url": "https://www.bundestag.de/static/appdata/sitzplan/data.json"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "baden-wuerttemberg",
+    "title": "Landtag Baden-Württemberg",
+    "legislature": "18. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 157,
+    "note": "157 reale Mandate, einschließlich zusätzlicher Sitze. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 56
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 56
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 35
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 10
+      }
+    ],
+    "sources": [
+      {
+        "title": "Landtag Baden-Württemberg: Zusammensetzung",
+        "url": "https://www.landtag-bw.de/de/der-landtag/fraktionen"
+      },
+      {
+        "title": "Amtliches Volkshandbuch, 18. Wahlperiode",
+        "url": "https://www.landtag-bw.de/resource/blob/639092/6e6153d8002736d74fada37f16c1a0ec/Volkshandbuch_LTBW_WP18_Vorab_2.pdf"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "bayern",
+    "title": "Bayerischer Landtag",
+    "legislature": "19. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 203,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-csu",
+        "label": "CSU",
+        "color": "#0080C9",
+        "seats": 85
+      },
+      {
+        "id": "actual-fw",
+        "label": "Freie Wähler",
+        "color": "#F29204",
+        "seats": 37
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 32
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 32
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 17
+      }
+    ],
+    "sources": [
+      {
+        "title": "Bayerischer Landtag: Zusammensetzung",
+        "url": "https://www.bayern.landtag.de/abgeordnete/abgeordnete-von-a-z/"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "berlin",
+    "title": "Abgeordnetenhaus Berlin",
+    "legislature": "19. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 159,
+    "note": "Noch die amtierende 19. Wahlperiode. Die neue Wahlperiode beginnt mit der konstituierenden Sitzung am 29.10.2026; danach ist eine neue Prüfung erforderlich. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 52
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 36
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 33
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 20
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 16
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 2
+      }
+    ],
+    "sources": [
+      {
+        "title": "Abgeordnetenhaus Berlin: Zusammensetzung",
+        "url": "https://www.parlament-berlin.de/das-parlament/abgeordnete/suche-nach-fraktionen"
+      },
+      {
+        "title": "Termin der konstituierenden Sitzung",
+        "url": "https://www.parlament-berlin.de/Service/Besucherdienst/Platzreservierung-Plenum"
+      }
+    ],
+    "validUntil": "2026-10-28"
+  },
+  {
+    "country": "de",
+    "region": "brandenburg",
+    "title": "Landtag Brandenburg",
+    "legislature": "8. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 88,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 34
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 30
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 12
+      },
+      {
+        "id": "actual-bsw",
+        "label": "BSW",
+        "color": "#792351",
+        "seats": 9
+      },
+      {
+        "id": "actual-wfb",
+        "label": "Wir für Brandenburg",
+        "color": "#526E83",
+        "seats": 3
+      }
+    ],
+    "sources": [
+      {
+        "title": "Landtag Brandenburg: Zusammensetzung",
+        "url": "https://www.landtag.brandenburg.de/de/plenarsitzordnung/25228"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "bremen",
+    "title": "Bremische Bürgerschaft (Landtag)",
+    "legislature": "21. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 87,
+    "note": "Landtag einschließlich Bremerhaven: 87 Sitze. Die Stadtbürgerschaft Bremen hat eine andere Zusammensetzung. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 28
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 24
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 10
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 10
+      },
+      {
+        "id": "actual-biw",
+        "label": "BIW",
+        "color": "#F29204",
+        "seats": 6
+      },
+      {
+        "id": "actual-fdp",
+        "label": "FDP",
+        "color": "#FFE209",
+        "seats": 5
+      },
+      {
+        "id": "actual-bab",
+        "label": "Bürgerallianz Bremen/Bremerhaven",
+        "color": "#526E83",
+        "seats": 3
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Bremische Bürgerschaft (Landtag): Zusammensetzung",
+        "url": "https://www.bremische-buergerschaft.de/index.php?id=358"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "hamburg",
+    "title": "Hamburgische Bürgerschaft",
+    "legislature": "23. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 121,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 45
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 26
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 25
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 15
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 9
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 1
+      }
+    ],
+    "sources": [
+      {
+        "title": "Hamburgische Bürgerschaft: Zusammensetzung",
+        "url": "https://www.hamburgische-buergerschaft.de/ueber-uns/abgeordneten-uebersicht"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "hessen",
+    "title": "Hessischer Landtag",
+    "legislature": "21. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 133,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 52
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 25
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 23
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 22
+      },
+      {
+        "id": "actual-fdp",
+        "label": "FDP",
+        "color": "#FFE209",
+        "seats": 8
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 3
+      }
+    ],
+    "sources": [
+      {
+        "title": "Hessischer Landtag: Zusammensetzung",
+        "url": "https://hessischer-landtag.de/fraktionen"
+      },
+      {
+        "title": "Aktuelle Mitgliederliste",
+        "url": "https://hessischer-landtag.de/abgeordnete"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "mecklenburg-vorpommern",
+    "title": "Landtag Mecklenburg-Vorpommern",
+    "legislature": "8. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 79,
+    "note": "Die FDP ist eine parlamentarische Gruppe. Noch die amtierende 8. Wahlperiode; die neue Wahlperiode beginnt am 20.10.2026. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 34
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 13
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 12
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 9
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 4
+      },
+      {
+        "id": "actual-fdp",
+        "label": "Gruppe FDP",
+        "color": "#FFE209",
+        "seats": 3
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 4
+      }
+    ],
+    "sources": [
+      {
+        "title": "Landtag Mecklenburg-Vorpommern: Zusammensetzung",
+        "url": "https://www.landtag-mv.de/landtag/grundsaetzliches/parlamentarische-gremien/fraktionen"
+      },
+      {
+        "title": "Neuer Landtag: Konstituierung am 20. Oktober",
+        "url": "https://www.landtag-mv.de/aktuelles/artikel/neuer-landtag-kommt-am-20-oktober-2026-zur-konstituierenden-sitzung-zusammen"
+      }
+    ],
+    "validUntil": "2026-10-19"
+  },
+  {
+    "country": "de",
+    "region": "niedersachsen",
+    "title": "Niedersächsischer Landtag",
+    "legislature": "19. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 146,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 57
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 47
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 24
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 16
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 2
+      }
+    ],
+    "sources": [
+      {
+        "title": "Niedersächsischer Landtag: Zusammensetzung",
+        "url": "https://www.landtag-niedersachsen.de/sitzordnung-im-plenum/"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "nordrhein-westfalen",
+    "title": "Landtag Nordrhein-Westfalen",
+    "legislature": "18. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 195,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 76
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 56
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 39
+      },
+      {
+        "id": "actual-fdp",
+        "label": "FDP",
+        "color": "#FFE209",
+        "seats": 12
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 12
+      }
+    ],
+    "sources": [
+      {
+        "title": "Landtag Nordrhein-Westfalen: Zusammensetzung",
+        "url": "https://www.landtag.nrw.de/home/der-landtag/abgeordnete-und--fraktionen/sitzplan.html"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "rheinland-pfalz",
+    "title": "Landtag Rheinland-Pfalz",
+    "legislature": "19. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 105,
+    "note": "105 reale Mandate, einschließlich zusätzlicher Sitze. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 39
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 32
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 24
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 10
+      }
+    ],
+    "sources": [
+      {
+        "title": "Landtag Rheinland-Pfalz: Zusammensetzung",
+        "url": "https://www.landtag-rlp.de/de/parlament/statistik.htm"
+      },
+      {
+        "title": "Amtlicher Sitzplan, 3. September 2026",
+        "url": "https://www.landtag-rlp.de/files/pdf1/sitzplan_03-09-26.pdf"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "saarland",
+    "title": "Landtag des Saarlandes",
+    "legislature": "17. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 51,
+    "note": "Stand: Sitzverteilung nach der Wahl vom 27.03.2022. Die aktuelle amtliche Mitgliederliste nennt nur 50 Personen (29 SPD, 18 CDU, 3 AfD); die Abweichung beim 51. Sitz ist ungeklärt. Daher keine vollständig bestätigte aktuelle Mitgliederverteilung. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 29
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 19
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 3
+      }
+    ],
+    "sources": [
+      {
+        "title": "Landtag des Saarlandes: Zusammensetzung",
+        "url": "https://de.wikipedia.org/wiki/Landtag_des_Saarlandes"
+      },
+      {
+        "title": "Amtliche Mitgliederliste (abweichend: 50 Personen)",
+        "url": "https://www.landtag-saar.de/abgeordnete-und-fraktionen/abgeordnete/"
+      }
+    ],
+    "asOf": "2022-03-27",
+    "qualification": "Wahlverteilung 2022; aktuelle Mitgliederliste abweichend"
+  },
+  {
+    "country": "de",
+    "region": "sachsen",
+    "title": "Sächsischer Landtag",
+    "legislature": "8. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 120,
+    "note": "Die aktuelle Mitgliederliste enthält zwei Fraktionslose; ältere Zusammenfassungstabellen können davon abweichen. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 41
+      },
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 40
+      },
+      {
+        "id": "actual-bsw",
+        "label": "BSW",
+        "color": "#792351",
+        "seats": 14
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 10
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 7
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 6
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 2
+      }
+    ],
+    "sources": [
+      {
+        "title": "Sächsischer Landtag: Zusammensetzung",
+        "url": "https://www.landtag.sachsen.de/de/abgeordnete/abgeordnetensuche/suche-nach-alphabet.cshtml"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "sachsen-anhalt",
+    "title": "Landtag Sachsen-Anhalt",
+    "legislature": "9. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 83,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 39
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 15
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 8
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 8
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 8
+      },
+      {
+        "id": "actual-bsw",
+        "label": "BSW",
+        "color": "#792351",
+        "seats": 5
+      }
+    ],
+    "sources": [
+      {
+        "title": "Landtag Sachsen-Anhalt: Zusammensetzung",
+        "url": "https://www.landtag.sachsen-anhalt.de/landtag/abgeordnete/abgeordnetensuche"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "schleswig-holstein",
+    "title": "Schleswig-Holsteinischer Landtag",
+    "legislature": "20. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 69,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 34
+      },
+      {
+        "id": "actual-gruene",
+        "label": "Bündnis 90/Die Grünen",
+        "color": "#008939",
+        "seats": 14
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 12
+      },
+      {
+        "id": "actual-fdp",
+        "label": "FDP",
+        "color": "#FFE209",
+        "seats": 5
+      },
+      {
+        "id": "actual-ssw",
+        "label": "SSW",
+        "color": "#043390",
+        "seats": 4
+      }
+    ],
+    "sources": [
+      {
+        "title": "Schleswig-Holsteinischer Landtag: Zusammensetzung",
+        "url": "https://www.landtag.ltsh.de/abgeordnete/fraktionen/"
+      }
+    ]
+  },
+  {
+    "country": "de",
+    "region": "thueringen",
+    "title": "Thüringer Landtag",
+    "legislature": "8. Wahlperiode",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 88,
+    "note": "Aktuelle Fraktion Thüringen.Gerecht und fünf Fraktionslose; frühere BSW-Zuordnungen sind nicht übernommen. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-afd",
+        "label": "AfD",
+        "color": "#009EE0",
+        "seats": 32
+      },
+      {
+        "id": "actual-cdu",
+        "label": "CDU",
+        "color": "#005974",
+        "seats": 23
+      },
+      {
+        "id": "actual-linke",
+        "label": "Die Linke",
+        "color": "#B61C3E",
+        "seats": 12
+      },
+      {
+        "id": "actual-tg",
+        "label": "Thüringen.Gerecht",
+        "color": "#792351",
+        "seats": 10
+      },
+      {
+        "id": "actual-spd",
+        "label": "SPD",
+        "color": "#E3000F",
+        "seats": 6
+      },
+      {
+        "id": "actual-fraktionslos",
+        "label": "Fraktionslose",
+        "color": "#849397",
+        "seats": 5
+      }
+    ],
+    "sources": [
+      {
+        "title": "Thüringer Landtag: Zusammensetzung",
+        "url": "https://www.thueringer-landtag.de/abgeordnete/abgeordnete-fraktionen-sitzordnung/"
+      }
+    ]
+  },
+  {
+    "country": "es",
+    "region": "congreso",
+    "title": "Congreso de los Diputados",
+    "legislature": "XV. Legislatur (aufgelöst)",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 350,
+    "note": "Am 06.10.2026 aufgelöst. Angezeigt wird die letzte vollständige Sitzverteilung vor der Auflösung, belegt am 01.10.2026. Dies ist keine aktuell tagende Vollversammlung und nicht die Zusammensetzung der Diputación Permanente. Die neue Vollversammlung soll am 23.12.2026 zusammentreten. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-pp",
+        "label": "PP",
+        "color": "#1769D2",
+        "seats": 137
+      },
+      {
+        "id": "actual-psoe",
+        "label": "PSOE",
+        "color": "#E2383F",
+        "seats": 121
+      },
+      {
+        "id": "actual-vox",
+        "label": "Vox",
+        "color": "#16A05D",
+        "seats": 32
+      },
+      {
+        "id": "actual-sumar",
+        "label": "Sumar",
+        "color": "#DE6B93",
+        "seats": 26
+      },
+      {
+        "id": "actual-erc",
+        "label": "ERC",
+        "color": "#FFB232",
+        "seats": 7
+      },
+      {
+        "id": "actual-junts",
+        "label": "Junts",
+        "color": "#00C7AE",
+        "seats": 7
+      },
+      {
+        "id": "actual-bildu",
+        "label": "EH Bildu",
+        "color": "#ABCE46",
+        "seats": 6
+      },
+      {
+        "id": "actual-pnv",
+        "label": "PNV",
+        "color": "#00864A",
+        "seats": 5
+      },
+      {
+        "id": "actual-mixto",
+        "label": "Grupo Mixto",
+        "color": "#849397",
+        "seats": 9
+      }
+    ],
+    "sources": [
+      {
+        "title": "Letzte vollständige Verteilung: EL PAÍS, 1. Oktober 2026",
+        "url": "https://elpais.com/espana/2026-10-01/calculadora-de-votos-saldra-adelante-el-decreto-de-vivienda-simule-las-votaciones-por-partidos.html"
+      },
+      {
+        "title": "BOE: Auflösung und Neukonstituierung",
+        "url": "https://www.boe.es/eli/es/rd/2026/10/05/806"
+      }
+    ],
+    "historical": true,
+    "asOf": "2026-10-01",
+    "validUntil": "2026-12-22",
+    "qualification": "Letzte vollständige Verteilung vor der Auflösung"
+  },
+  {
+    "country": "es",
+    "region": "katalonien",
+    "title": "Parlament de Catalunya",
+    "legislature": "15. Legislatur",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 135,
+    "note": "Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-psc",
+        "label": "PSC-Units",
+        "color": "#FF001C",
+        "seats": 42
+      },
+      {
+        "id": "actual-junts",
+        "label": "Junts",
+        "color": "#00C7AE",
+        "seats": 35
+      },
+      {
+        "id": "actual-erc",
+        "label": "ERC",
+        "color": "#FFB232",
+        "seats": 20
+      },
+      {
+        "id": "actual-pp",
+        "label": "PP",
+        "color": "#1D84CE",
+        "seats": 15
+      },
+      {
+        "id": "actual-vox",
+        "label": "Vox",
+        "color": "#63BE21",
+        "seats": 11
+      },
+      {
+        "id": "actual-comuns",
+        "label": "Comuns",
+        "color": "#A61A4A",
+        "seats": 6
+      },
+      {
+        "id": "actual-cup",
+        "label": "CUP-DT",
+        "color": "#FFDD00",
+        "seats": 4
+      },
+      {
+        "id": "actual-alianca",
+        "label": "Grup Mixt (Aliança Catalana)",
+        "color": "#064A81",
+        "seats": 2
+      }
+    ],
+    "sources": [
+      {
+        "title": "Parlament: aktuelle parlamentarische Gruppen",
+        "url": "https://www.parlament.cat/web/composicio/grups-parlamentaris/index.html"
+      }
+    ]
+  },
+  {
+    "country": "es",
+    "region": "barcelona",
+    "title": "Ajuntament de Barcelona",
+    "legislature": "Wahlperiode 2023–2027",
+    "checkedAt": "2026-10-13",
+    "validFrom": "2026-10-13",
+    "total": 41,
+    "note": "41 reale Gemeinderatsmandate. Antwortgruppen der Wahlabsicht wie Unentschlossene und Nichtwähler haben keine Mandate. Zusammensetzung nach Fraktionen und parlamentarischen Gruppen; Fraktionslose bilden keine gemeinsame politische Fraktion. Die Grafik zeigt Anzahlen, keine verbindliche Sitzordnung im Plenarsaal. Manuell geprüfter Quellenstand, keine automatische Aktualisierung.",
+    "rows": [
+      {
+        "id": "actual-psc",
+        "label": "PSC",
+        "color": "#FF001C",
+        "seats": 10
+      },
+      {
+        "id": "actual-junts",
+        "label": "Junts per Barcelona",
+        "color": "#00C7AE",
+        "seats": 11
+      },
+      {
+        "id": "actual-comuns",
+        "label": "Barcelona en Comú",
+        "color": "#A61A4A",
+        "seats": 9
+      },
+      {
+        "id": "actual-erc",
+        "label": "ERC",
+        "color": "#FFB232",
+        "seats": 5
+      },
+      {
+        "id": "actual-pp",
+        "label": "PP",
+        "color": "#1D84CE",
+        "seats": 4
+      },
+      {
+        "id": "actual-vox",
+        "label": "Vox",
+        "color": "#63BE21",
+        "seats": 2
+      }
+    ],
+    "sources": [
+      {
+        "title": "Ajuntament: Zusammensetzung des Gemeinderats",
+        "url": "https://ajuntament.barcelona.cat/organitzacio-municipal/estructura-executiva"
+      },
+      {
+        "title": "Ajuntament: Mitglieder und kommunale Gruppen",
+        "url": "https://ajuntament.barcelona.cat/ca/organitzacio-municipal/coneix"
+      }
+    ]
+  }
+]

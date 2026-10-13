@@ -78,7 +78,16 @@ export function projectSeats(data, rule, mode = 'poll', exceptions = []) {
 }
 
 export function coalition(result, ids) {
-  if (result.status !== 'model') return null;
+  if (!['model', 'actual'].includes(result.status)) return null;
   const selected = new Set(ids), seats = result.rows.filter(p => selected.has(p.id)).reduce((s, p) => s + p.seats, 0);
   return { seats, majority: seats >= result.majority, needed: Math.max(0, result.majority - seats) };
+}
+
+// Actual mandates are source data, not an apportionment of poll percentages.
+export function currentSeats(snapshot, today = new Date().toISOString().slice(0, 10)) {
+  if (!snapshot) return { status: 'gap', reason: 'Für dieses Wahlgebiet liegt noch keine geprüfte reale Sitzverteilung vor.' };
+  if (snapshot.checkedAt > today || snapshot.validFrom > today || snapshot.validUntil && today > snapshot.validUntil) return { status: 'gap', reason: 'Dieser Sitzdatenstand ist für die aktuelle Wahlperiode nicht mehr gültig. Eine neue amtliche Zusammensetzung muss geprüft werden.' };
+  if (!Number.isInteger(snapshot.total) || snapshot.total < 1 || snapshot.total > 1000 || !snapshot.rows?.length || new Set(snapshot.rows.map(p => p.id)).size !== snapshot.rows.length || snapshot.rows.some(p => !p.id || !Number.isInteger(p.seats) || p.seats < 1) || snapshot.rows.reduce((s, p) => s + p.seats, 0) !== snapshot.total) return { status: 'gap', reason: 'Die reale Sitzverteilung ist unvollständig und kann nicht angezeigt werden.' };
+  return { status: 'actual', rows: snapshot.rows.map(p => ({ ...p })), total: snapshot.total, majority: Math.floor(snapshot.total / 2) + 1,
+    checkedAt: snapshot.checkedAt, stale: Date.parse(today) - Date.parse(snapshot.checkedAt) > 30 * 86400000 };
 }
