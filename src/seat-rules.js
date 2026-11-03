@@ -3,6 +3,7 @@ const official = (title, url) => ({ title, url });
 const loreg = official('LOREG, Art. 162–163 und 180 (konsolidiert)', 'https://www.boe.es/buscar/act.php?id=BOE-A-1985-11672');
 export function seatRule(country, region) {
   const checkedAt = '2026-10-12';
+  if (country === 'us') return { type: 'gap', title: 'USA: Wahlkreisprognosen fehlen', checkedAt: '2026-11-03', reason: 'Der Generic Ballot misst nationale Wahlabsichten. Für eine Sitzprognose im Repräsentantenhaus werden Wahlkreisdaten benötigt; der Senat wird in einzelnen Bundesstaaten gewählt. Polymarket-Kurse messen die Wahrscheinlichkeit der Kammerkontrolle, keine Sitzanteile.', sources: [official('US House: Wahlkreise und 435 stimmberechtigte Mitglieder', 'https://www.house.gov/the-house-explained')] };
   if (country === 'de' && STATE_RULES[region]) return STATE_RULES[region];
   if (country === 'de' && region === 'bundestag') return {
     type: 'bundestag', seats: 630, threshold: 5, method: 'sainte-lague', majorityGuarantee: 'additional', checkedAt,

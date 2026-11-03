@@ -4,14 +4,14 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex,nofollow">
   <title>Umfragewerte Parteien und Regierung</title>
-  <meta name="description" content="Umfragen aus Deutschland und Spanien im Zeitverlauf: Parteien im 7-Tage-Durchschnitt und verfügbare Zufriedenheitswerte.">
+  <meta name="description" content="Umfragen aus Deutschland, Spanien und den USA im Zeitverlauf: Parteien im 7-Tage-Durchschnitt, Zufriedenheitswerte und US-Prognosemärkte von Polymarket.">
   <script src="/theme.js"></script>
   <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/style.css">
   <script src="/app.js" type="module"></script>
 </head>
 <body>
 <main>
-  <header class="page-header"><a class="brand" href="/" aria-label="Politik Startseite"><span class="brand-icon" aria-hidden="true">▥</span> POLITIK<span class="brand-dot">.</span></a><div class="country-control"><span class="header-note">Umfragetrends</span><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Dark Mode" aria-pressed="false"><span class="theme-moon" aria-hidden="true">☾</span><span class="theme-sun" aria-hidden="true">☀</span><span class="theme-label">Dark Mode</span></button><select id="country" aria-label="Land auswählen"><option value="de">Deutschland</option><option value="es">Spanien</option></select></div></header>
+  <header class="page-header"><a class="brand" href="/" aria-label="Politik Startseite"><span class="brand-icon" aria-hidden="true">▥</span> POLITIK<span class="brand-dot">.</span></a><div class="country-control"><span class="header-note">Umfragetrends</span><button id="theme-toggle" class="theme-toggle" type="button" aria-label="Dark Mode" aria-pressed="false"><span class="theme-moon" aria-hidden="true">☾</span><span class="theme-sun" aria-hidden="true">☀</span><span class="theme-label">Dark Mode</span></button><select id="country" aria-label="Land auswählen"><option value="de">Deutschland</option><option value="es">Spanien</option><option value="us">USA</option></select></div></header>
   <section class="intro"><p class="eyebrow">DIE POLITISCHE STIMMUNG IM ZEITVERLAUF</p><h1 id="page-title">Umfragewerte Parteien und Regierung</h1><p id="subtitle" class="subtitle">Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.</p></section>
   <section class="dashboard" aria-label="Umfrageverlauf">
     <div class="chart-header"><div><select id="region" aria-label="Wahlgebiet auswählen" disabled><option value="bundestag">Bundestagswahl</option></select><p id="status" role="status">Umfragedaten werden geladen …</p></div></div>
@@ -31,19 +31,27 @@
     <details id="other-parties" class="other-parties" hidden><summary>Weitere Parteien im Verlauf</summary><div id="other-parties-legend" class="timeline-legend" aria-label="Weitere Parteien ein- und ausblenden"></div></details>
     <div id="additional" class="additional"><div id="approval-legend" class="approval-legend"></div></div>
   </section>
-  <section class="dashboard context-section" aria-labelledby="seat-title">
+  <section id="markets" class="dashboard context-section" aria-labelledby="markets-title" hidden>
+    <p class="eyebrow">PROGNOSEMÄRKTE · USA</p>
+    <h2 id="markets-title">Polymarket: Wer gewinnt die Mehrheit?</h2>
+    <p class="context-note">Marktpreise als implizite Wahrscheinlichkeit für die Kontrolle nach der Kongresswahl 2026. Das sind keine Umfrageanteile. Die einzelnen Parteimärkte werden unverändert übernommen und müssen sich nicht zu 100 % addieren.</p>
+    <p id="market-status" class="context-note" role="status"></p>
+    <div id="market-cards" class="market-cards"></div>
+    <p class="context-note">Die Umfragen oben messen die landesweite Wahlabsicht für Kongresskandidaten. Die Märkte bewerten die Kontrolle einer ganzen Kammer. Ohne Wahlkreis- und Bundesstaatenprognosen wird daraus keine Sitzverteilung berechnet.</p>
+  </section>
+  <section class="dashboard context-section" data-country-context aria-labelledby="seat-title">
     <div class="section-header"><h2 id="seat-title">Sitzmodell und rechnerische Mehrheiten</h2><label>Berechnungsbasis <select id="seat-mode"><option value="poll">Letzte Einzelumfrage</option><option value="average">Aktueller 7-Tage-Durchschnitt</option><option value="actual">Aktuelle reale Sitzverteilung</option></select></label></div>
     <p id="seat-basis" class="context-note">Warte auf Umfragedaten …</p><p id="seat-warning" class="measurement-note"></p>
     <div id="seat-exceptions"></div><div class="seat-layout"><svg id="hemicycle" viewBox="0 0 460 235" role="img" aria-label="Sitze im bedingten Modell"></svg><div><p id="seat-threshold"></p><p id="seat-selection-label">Wähle Parteien für eine gemeinsame Sitzzahl:</p><div id="seat-parties" class="control-list"></div><p id="coalition-result" role="status"></p><progress id="coalition-progress" value="0" max="630" aria-label="Gemeinsame Sitze"></progress></div></div><div id="seat-sources" class="context-sources"></div>
   </section>
-  <section class="dashboard context-section" aria-labelledby="topics-title">
+  <section class="dashboard context-section" data-country-context aria-labelledby="topics-title">
     <h2 id="topics-title">Welche Probleme beschäftigen die Menschen am meisten?</h2><p id="topic-scope" class="context-note"></p>
     <div class="section-header"><strong id="topic-series"></strong><label>Erhebung <select id="topic-wave" aria-label="Themenerhebung auswählen"></select></label></div>
     <p id="topic-question"></p><p id="topic-method" class="context-note"></p><p id="topic-fieldwork" class="context-note"></p><div id="topic-sources" class="context-sources"></div>
     <div class="topic-layout"><div><h3>Rangliste der gewählten Erhebung</h3><ol id="topic-ranking" class="topic-ranking"></ol></div><div><h3>Ausgewählte Themen im Verlauf</h3><label>Zeitraum <select id="topic-period"><option value="24">Letzte 24 Monate der Reihe</option><option value="all">Gesamter importierter Verlauf</option></select></label><p class="context-note">Einzelne Erhebungen, ohne Glättung. Lücken und neue Kategorien bleiben erkennbar. Quellenkategorien werden nicht länderübergreifend zusammengeführt.</p><div id="topic-toggles" class="control-list"></div><div class="topic-chart-scroll"><svg id="topic-chart" viewBox="0 0 800 310" role="img" aria-label="Verlauf ausgewählter Probleme"></svg></div><p id="topic-selection" role="status" class="context-note"></p></div></div>
     <p id="topic-updated" class="context-note"></p>
   </section>
-  <section class="dashboard context-section" aria-labelledby="events-title">
+  <section class="dashboard context-section" data-country-context aria-labelledby="events-title">
     <div class="section-header"><h2 id="events-title">Politische Ereignischronik</h2><label><input id="events-visible" type="checkbox"> Markierungen unter den Umfragekurven anzeigen</label></div>
     <p class="context-note">Kuratierte Auswahl ab 2016, Schwerpunkt ab 2019. Ereignisse und Umfragen können zeitlich zusammenfallen; daraus folgt keine Ursache. Wahlen bleiben ausschließlich als vorhandene Wahlpunkte sichtbar.</p>
     <div class="control-list"><label>Region <select id="event-region"><option value="current">Zum ausgewählten Wahlgebiet</option><option value="all">Alle Regionen des Landes</option></select></label><label>Ereignistyp <select id="event-category"><option value="all">Alle Ereignistypen</option><option value="government">Regierungswechsel</option><option value="crisis">Krisen</option><option value="decision">Politische Beschlüsse</option><option value="statement">Politikeraussagen</option></select></label></div>

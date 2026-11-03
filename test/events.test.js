@@ -8,7 +8,7 @@ const event = (id, extra = {}) => ({ id, country: 'de', regions: ['all'], date: 
 const validate = data => validateEventData(data, COUNTRIES, '2026-10-13');
 
 test('published coverage contains dedicated entries for every state and Spanish area, with both statement formats', () => {
-  for (const country of COUNTRIES) for (const region of country.regions.filter(r => !['bundestag', 'congreso'].includes(r.id))) {
+  for (const country of COUNTRIES.filter(c => c.context !== false)) for (const region of country.regions.filter(r => !['bundestag', 'congreso'].includes(r.id))) {
     assert.ok(events.some(e => e.country === country.id && e.regions.includes(region.id)), `Eigene Ereignisse fehlen: ${region.id}`);
   }
   assert.ok(events.some(e => e.statementFormat === 'summary' && !Object.hasOwn(e, 'quote')));

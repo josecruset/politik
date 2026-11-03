@@ -8,6 +8,8 @@ import { fetchSpainData, SPAIN_POLICY } from './spain.js';
 import { fetchCataloniaData, CATALONIA_POLICY } from './catalonia.js';
 import { fetchBarcelonaData, BARCELONA_POLICY } from './barcelona.js';
 import { contextFor } from './context.js';
+import { buildUSAData, USA_POLICY, USA_POLLS_URL } from './usa.js';
+import { fetchPolymarket, marketStatus, MARKET_TTL } from './polymarket.js';
 
 const publicDir = fileURLToPath(new URL('../public/', import.meta.url));
 const cacheDir = process.env.DATA_DIR || fileURLToPath(new URL('../data/', import.meta.url));
@@ -17,7 +19,7 @@ const caches = new Map();
 for (const region of areas) {
   let data = null;
   try { data = JSON.parse(await readFile(`${cacheDir}/${cacheName(region.country, region.id)}.json`, 'utf8')); } catch {}
-  if (region.id === 'barcelona' ? data?.barcelonaPolicy !== BARCELONA_POLICY : region.id === 'katalonien' ? data?.cataloniaPolicy !== CATALONIA_POLICY : region.country === 'es' ? data?.spainPolicy !== SPAIN_POLICY : region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
+  if (region.country === 'us' ? data?.usaPolicy !== USA_POLICY : region.id === 'barcelona' ? data?.barcelonaPolicy !== BARCELONA_POLICY : region.id === 'katalonien' ? data?.cataloniaPolicy !== CATALONIA_POLICY : region.country === 'es' ? data?.spainPolicy !== SPAIN_POLICY : region.id !== 'bundestag' && data?.statePolicy !== 1) data = null;
   // Upgrade persisted raw observations even when the source is temporarily offline.
   for (const series of data?.approval || []) {
     if (series.aggregation !== 'rolling-7-days') {
@@ -37,7 +39,7 @@ async function fetchSheet(gid) {
 }
 async function fetchJson(url, options = {}) {
   const response = await fetch(url, { ...options, signal: AbortSignal.timeout(45000) });
-  if (!response.ok) throw new Error(`Spanien-Datenquelle: HTTP ${response.status}`);
+  if (!response.ok) throw new Error(`JSON-Datenquelle: HTTP ${response.status}`);
   return response.json();
 }
 async function fetchBytes(url) {
@@ -48,7 +50,7 @@ async function fetchBytes(url) {
 }
 async function fetchHtml(url) {
   const response = await fetch(url, { headers: { 'User-Agent': 'Politik/1.0 (public polling visualisation; github.com/josecruset/politik)' }, signal: AbortSignal.timeout(45000) });
-  if (!response.ok) throw new Error(`Katalonien-Datenquelle: HTTP ${response.status}`);
+  if (!response.ok) throw new Error(`Datenquelle: HTTP ${response.status}`);
   return response.text();
 }
 async function refresh(region = areas[0]) {
@@ -57,7 +59,8 @@ async function refresh(region = areas[0]) {
   entry.lastAttempt = Date.now();
   entry.pending = (async () => {
     let data;
-    if (region.id === 'barcelona') data = await fetchBarcelonaData(entry.data, fetchJson, fetchBytes);
+    if (region.country === 'us') data = buildUSAData(await fetchHtml(USA_POLLS_URL));
+    else if (region.id === 'barcelona') data = await fetchBarcelonaData(entry.data, fetchJson, fetchBytes);
     else if (region.id === 'katalonien') data = await fetchCataloniaData(fetchHtml);
     else if (region.country === 'es') data = await fetchSpainData(entry.data, fetchJson);
     else if (region.id === 'bundestag') {
@@ -73,7 +76,24 @@ async function refresh(region = areas[0]) {
   return entry.pending;
 }
 
-const files = { '/event-data.js': ['event-data.js', 'text/javascript'], '/context-ui.js': ['context-ui.js', 'text/javascript'], '/seat-model.js': ['seat-model.js', 'text/javascript'], '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/theme.js': ['theme.js', 'text/javascript'], '/chart-scale.js': ['chart-scale.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
+let markets = null, marketPending = null, marketAttempt = 0;
+try {
+  const stored = JSON.parse(await readFile(`${cacheDir}/markets-us.json`, 'utf8'));
+  if (stored.version === 1 && Array.isArray(stored.events)) markets = stored;
+} catch {}
+async function refreshMarkets() {
+  if (marketPending) return marketPending;
+  marketAttempt = Date.now();
+  marketPending = (async () => {
+    markets = await fetchPolymarket(markets, fetchJson);
+    await mkdir(cacheDir, { recursive: true });
+    await writeFile(`${cacheDir}/markets-us.tmp`, JSON.stringify(markets));
+    await rename(`${cacheDir}/markets-us.tmp`, `${cacheDir}/markets-us.json`);
+  })().catch(error => console.error('Polymarket-Cache:', error.message)).finally(() => { marketPending = null; });
+  return marketPending;
+}
+
+const files = { '/markets-ui.js': ['markets-ui.js', 'text/javascript'], '/event-data.js': ['event-data.js', 'text/javascript'], '/context-ui.js': ['context-ui.js', 'text/javascript'], '/seat-model.js': ['seat-model.js', 'text/javascript'], '/': ['index.html', 'text/html'], '/app.js': ['app.js', 'text/javascript'], '/theme.js': ['theme.js', 'text/javascript'], '/chart-scale.js': ['chart-scale.js', 'text/javascript'], '/style.css': ['style.css', 'text/css'], '/favicon.svg': ['favicon.svg', 'image/svg+xml'] };
 const server = createServer(async (request, response) => {
   const url = new URL(request.url, 'http://localhost');
   const path = url.pathname;
@@ -87,6 +107,14 @@ const server = createServer(async (request, response) => {
       response.setHeader('Content-Type', 'application/json');
       return response.end(JSON.stringify({ status: 'ok', version: process.env.APP_VERSION || 'local', dataReady: Boolean(caches.get('bundestag').data), fetchedAt: caches.get('bundestag').data?.fetchedAt || null }));
     }
+    if (path === '/api/markets') {
+      response.setHeader('Content-Type', 'application/json; charset=utf-8');
+      response.setHeader('Cache-Control', 'no-store');
+      if ((url.searchParams.get('country') || 'us') !== 'us') { response.writeHead(400); return response.end(JSON.stringify({ error: 'Prognosemärkte sind für die USA angebunden' })); }
+      if (marketPending || Date.now() - marketAttempt >= MARKET_TTL) await refreshMarkets();
+      if (!markets) { response.writeHead(503); return response.end(JSON.stringify({ error: 'Polymarket derzeit nicht erreichbar' })); }
+      return response.end(JSON.stringify(marketStatus(markets)));
+    }
     if (path === '/api/data') {
       response.setHeader('Content-Type', 'application/json; charset=utf-8');
       response.setHeader('Cache-Control', 'no-store');
@@ -99,7 +127,7 @@ const server = createServer(async (request, response) => {
         if (Date.now() - entry.lastAttempt > 60000 || entry.pending) await refresh(region);
       }
       if (!entry.data) { response.writeHead(503); return response.end(JSON.stringify({ error: `Die Umfragedaten für ${region.label} konnten noch nicht geladen werden. Bitte erneut versuchen.` })); }
-      return response.end(JSON.stringify({ ...entry.data, country: { id: country.id, label: country.label }, countries: COUNTRIES.map(({ id, label }) => ({ id, label })), region: { id: region.id, label: region.label }, regions: country.regions.map(({ id, label }) => ({ id, label })), stale: Boolean(entry.lastError) || Date.now() - new Date(entry.data.fetchedAt).getTime() > ttl }));
+      return response.end(JSON.stringify({ ...entry.data, country: { id: country.id, label: country.label, context: country.context !== false }, countries: COUNTRIES.map(({ id, label }) => ({ id, label })), region: { id: region.id, label: region.label }, regions: country.regions.map(({ id, label }) => ({ id, label })), stale: Boolean(entry.lastError) || Date.now() - new Date(entry.data.fetchedAt).getTime() > ttl }));
     }
     if (path === '/api/context') {
       const area = findArea(url.searchParams.get('country') || 'de', url.searchParams.get('region'));
@@ -121,4 +149,5 @@ void refresh();
 setInterval(() => {
   for (const region of areas) if (region.id === 'bundestag' || caches.get(region.id).data) void refresh(region);
 }, ttl).unref();
+setInterval(() => { if (markets) void refreshMarkets(); }, MARKET_TTL).unref();
 for (const signal of ['SIGINT', 'SIGTERM']) process.on(signal, () => server.close(() => process.exit(0)));

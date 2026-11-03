@@ -1,5 +1,6 @@
 import { axisMaximum } from './chart-scale.js';
 import { loadContext, clearContext, drawEventTrack } from './context-ui.js';
+import { showMarkets } from './markets-ui.js';
 
 const $ = id => document.getElementById(id);
 const DAY = 86400000;
@@ -10,7 +11,7 @@ let data, width, height, scale, start, end, ymax;
 const active = new Set();
 const selections = new Map();
 let selectedCountry = 'de', selectedRegion = 'bundestag', loadController;
-const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswahl' }]], ['es', [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }, { id: 'katalonien', label: 'Katalonien' }, { id: 'barcelona', label: 'Barcelona' }]]]);
+const countryRegions = new Map([['de', [{ id: 'bundestag', label: 'Bundestagswahl' }]], ['es', [{ id: 'congreso', label: 'Parlamentswahl (Congreso)' }, { id: 'katalonien', label: 'Katalonien' }, { id: 'barcelona', label: 'Barcelona' }]], ['us', [{ id: 'generic-ballot', label: 'Kongresswahl 2026 (Generic Ballot)' }]]]);
 const lastRegions = new Map(), views = new Map();
 const selectionKey = () => `${selectedCountry}:${selectedRegion}`;
 const scroll = $('chart-scroll'), chart = $('chart');
@@ -269,7 +270,7 @@ async function load(initial = true) {
     }
     $('additional').hidden = !data.approval.length;
     $('source').href = data.sourceUrl; $('source').hidden = false;
-    $('source').textContent = country === 'es' ? 'Umfragearchiv ansehen ↗' : 'Originaltabelle ansehen ↗';
+    $('source').textContent = country === 'us' ? 'Silver Bulletin: Umfragen und Methodik ↗' : country === 'es' ? 'Umfragearchiv ansehen ↗' : 'Originaltabelle ansehen ↗';
     $('source-credits').replaceChildren(...(data.sources || []).map(source => {
       const link = document.createElement('a'); link.href = source.url; link.textContent = source.label;
       link.target = '_blank'; link.rel = 'noopener noreferrer'; return link;
@@ -288,12 +289,12 @@ async function load(initial = true) {
     $('other-parties').hidden = !otherParties.length;
     $('other-parties-legend').replaceChildren(...otherParties.map(p => toggle(p, false, true)));
     $('approval-legend').replaceChildren(...data.approval.map(p => toggle(p, true)));
-    $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)}${data.latestPoll ? ` · ${data.latestPoll.pollster}` : ''} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
+    $('status').textContent = `Letzte Umfrage: ${dateLabel(data.latestPollDate)}${data.dateBasis === 'fieldwork-end' ? ' (Befragungsende)' : ''}${data.latestPoll ? ` · ${data.latestPoll.pollster}` : ''} · ${data.pollCount.toLocaleString('de-DE')} Umfragen im Verlauf`;
     $('pollsters').textContent = data.pollsters?.length ? data.pollsters.join(' · ') : 'Die Liste der Umfrageinstitute wird aktualisiert …';
     $('updated').textContent = `${data.stale ? 'Aktualisierung fehlgeschlagen · letzter erfolgreicher Abruf' : 'Daten abgerufen'}: ${new Date(data.fetchedAt).toLocaleString('de-DE', { timeZone: 'Europe/Berlin', dateStyle: 'short', timeStyle: 'short' })} · alle 15 Minuten`;
     $('loading').hidden = true;
     render(previousDate, wasLatest);
-    void loadContext(data, () => ({ start, end, scale, width, scrollLeft: scroll.scrollLeft }));
+    if (data.country.context !== false) void loadContext(data, () => ({ start, end, scale, width, scrollLeft: scroll.scrollLeft }));
   } catch (error) {
     if (controller.signal.aborted || country !== selectedCountry || region !== selectedRegion) return;
     if (!initial) { $('updated').textContent = 'Aktualisierung fehlgeschlagen · die zuletzt geladenen Daten bleiben sichtbar'; return; }
@@ -309,10 +310,11 @@ function saveView() {
   lastRegions.set(selectedCountry, selectedRegion);
 }
 function updateCountryText() {
-  const germany = selectedCountry === 'de';
-  $('page-title').textContent = germany ? 'Umfragewerte Parteien und Regierung' : 'Umfragewerte Parteien';
-  $('subtitle').textContent = germany ? 'Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.' : selectedRegion === 'barcelona' ? 'Barcelona. Kommunale Wahlabsichten aus dem städtischen Barometer im Zeitverlauf.' : 'Spanien. Alle Institute. Parteien im gleitenden 7-Tage-Durchschnitt.';
-  document.title = `${$('page-title').textContent} · ${germany ? 'Deutschland' : 'Spanien'}`;
+  const germany = selectedCountry === 'de', usa = selectedCountry === 'us';
+  $('page-title').textContent = usa ? 'USA: Umfragen und Prognosemärkte' : germany ? 'Umfragewerte Parteien und Regierung' : 'Umfragewerte Parteien';
+  $('subtitle').textContent = usa ? 'Kongresswahl 2026. Nationale Wahlabsichten im 7-Tage-Durchschnitt und aktuelle Polymarket-Kurse zur Mehrheit in beiden Kammern.' : germany ? 'Alle Institute. Ein Verlauf. Parteien und Zufriedenheit im gleitenden 7-Tage-Durchschnitt.' : selectedRegion === 'barcelona' ? 'Barcelona. Kommunale Wahlabsichten aus dem städtischen Barometer im Zeitverlauf.' : 'Spanien. Alle Institute. Parteien im gleitenden 7-Tage-Durchschnitt.';
+  document.title = `${$('page-title').textContent} · ${usa ? 'USA' : germany ? 'Deutschland' : 'Spanien'}`;
+  showMarkets(selectedCountry);
 }
 function switchView() {
   clearContext();

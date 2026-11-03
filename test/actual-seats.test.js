@@ -7,8 +7,8 @@ import { currentSeats, coalition, projectSeats } from '../public/seat-model.js';
 import { seatRule } from '../src/seat-rules.js';
 const today = '2026-10-13';
 
-test('every selectable area has a sourced complete composition in its own context', () => {
-  const areas = COUNTRIES.flatMap(c => c.regions.map(r => `${c.id}:${r.id}`));
+test('every area offering curated context has a sourced complete composition in its own context', () => {
+  const areas = COUNTRIES.filter(c => c.context !== false).flatMap(c => c.regions.map(r => `${c.id}:${r.id}`));
   assert.deepEqual(actualSeats.map(s => `${s.country}:${s.region}`).sort(), areas.sort());
   for (const s of actualSeats) {
     assert.equal(validateActualSeats([s])[0], s);
